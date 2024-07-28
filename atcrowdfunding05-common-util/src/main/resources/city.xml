@@ -1,0 +1,14 @@
+<cityList>
+    <city area="0551">
+        <id>00001</id>
+        <name length="10" type="String">广西</name>
+    </city>
+    <city area="020">
+        <id>00002</id>
+        <name length="12" type="String">广东</name>
+    </city>
+    <city area="028">
+        <id>00003</id>
+        <name length="14" type="String">四川</name>
+    </city>
+</cityList>

@@ -1,6 +1,7 @@
 import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.mapper.AdminMapper;
 import com.atguigu.crowd.service.inf.AdminService;
+import com.atguigu.crowd.wave.TransWave;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,19 @@ public class CrowdTest {
     @Autowired
     private AdminService adminService;
 
+
+    @Test
+    public void testWave(){
+         String odlFilePath = "src/main/resources/oldwave/14026.wav";
+         String newFilePath = "src/main/resources/newwave/20240303.wav";
+
+        TransWave transWave = new TransWave();
+        String base64Wave = transWave.getBase64Wave(odlFilePath);
+        System.out.println(base64Wave);
+
+        transWave.saveWaveFile(newFilePath,base64Wave);
+
+    }
 
     @Test
     public void testAdminService(){

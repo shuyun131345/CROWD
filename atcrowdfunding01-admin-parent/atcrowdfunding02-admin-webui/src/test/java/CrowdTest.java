@@ -31,7 +31,7 @@ public class CrowdTest {
     @Test
     public void testWave(){
          String odlFilePath = "src/main/resources/oldwave/14026.wav";
-         String newFilePath = "src/main/resources/newwave/20240303.wav";
+         String newFilePath = "src/main/resources/newwave/20240305.wav";
 
         TransWave transWave = new TransWave();
         String base64Wave = transWave.getBase64Wave(odlFilePath);

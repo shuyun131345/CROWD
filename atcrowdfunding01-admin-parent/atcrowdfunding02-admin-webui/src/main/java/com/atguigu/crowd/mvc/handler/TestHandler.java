@@ -19,6 +19,7 @@ public class TestHandler {
     public String testSsm(Model model){
         List<Admin> list = adminService.getALl();
         model.addAttribute("list",list);
+        System.out.println(10/0);
         return "target";
     }
 }

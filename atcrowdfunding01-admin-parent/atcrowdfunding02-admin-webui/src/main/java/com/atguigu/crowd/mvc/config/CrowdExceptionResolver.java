@@ -18,27 +18,46 @@ public class CrowdExceptionResolver {
 
 
     /**
+     * 空指针异常处理
      * 该注解表示将一个具体的异常类型和一个方法关联起来
      * @param exception 实际捕获的异常对象
-     * @param request 当前请求对象
-     * @param response 当前响应对象
+     * @param request   当前请求对象
+     * @param response  当前响应对象
      * @return
      */
     @ExceptionHandler
     public ModelAndView resolverNullPointerException(NullPointerException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+       String viewName = "system-error";
+       return genExceptionResolver(exception,request,response,viewName);
+
+    }
+
+
+    /**
+     * 通用异常处理类
+     * 该注解表示将一个具体的异常类型和一个方法关联起来
+     * @param exception 实际捕获的异常对象
+     * @param request 当前请求对象
+     * @param response 当前响应对象
+     * @param viewName 返回视图名称
+     * @return
+     * @throws IOException
+     */
+    @ExceptionHandler
+    private ModelAndView genExceptionResolver(Exception exception, HttpServletRequest request, HttpServletResponse response, String viewName) throws IOException {
+
 
         //1.判断当前的请求类型是否是ajax请求
         boolean requestType = CrowdUtil.judgeRequestType(request);
 
-
         //2.如果是ajax请求，就不返回页面了，返回封装后的resultEntity对象
-        if (requestType){
+        if (requestType) {
 
             //3.从当前异常对象中获取异常信息
             String message = exception.getMessage();
 
             //4.创建ajax同意返回对象ResultEntity，把请求结果和错误信息返回去
-            ResultEntity<Object> resultEntity = ResultEntity.failedWithData(message,null);
+            ResultEntity<Object> resultEntity = ResultEntity.failedWithData(message, null);
 
             //5.ResultEntity转换成json字符串
             Gson gson = new Gson();
@@ -58,10 +77,10 @@ public class CrowdExceptionResolver {
         ModelAndView view = new ModelAndView();
 
         //9.将exception对象存入模型中
-        view.addObject("exception",exception);
+        view.addObject("exception", exception);
 
+        //10.设置返回视图
+        view.setViewName(viewName);
         return view;
-
     }
-
 }

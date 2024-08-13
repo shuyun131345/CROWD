@@ -19,7 +19,11 @@ public class TestHandler {
     public String testSsm(Model model){
         List<Admin> list = adminService.getALl();
         model.addAttribute("list",list);
-        System.out.println(10/0);
+//        System.out.println(10/0);
+        //空指针异常
+        String str = null;
+        System.out.println(str.length());
+
         return "target";
     }
 }

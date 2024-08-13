@@ -18,6 +18,11 @@ public class AjaxTestHandler {
     public String ajaxTest(@RequestBody Student list){
         log.info(list.toString());
 //        list.stream().forEach(System.out::println);
+
+        //空指针异常
+        String str = null;
+        System.out.println(str.length());
+
         return "target";
     }
 }

@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>出错了</h1>
-
+<!--打印异常信息-->
 ${requestScope.exception.message}
 </body>
 </html>

@@ -26,6 +26,35 @@
         $(function () {
 
             //绑定一个单击事件
+            $("#btn2").click(function () {
+
+                //1.准备要发送的数据
+                var student = {
+                    "name": "sy",
+                    "age": 19,
+                    "gender": "男"
+                }
+
+                //2.转换成json格式
+                var requestBody = JSON.stringify(student);
+
+                //3.发送ajax请求
+                $.ajax({
+                    "url": "test/ajaxresult.json",
+                    "type": "post",
+                    "data": requestBody,
+                    "contentType": "application/json;charset=UTF-8",
+                    "dataType": "json",
+                    "success": function (response) {
+                        console.log(response);
+                    },
+                    "error": function (response) {
+                        console.log(response);
+                    }
+                });
+            });
+
+            //绑定一个单击事件
             $("#btn1").click(function () {
 
                 //1.准备要发送的数据
@@ -63,7 +92,11 @@
 
     <br/>
     <br/>
-    <button id="btn1">Send String</button>
+    <button id="btn1">Send ajax</button>
+
+    <br/>
+    <br/>
+    <button id="btn2">Send ajaxresult</button>
 
 </body>
 </html>

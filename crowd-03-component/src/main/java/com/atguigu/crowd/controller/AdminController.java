@@ -2,6 +2,7 @@ package com.atguigu.crowd.controller;
 
 import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.entity.Student;
+import com.atguigu.crowd.entity.common.AjaxResultEntity;
 import com.atguigu.crowd.service.inf.AdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,5 +41,14 @@ public class AdminController {
         log.info(student.toString());
         return "success";
     }
+
+    @RequestMapping("/test/ajaxresult.json")
+    @ResponseBody
+    public AjaxResultEntity<Student> ajaxResult(@RequestBody Student student){
+        log.info(student.toString());
+        AjaxResultEntity<Student> resultEntity = AjaxResultEntity.success(null, student);
+        return resultEntity;
+    }
+
 
 }

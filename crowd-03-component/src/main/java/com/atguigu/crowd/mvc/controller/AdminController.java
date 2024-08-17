@@ -1,4 +1,4 @@
-package com.atguigu.crowd.controller;
+package com.atguigu.crowd.mvc.controller;
 
 import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.entity.Student;
@@ -31,6 +31,14 @@ public class AdminController {
     public String selectAdminList(Model model){
         List<Admin> admins = service.selectAdminList();
         model.addAttribute("admins",admins);
+        //异常测试
+        // System.out.println(10/0);
+
+        //空指针异常
+        String s = null;
+        System.out.println(s.toString());
+
+
         return "admin";
     }
 
@@ -39,6 +47,9 @@ public class AdminController {
     @ResponseBody
     public String ajaxRequest(@RequestBody Student student){
         log.info(student.toString());
+        //空指针异常
+        String s = null;
+        System.out.println(s.toString());
         return "success";
     }
 
@@ -46,9 +57,13 @@ public class AdminController {
     @ResponseBody
     public AjaxResultEntity<Student> ajaxResult(@RequestBody Student student){
         log.info(student.toString());
+        //空指针异常
+        String s = null;
+        System.out.println(s.toString());
         AjaxResultEntity<Student> resultEntity = AjaxResultEntity.success(null, student);
         return resultEntity;
     }
+
 
 
 }

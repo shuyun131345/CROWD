@@ -27,6 +27,18 @@ public class AdminController {
     @Autowired
     private AdminService service;
 
+
+    @RequestMapping("/admin/to/login/page.html")
+    public String adminLogin(){
+        return "login/admin-login";
+    }
+
+
+
+
+
+    //========test=====
+
     @RequestMapping("/test/admin.html")
     public String selectAdminList(Model model){
         List<Admin> admins = service.selectAdminList();
@@ -35,8 +47,8 @@ public class AdminController {
         // System.out.println(10/0);
 
         //空指针异常
-        String s = null;
-        System.out.println(s.toString());
+        // String s = null;
+        // System.out.println(s.toString());
 
 
         return "admin";
@@ -48,8 +60,8 @@ public class AdminController {
     public String ajaxRequest(@RequestBody Student student){
         log.info(student.toString());
         //空指针异常
-        String s = null;
-        System.out.println(s.toString());
+        // String s = null;
+        // System.out.println(s.toString());
         return "success";
     }
 
@@ -58,8 +70,8 @@ public class AdminController {
     public AjaxResultEntity<Student> ajaxResult(@RequestBody Student student){
         log.info(student.toString());
         //空指针异常
-        String s = null;
-        System.out.println(s.toString());
+        // String s = null;
+        // System.out.println(s.toString());
         AjaxResultEntity<Student> resultEntity = AjaxResultEntity.success(null, student);
         return resultEntity;
     }

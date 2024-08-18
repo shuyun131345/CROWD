@@ -19,6 +19,9 @@
     <%--引入jquery--%>
     <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
 
+    <%--引入layer--%>
+    <script type="text/javascript" src="layer/layer.js"></script>
+
     <%--jquery代码--%>
     <script type="text/javascript">
 
@@ -47,6 +50,7 @@
                     "dataType": "json",
                     "success": function (response) {
                         console.log(response);
+                        layer.msg("hello");
                     },
                     "error": function (response) {
                         console.log(response);

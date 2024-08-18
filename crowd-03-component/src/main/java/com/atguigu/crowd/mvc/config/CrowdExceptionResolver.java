@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static com.atguigu.crowd.constant.ExceptionConstant.REQUEST_EXCEPTION;
+
 /**
  * @author shuyun
  * @date 2024-08-17 22:17:29
@@ -81,7 +83,7 @@ public class CrowdExceptionResolver {
         ModelAndView view = new ModelAndView();
 
         // 9.将exception对象存入模型中
-        view.addObject("exception", exception);
+        view.addObject(REQUEST_EXCEPTION, exception);
 
         // 10.设置返回视图
         view.setViewName(viewName);

@@ -10,6 +10,14 @@ import java.util.List;
  */
 public interface AdminService {
 
+
+    /**
+     * 管理员登录检查
+     * @param admin
+     * @return
+     */
+    Admin checkAdminLogin(Admin admin);
+
     /**
      * 查询Admin列表
      * @return List<Admin>

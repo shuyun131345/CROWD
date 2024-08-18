@@ -1,5 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: shuyun
+  Date: 2024/8/18
+  Time: 21:17
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -17,6 +23,7 @@
     <style>
 
     </style>
+
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -29,24 +36,28 @@
 
 <div class="container">
 
-    <form class="form-signin" action="admin/do/login.html" method="post" role="form">
-        <h2 class="form-signin-heading"><i class="glyphicon glyphicon-log-in"></i> 管理员登录</h2>
-        <p>${requestScope.exception.message}</p>
-        <div class="form-group has-success has-feedback">
-            <input type="text" name="loginAcct" class="form-control" id="loginAcct" placeholder="请输入登录账号"
-                   autofocus>
-            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-        </div>
-        <div class="form-group has-success has-feedback">
-            <input type="text" name="userPswd" class="form-control" id="userPswd" placeholder="请输入登录密码"
-                   style="margin-top:10px;">
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        </div>
-        <a href="main.html"> </a>
-        <button type="submit" class="btn btn-lg btn-success btn-block">登录</button>
-    </form>
+    <h2 class="form-signin-heading" style="text-align: center">
+        <i class="glyphicon glyphicon-log-in"></i> 尚筹网系统消息
+    </h2>
+    <!--
+        requestScope对应的是存放request域数据的Map
+        requestScope.exception相当于request.getAttribute("exception")
+        requestScope.exception.message相当于exception.getMessage()
+     -->
+    <h3 style="text-align: center">${requestScope.exception.message}</h3>
+    <button id="back" style="width: 150px;margin: 50px auto 50px auto" class="btn btn-lg btn-success btn-block">返回上一步</button>
 </div>
 <script src="jquery/jquery-2.1.1.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#back").click(function () {
+            // 相当于浏览器的后退按钮
+            window.history.back();
+        });
+    });
+
+</script>
 </body>
 </html>

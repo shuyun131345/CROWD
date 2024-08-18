@@ -1,6 +1,7 @@
 package com.atguigu.crowd.mvc.config;
 
 import com.atguigu.crowd.entity.common.AjaxResultEntity;
+import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.request.AjaxRequestUtil;
 import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -22,6 +23,23 @@ import static com.atguigu.crowd.constant.ExceptionConstant.REQUEST_EXCEPTION;
 @ControllerAdvice
 public class CrowdExceptionResolver {
 
+
+    /**
+     * 登录失败异常处理
+     *
+     * @param exception
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    public ModelAndView resolverLoginFailedException(LoginFailedException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // 在登录页面显示异常信息
+        String viewName = "admin-login";
+        return genExceptionResolver(exception, request, response, viewName);
+    }
+
+
     /**
      * 空指针异常处理
      * 该注解表示将一个具体的异常类型和一个方法关联起来
@@ -33,9 +51,8 @@ public class CrowdExceptionResolver {
      */
     @ExceptionHandler(value = NullPointerException.class)
     public ModelAndView resolverNullPointerException(NullPointerException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String viewName = "system2-error";
+        String viewName = "error/system-error";
         return genExceptionResolver(exception, request, response, viewName);
-
     }
 
 

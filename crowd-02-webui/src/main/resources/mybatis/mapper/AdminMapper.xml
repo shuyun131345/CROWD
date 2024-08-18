@@ -9,6 +9,19 @@
     <result column="email" property="email"/>
     <result column="create_time" property="createTime"/>
   </resultMap>
+
+  <select id="selectByAcount" resultMap="BaseResultMap" parameterType="java.lang.String">
+      select
+      <include refid="Base_Column_List"/>
+      from t_admin
+      where
+      <if test="acount != null and acount !=''">
+          login_acct = #{acount}
+      </if>
+  </select>
+
+
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

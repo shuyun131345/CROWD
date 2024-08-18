@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -28,25 +29,41 @@ public class AdminController {
     private AdminService service;
 
 
+    /**
+     * 管理员登录界面
+     *
+     * @return
+     */
     @RequestMapping("/admin/to/login/page.html")
-    public String adminLogin(){
+    public String adminLogin() {
         return "login/admin-login";
     }
 
 
+    @RequestMapping("/admin/do/login.html")
+    public String adminLoginCheck(@RequestParam("loginAcct") String loginAcct, @RequestParam("userPswd") String userPswd, Model model) {
 
+        Admin admin = new Admin();
+        admin.setLoginAcct(loginAcct);
+        admin.setUserPswd(userPswd);
+        // 执行登录检查
+        Admin adminLogin = service.checkAdminLogin(admin);
+
+        model.addAttribute("admin",adminLogin);
+        return "login/admin-main";
+    }
 
 
     //========test=====
 
     @RequestMapping("/test/admin.html")
-    public String selectAdminList(Model model){
+    public String selectAdminList(Model model) {
         List<Admin> admins = service.selectAdminList();
-        model.addAttribute("admins",admins);
-        //异常测试
-        // System.out.println(10/0);
+        model.addAttribute("admins", admins);
+        // 异常测试
+        System.out.println(10 / 0);
 
-        //空指针异常
+        // 空指针异常
         // String s = null;
         // System.out.println(s.toString());
 
@@ -57,9 +74,9 @@ public class AdminController {
 
     @RequestMapping("/test/ajax.html")
     @ResponseBody
-    public String ajaxRequest(@RequestBody Student student){
+    public String ajaxRequest(@RequestBody Student student) {
         log.info(student.toString());
-        //空指针异常
+        // 空指针异常
         // String s = null;
         // System.out.println(s.toString());
         return "success";
@@ -67,15 +84,14 @@ public class AdminController {
 
     @RequestMapping("/test/ajaxresult.json")
     @ResponseBody
-    public AjaxResultEntity<Student> ajaxResult(@RequestBody Student student){
+    public AjaxResultEntity<Student> ajaxResult(@RequestBody Student student) {
         log.info(student.toString());
-        //空指针异常
+        // 空指针异常
         // String s = null;
         // System.out.println(s.toString());
         AjaxResultEntity<Student> resultEntity = AjaxResultEntity.success(null, student);
         return resultEntity;
     }
-
 
 
 }

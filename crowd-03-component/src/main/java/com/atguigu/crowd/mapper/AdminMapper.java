@@ -2,10 +2,20 @@ package com.atguigu.crowd.mapper;
 
 import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.entity.AdminExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface AdminMapper {
+
+    /**
+     * 根据账号查询管理员信息
+     *
+     * @param acount
+     * @return
+     */
+    Admin selectByAcount(@Param("acount") String acount);
+
     int countByExample(AdminExample example);
 
     int deleteByExample(AdminExample example);

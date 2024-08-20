@@ -1,6 +1,7 @@
 package com.atguigu.crowd.mvc.config;
 
 import com.atguigu.crowd.entity.common.AjaxResultEntity;
+import com.atguigu.crowd.exception.AccessForbiddenException;
 import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.request.AjaxRequestUtil;
 import com.google.gson.Gson;
@@ -25,6 +26,23 @@ public class CrowdExceptionResolver {
 
 
     /**
+     * 管理员未登录时抛出该异常
+     * @param exception
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    @ExceptionHandler(value = AccessForbiddenException.class)
+    public ModelAndView resolverAccessForbiddenException(AccessForbiddenException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // 返回到登录页面
+        String viewName = "login/admin-login";
+        return genExceptionResolver(exception, request, response, viewName);
+    }
+
+
+
+    /**
      * 登录失败异常处理
      *
      * @param exception
@@ -33,6 +51,7 @@ public class CrowdExceptionResolver {
      * @return
      * @throws IOException
      */
+    @ExceptionHandler(value = LoginFailedException.class)
     public ModelAndView resolverLoginFailedException(LoginFailedException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 在登录页面显示异常信息
         String viewName = "admin-login";

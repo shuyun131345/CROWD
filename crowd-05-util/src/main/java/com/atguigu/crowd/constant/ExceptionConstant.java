@@ -9,6 +9,7 @@ public class ExceptionConstant {
     public static final String REQUEST_EXCEPTION = "exception";
     public static final String ATTR_INVALIDATE = "传入字符串为空";
     public static final String LOGIN_FAILED = "登录失败，账号或密码不正确";
+    public static final String ACCESS_FORBIDDEN = "请登录后再访问";
 
 
 }

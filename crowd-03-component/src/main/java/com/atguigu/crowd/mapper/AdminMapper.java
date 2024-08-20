@@ -16,6 +16,14 @@ public interface AdminMapper {
      */
     Admin selectByAcount(@Param("acount") String acount);
 
+    /**
+     * 按关键字查询管理员信息
+     * @return
+     */
+    List<Admin> selectAdminListByKeyWord(@Param("acount") String keyWord);
+
+
+
     int countByExample(AdminExample example);
 
     int deleteByExample(AdminExample example);

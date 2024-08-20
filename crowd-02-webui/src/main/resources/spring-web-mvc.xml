@@ -28,8 +28,24 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
                 <!-- key属性指定异常全类名 -->
                 <!-- 标签体中写对应的视图（这个值要拼前后缀得到具体路径） -->
                 <prop key="java.lang.Exception">error/system-error</prop>
+
+                <!-- 管理员未登录时抛出异常-->
+                <prop key="com.atguigu.crowd.exception.AccessForbiddenException">login/admin-login</prop>
             </props>
         </property>
     </bean>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--mvc:mapping 表示拦截的资源。/*对应一层路径，/**表示多层路径-->
+            <mvc:mapping path="/**"/>
+            <!--mvc:exclude-mapping 配置不拦截的资源：登录、登录检查、登出-->
+            <mvc:exclude-mapping path="/admin/to/login/page.html"/>
+            <mvc:exclude-mapping path="/admin/do/login.html"/>
+            <mvc:exclude-mapping path="/admin/logout.html"/>
+            <!--配置拦截类-->
+            <bean class="com.atguigu.crowd.mvc.interceptor.AdminLoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

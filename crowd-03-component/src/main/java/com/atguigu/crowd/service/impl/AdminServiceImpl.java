@@ -34,7 +34,6 @@ public class AdminServiceImpl implements AdminService {
 
         //根据账号去查管理员信息
         Admin select = mapper.selectByAcount(admin.getLoginAcct());
-
         if (Objects.isNull(select)){
             throw new LoginFailedException(LOGIN_FAILED);
         }

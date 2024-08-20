@@ -11,9 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -40,18 +40,49 @@ public class AdminController {
     }
 
 
+    /**
+     * 登录检查，验证成功后跳转到登录成功界面
+     *
+     * @param admin
+     * @param session
+     * @return
+     */
     @RequestMapping("/admin/do/login.html")
-    public String adminLoginCheck(@RequestParam("loginAcct") String loginAcct, @RequestParam("userPswd") String userPswd, Model model) {
+    public String adminLoginCheck(Admin admin, HttpSession session) {
 
-        Admin admin = new Admin();
-        admin.setLoginAcct(loginAcct);
-        admin.setUserPswd(userPswd);
         // 执行登录检查
         Admin adminLogin = service.checkAdminLogin(admin);
 
-        model.addAttribute("admin",adminLogin);
+        // 将管理员信息存到session域，返回给前端
+        session.setAttribute("admin", adminLogin);
+        // return "login/admin-main";
+        return "redirect:/admin/loginsuccess.html";
+    }
+
+    /**
+     * 登录成功
+     *
+     * @return
+     */
+    @RequestMapping("/admin/loginsuccess.html")
+    public String loginSuccess() {
         return "login/admin-main";
     }
+
+
+    /**
+     * 管理员退出操作
+     * @param session
+     * @return
+     */
+    @RequestMapping("/admin/logout.html")
+    public String adminLogout(HttpSession session){
+
+        //强制session失效
+        session.invalidate();
+        return "redirect:/admin/to/login/page.html";
+    }
+
 
 
     //========test=====

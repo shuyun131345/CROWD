@@ -20,6 +20,16 @@
       </if>
   </select>
 
+  <select id="selectAdminListByKeyWord" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from t_admin
+    <where>
+      <if test="keyWord != null and keyWord !=''">
+        login_acct like concat('%',#{keyWord},'%')  or user_name like concat('%',#{keyWord},'%') or email like concat('%',#{keyWord},'%')
+      </if>
+    </where>
+  </select>
 
 
   <sql id="Example_Where_Clause" >

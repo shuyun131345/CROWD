@@ -30,7 +30,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
                 <prop key="java.lang.Exception">error/system-error</prop>
 
                 <!-- 管理员未登录时抛出异常-->
-                <prop key="com.atguigu.crowd.exception.AccessForbiddenException">login/admin-login</prop>
+                <prop key="com.atguigu.crowd.exception.AccessForbiddenException">admin/admin-login</prop>
             </props>
         </property>
     </bean>

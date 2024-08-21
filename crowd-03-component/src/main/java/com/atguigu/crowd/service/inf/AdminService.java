@@ -1,6 +1,7 @@
 package com.atguigu.crowd.service.inf;
 
 import com.atguigu.crowd.entity.Admin;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public interface AdminService {
 
     /**
      * 管理员登录检查
+     *
      * @param admin
      * @return
      */
@@ -20,7 +22,17 @@ public interface AdminService {
 
     /**
      * 查询Admin列表
+     *
      * @return List<Admin>
      */
     List<Admin> selectAdminList();
+
+
+    /**
+     * 按关键字查询管理员信息
+     *
+     * @param keyWord
+     * @return
+     */
+    PageInfo<Admin> selectAdminByKeyWord(String keyWord, Integer pageNum, Integer pageSize);
 }

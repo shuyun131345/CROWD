@@ -20,7 +20,7 @@ public interface AdminMapper {
      * 按关键字查询管理员信息
      * @return
      */
-    List<Admin> selectAdminListByKeyWord(@Param("acount") String keyWord);
+    List<Admin> selectAdminListByKeyWord(@Param("keyWord") String keyWord);
 
 
 

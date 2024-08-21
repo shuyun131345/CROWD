@@ -4,6 +4,8 @@ import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.entity.Student;
 import com.atguigu.crowd.entity.common.AjaxResultEntity;
 import com.atguigu.crowd.service.inf.AdminService;
+import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,7 @@ public class AdminController {
      */
     @RequestMapping("/admin/to/login/page.html")
     public String adminLogin() {
-        return "login/admin-login";
+        return "admin/admin-login";
     }
 
 
@@ -55,7 +57,7 @@ public class AdminController {
 
         // 将管理员信息存到session域，返回给前端
         session.setAttribute("admin", adminLogin);
-        // return "login/admin-main";
+        // return "admin/admin-main";
         return "redirect:/admin/loginsuccess.html";
     }
 
@@ -66,22 +68,53 @@ public class AdminController {
      */
     @RequestMapping("/admin/loginsuccess.html")
     public String loginSuccess() {
-        return "login/admin-main";
+        return "admin/admin-main";
     }
 
 
     /**
      * 管理员退出操作
+     *
      * @param session
      * @return
      */
     @RequestMapping("/admin/logout.html")
-    public String adminLogout(HttpSession session){
+    public String adminLogout(HttpSession session) {
 
-        //强制session失效
+        // 强制session失效
         session.invalidate();
         return "redirect:/admin/to/login/page.html";
     }
+
+
+    /**
+     * 按关键字查询管理员信息，分页展示
+     * @param keyword
+     * @param pageNum
+     * @param pageSize
+     * @param model
+     * @return
+     */
+    @RequestMapping("/admin/page.html")
+    public String adminPage(@Param("keyword") String keyword, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize,Model model) {
+
+        PageInfo<Admin> pageInfo = service.selectAdminByKeyWord(keyword, pageNum, pageSize);
+        model.addAttribute("pageInfo",pageInfo);
+        return "admin/admin-page";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

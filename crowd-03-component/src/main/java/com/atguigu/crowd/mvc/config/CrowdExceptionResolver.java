@@ -36,7 +36,7 @@ public class CrowdExceptionResolver {
     @ExceptionHandler(value = AccessForbiddenException.class)
     public ModelAndView resolverAccessForbiddenException(AccessForbiddenException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 返回到登录页面
-        String viewName = "login/admin-login";
+        String viewName = "admin/admin-login";
         return genExceptionResolver(exception, request, response, viewName);
     }
 
@@ -54,7 +54,7 @@ public class CrowdExceptionResolver {
     @ExceptionHandler(value = LoginFailedException.class)
     public ModelAndView resolverLoginFailedException(LoginFailedException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 在登录页面显示异常信息
-        String viewName = "admin-login";
+        String viewName = "admin/admin-login";
         return genExceptionResolver(exception, request, response, viewName);
     }
 

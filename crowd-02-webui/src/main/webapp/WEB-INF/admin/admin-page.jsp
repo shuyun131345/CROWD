@@ -6,7 +6,50 @@
 <%@include file="/WEB-INF/commom/include-head.jsp" %>
 <link rel="stylesheet" href="css/pagination.css"/>
 <script type="text/javascript" src="jquery/jquery.pagination.js"></script>
+<script type="text/javascript">
 
+    $(function () {
+        //初始化分页插件，生成页码导航条
+        initPagination();
+    });
+
+    //分页插件初始化函数
+    function initPagination() {
+        //总页数
+        var totalRecord = ${requestScope.pageInfo.total};
+
+        //分页设置
+        var pageProperties = {
+            //边缘页
+            num_edge_entries: 3,
+            //主体页数
+            num_display_entries: 4,
+            //回调函数
+            callback: pageSelectCallback,
+            //当前页：pagination的页码从0开始，pageInfo的页码从1开始，所以要减1
+            current_page: ${requestScope.pageInfo.pageNum} -1,
+            prev_text: "上一页",
+            next_text: "下一页",
+            //每页显示的数量
+            items_per_page: ${requestScope.pageInfo.pageSize}
+        };
+
+        //绑定导航条的分页参数
+        $("#Pagination").pagination(totalRecord,pageProperties);
+    }
+
+    //分页设置的回调函数：回调函数是由系统或框架调用，不是自己调用
+    //用户点击页码或者 上一页、下一页时调用该函数
+    //形参pageIndex是pagination的页码，从0开始
+    function pageSelectCallback(pageIndex,jQuery) {
+        //根据pageIndex计算当前页码
+        var pageNum = pageIndex + 1;
+        //跳转页面
+        window.location.href = "admin/page.html?pageNum="+pageNum;
+        //由于每一个页码按钮都是超链接，所以在这个函数最后取消超链接的默认行为
+        return false;
+    }
+</script>
 
 <body>
 <%@include file="/WEB-INF/commom/include-bodynav.jsp" %>
@@ -74,20 +117,11 @@
                                 </c:forEach>
                             </c:if>
 
-
                             </tbody>
                             <tfoot>
                             <tr>
                                 <td colspan="6" align="center">
-                                    <ul class="pagination">
-                                        <li class="disabled"><a href="#">上一页</a></li>
-                                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">下一页</a></li>
-                                    </ul>
+                                    <div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
                                 </td>
                             </tr>
 
@@ -99,7 +133,6 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>
 

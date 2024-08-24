@@ -22,7 +22,15 @@ public interface AdminMapper {
      */
     List<Admin> selectAdminListByKeyWord(@Param("keyWord") String keyWord);
 
+    /**
+     * 根据id删除管理员
+     * @param id
+     * @return
+     */
+    int deleteAdminById(@Param("id") Integer id);
 
+
+    //==========逆向工程============
 
     int countByExample(AdminExample example);
 
@@ -45,4 +53,6 @@ public interface AdminMapper {
     int updateByPrimaryKeySelective(Admin record);
 
     int updateByPrimaryKey(Admin record);
+
+
 }

@@ -35,4 +35,11 @@ public interface AdminService {
      * @return
      */
     PageInfo<Admin> selectAdminByKeyWord(String keyWord, Integer pageNum, Integer pageSize);
+
+    /**
+     * 按id删除管理员
+     * @param id
+     * @return
+     */
+    int removeAdminByid(Integer id);
 }

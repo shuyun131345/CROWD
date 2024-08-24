@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -104,6 +105,23 @@ public class AdminController {
     }
 
 
+    /**
+     * 根据id删除管理员信息，并重定向到信息查询页面
+     * @param id
+     * @param pageNum
+     * @param pageSize
+     * @param keyword
+     * @return
+     */
+    @RequestMapping("admin/remove/{id}/{pageNum}/{pageSize}/{keyword}.html")
+    public String removeAdmin(@PathVariable("id") Integer id,@PathVariable("pageNum") Integer pageNum,@PathVariable("pageSize") Integer pageSize,@PathVariable("keyword") String keyword){
+
+        //根据id删除管理员信息
+        int count = service.removeAdminByid(id);
+
+        return "redirect:/admin/page.html?keyword="+keyword+"&pageNum="+pageNum+"&pageSize="+pageSize;
+
+    }
 
 
 

@@ -76,4 +76,10 @@ public class AdminServiceImpl implements AdminService {
         return pageInfo;
     }
 
+    @Override
+    public int removeAdminByid(Integer id) {
+       int count = mapper.deleteAdminById(id);
+        return count;
+    }
+
 }

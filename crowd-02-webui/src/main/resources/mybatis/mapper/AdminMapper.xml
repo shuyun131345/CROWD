@@ -31,6 +31,19 @@
     </where>
   </select>
 
+  <delete id="deleteAdminById" parameterType="java.lang.Integer">
+    delete from t_admin where id = #{id}
+  </delete>
+
+
+
+
+
+
+
+
+
+
 
   <sql id="Example_Where_Clause" >
     <where >

@@ -4,6 +4,7 @@ import com.atguigu.crowd.common.DateUtil;
 import com.atguigu.crowd.common.EncodeByMD5;
 import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.entity.AdminExample;
+import com.atguigu.crowd.exception.EditErrorException;
 import com.atguigu.crowd.exception.InputErrorException;
 import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.mapper.AdminMapper;
@@ -123,14 +124,18 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public int updateAdminByAccount(Admin admin) {
+    public int updateAdminById(Admin admin) {
         if (Objects.isNull(admin)){
-            throw new InputErrorException("修改信息为空");
+            throw new EditErrorException("修改信息为空");
+        }
+
+        if (StringUtils.isEmpty(admin.getLoginAcct())&&StringUtils.isEmpty(admin.getUserName())&&StringUtils.isEmpty(admin.getEmail())&&StringUtils.isEmpty(admin.getUserPswd())){
+            throw new EditErrorException("修改信息为空");
         }
 
         //更新日期
         admin.setCreateTime(DateUtil.formatDate(new Date()));
-        return mapper.updateAdminByAccount(admin);
+        return mapper.updateAdminById(admin);
     }
 
     /**

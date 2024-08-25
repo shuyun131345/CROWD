@@ -62,5 +62,5 @@ public interface AdminService {
      * @param admin
      * @return
      */
-    int updateAdminByAccount(Admin admin);
+    int updateAdminById(Admin admin);
 }

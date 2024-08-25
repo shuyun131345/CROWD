@@ -18,7 +18,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">表单数据<div style="float:right;cursor:pointer;" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-question-sign"></i></div></div>
                 <div class="panel-body">
-                    <form role="form" action="admin/edit/${pageNum}/${pageSize}/${keyword}.html" method="post">
+                    <form role="form" action="admin/edit/${editAdmin.id}/${pageNum}/${pageSize}/${keyword}.html" method="post">
                         <div class="form-group">
                             <label for="loginAcct">登陆账号</label>
                             <input type="text" class="form-control" id="loginAcct" name="loginAcct" value=${editAdmin.loginAcct}>

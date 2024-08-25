@@ -2,6 +2,7 @@ package com.atguigu.crowd.mvc.config;
 
 import com.atguigu.crowd.entity.common.AjaxResultEntity;
 import com.atguigu.crowd.exception.AccessForbiddenException;
+import com.atguigu.crowd.exception.EditErrorException;
 import com.atguigu.crowd.exception.InputErrorException;
 import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.request.AjaxRequestUtil;
@@ -24,6 +25,14 @@ import static com.atguigu.crowd.constant.ExceptionConstant.REQUEST_EXCEPTION;
 // 该注解表示当前类是一个基于注解的异常处理器类
 @ControllerAdvice
 public class CrowdExceptionResolver {
+
+    @ExceptionHandler(value = EditErrorException.class)
+    public ModelAndView resolverEditErrorException(EditErrorException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // 返回到增加管理员界面
+        String viewName = "error/system-error";
+        return genExceptionResolver(exception, request, response, viewName);
+    }
+
 
 
     /**

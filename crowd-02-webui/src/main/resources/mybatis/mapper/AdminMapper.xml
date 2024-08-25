@@ -60,10 +60,10 @@
     </insert>
 
 
-    <update id="updateAdminByAccount" parameterType="com.atguigu.crowd.entity.Admin">
+    <update id="updateAdminById" parameterType="com.atguigu.crowd.entity.Admin">
         update t_admin
         <trim prefix="set" suffixOverrides=",">
-            <if test="id != null">id=#{id}</if>
+            <if test="id != null">id=#{id},</if>
             <if test="loginAcct != null and loginAcct != ''">login_acct=#{loginAcct},</if>
             <if test="userPswd != null and userPswd != ''">user_pswd=#{userPswd},</if>
             <if test="userName != null and userName != ''">user_name=#{userName},</if>
@@ -71,7 +71,7 @@
             <if test="createTime != null and createTime != ''">create_time=#{createTime},</if>
         </trim>
         <where>
-            <if test="loginAcct != null and loginAcct != ''">login_acct=#{loginAcct}</if>
+            <if test="id != null">id=#{id}</if>
         </where>
     </update>
 

@@ -43,7 +43,7 @@ public interface AdminMapper {
      * @param admin
      * @return
      */
-    int updateAdminByAccount(Admin admin);
+    int updateAdminById(Admin admin);
 
 
 

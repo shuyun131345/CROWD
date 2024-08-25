@@ -109,11 +109,8 @@
                                         <td>${admin.userName}</td>
                                         <td>${admin.email}</td>
                                         <td>
-                                            <button type="button" class="btn btn-success btn-xs"><i
-                                                    class=" glyphicon glyphicon-check"></i></button>
-                                            <button type="button" class="btn btn-primary btn-xs"><i
-                                                    class=" glyphicon glyphicon-pencil"></i></button>
-
+                                            <button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>
+                                            <a class="btn btn-primary btn-xs" href="admin/editPage/${admin.id}/${requestScope.pageInfo.pageNum}/${requestScope.pageInfo.pageSize}/${param.keyword}.html"><i class=" glyphicon glyphicon-pencil"></i></a>
                                             <a class="btn btn-danger btn-xs" href="admin/remove/${admin.id}/${requestScope.pageInfo.pageNum}/${requestScope.pageInfo.pageSize}/${param.keyword}.html"><i class=" glyphicon glyphicon-remove"></i></a>
                                         </td>
                                     </tr>

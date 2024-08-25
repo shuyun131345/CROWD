@@ -72,7 +72,7 @@ public class AdminServiceImpl implements AdminService {
         if (pageSize == null || pageSize.equals(0)) {
             pageSize = 10;
         }
-        //开启分页
+        // 开启分页
         PageHelper.startPage(pageNum, pageSize);
         List<Admin> adminList = mapper.selectAdminListByKeyWord(keyWord);
         PageInfo<Admin> pageInfo = new PageInfo<>(adminList);
@@ -81,7 +81,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public int removeAdminByid(Integer id) {
-       int count = mapper.deleteAdminById(id);
+        int count = mapper.deleteAdminById(id);
         return count;
     }
 
@@ -91,20 +91,20 @@ public class AdminServiceImpl implements AdminService {
         String tips = checkAdmin(admin);
         int count = 0;
 
-        if (!StringUtils.isEmpty(tips)){
+        if (!StringUtils.isEmpty(tips)) {
             throw new InputErrorException(tips);
         }
 
-        //将明文密码用md5加密
+        // 将明文密码用md5加密
         String encodedPsw = EncodeByMD5.encode(admin.getUserPswd());
         admin.setUserPswd(encodedPsw);
 
         try {
             count = mapper.insertAdmin(admin);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            //账号重复
-            if (e instanceof DuplicateKeyException){
+            // 账号重复
+            if (e instanceof DuplicateKeyException) {
                 throw new InputErrorException(DOPLICATION_LOGIN_ACCOUNT);
             }
             throw e;
@@ -112,23 +112,34 @@ public class AdminServiceImpl implements AdminService {
         return count;
     }
 
+    @Override
+    public Admin selectAdminById(Integer id) {
+        return mapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateAdminByAccount(Admin admin) {
+        return mapper.updateAdminByAccount(admin);
+    }
+
     /**
      * 新增管理员信息检查
+     *
      * @param admin
      * @return
      */
-    private String checkAdmin(Admin admin){
-        if (Objects.isNull(admin) || StringUtils.isEmpty(admin.getLoginAcct())){
+    private String checkAdmin(Admin admin) {
+        if (Objects.isNull(admin) || StringUtils.isEmpty(admin.getLoginAcct())) {
             return ACOUNT_ISNULL;
         }
 
-        if (StringUtils.isEmpty(admin.getEmail())){
+        if (StringUtils.isEmpty(admin.getEmail())) {
             return EAMAI_ISNULL;
         }
-        if (StringUtils.isEmpty(admin.getUserPswd())){
+        if (StringUtils.isEmpty(admin.getUserPswd())) {
             return PASSWORD_ISNULL;
         }
-        if (StringUtils.isEmpty(admin.getUserName())){
+        if (StringUtils.isEmpty(admin.getUserName())) {
             return USERNAME_ISNULL;
         }
         return "";

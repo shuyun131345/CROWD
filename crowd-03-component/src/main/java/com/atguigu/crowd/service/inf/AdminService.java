@@ -50,4 +50,17 @@ public interface AdminService {
      */
     int addAdmin(Admin admin);
 
+    /**
+     * 根据id查询管理员信息
+     * @param id
+     * @return
+     */
+    Admin selectAdminById(Integer id);
+
+    /**
+     * 根据Id修改管理员信息
+     * @param admin
+     * @return
+     */
+    int updateAdminByAccount(Admin admin);
 }

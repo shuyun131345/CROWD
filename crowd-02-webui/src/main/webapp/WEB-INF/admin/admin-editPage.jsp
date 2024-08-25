@@ -13,37 +13,31 @@
             <ol class="breadcrumb">
                 <li><a href="#">首页</a></li>
                 <li><a href="#">数据列表</a></li>
-                <li class="active">新增</li>
+                <li class="active">修改</li>
             </ol>
             <div class="panel panel-default">
-                <div class="panel-heading">表单数据
-                    <div style="float:right;cursor:pointer;" data-toggle="modal" data-target="#myModal"><i
-                            class="glyphicon glyphicon-question-sign"></i></div>
-                </div>
+                <div class="panel-heading">表单数据<div style="float:right;cursor:pointer;" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-question-sign"></i></div></div>
                 <div class="panel-body">
-                    <form role="form" action="admin/addAdminCheck.html" method="post">
-                        <p>${requestScope.exception.message}</p>
+                    <form role="form" action="admin/edit.html" method="post">
                         <div class="form-group">
                             <label for="loginAcct">登陆账号</label>
-                            <input type="text" class="form-control" id="loginAcct" name="loginAcct" placeholder="请输入登陆账号">
+                            <input type="text" class="form-control" id="loginAcct" name="loginAcct" value=${editAdmin.loginAcct}>
                         </div>
                         <div class="form-group">
                             <label for="userName">用户名称</label>
-                            <input type="text" class="form-control" id="userName" name="userName" placeholder="请输入用户名称">
+                            <input type="text" class="form-control" id="userName" name="userName">
                         </div>
                         <div class="form-group">
-                            <label for="userPswd">密码</label>
-                            <input type="text" class="form-control" id="userPswd" name="userPswd" placeholder="请输入密码">
+                            <label for="userPswd">用户密码</label>
+                            <input type="text" class="form-control" id="userPswd" name="userPswd">
                         </div>
                         <div class="form-group">
                             <label for="email">邮箱地址</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="请输入邮箱地址">
+                            <input type="email" class="form-control" id="email" name="email">
                             <p class="help-block label label-warning">请输入合法的邮箱地址, 格式为： xxxx@xxxx.com</p>
                         </div>
-                        <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> 新增
-                        </button>
-                        <button type="reset" class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i> 重置
-                        </button>
+                        <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-edit"></i> 修改</button>
+                        <button type="reset" class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i> 重置</button>
                     </form>
                 </div>
             </div>

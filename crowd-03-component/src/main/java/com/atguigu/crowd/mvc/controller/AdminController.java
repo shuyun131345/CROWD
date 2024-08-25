@@ -154,6 +154,39 @@ public class AdminController {
     }
 
 
+    /**
+     * 跳转到管理员信息修改页面，带分页信息和关键字
+     *
+     * @param id
+     * @param pageNum
+     * @param pageSize
+     * @param keyword
+     * @return
+     */
+    @RequestMapping("/admin/editPage/{id}/{pageNum}/{pageSize}/{keyword}.html")
+    public String editAdminPage(@PathVariable("id") Integer id, @PathVariable("pageNum") Integer pageNum, @PathVariable("pageSize") Integer pageSize, @PathVariable("keyword") String keyword, Model model) {
+
+        Admin editAdmin = service.selectAdminById(id);
+        model.addAttribute("editAdmin", editAdmin);
+        model.addAttribute("pageNum", pageNum);
+        model.addAttribute("pageSize", pageSize);
+        model.addAttribute("keyword", keyword);
+        return "admin/admin-editPage";
+    }
+
+
+    /**
+     * 修改管理员信息
+     * @param admin
+     * @return
+     */
+    @RequestMapping("/admin/edit.html")
+    public String editAdmin(Admin admin,Model model) {
+
+        int count = service.updateAdminByAccount(admin);
+
+        return "redirect:/admin/page.html";
+    }
 
 
 

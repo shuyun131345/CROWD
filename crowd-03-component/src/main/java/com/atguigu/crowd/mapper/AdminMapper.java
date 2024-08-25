@@ -38,7 +38,12 @@ public interface AdminMapper {
     int insertAdmin(Admin admin);
 
 
-
+    /**
+     * 根据管理员id修改信息
+     * @param admin
+     * @return
+     */
+    int updateAdminByAccount(Admin admin);
 
 
 

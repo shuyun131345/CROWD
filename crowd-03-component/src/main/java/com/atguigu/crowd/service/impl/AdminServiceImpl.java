@@ -1,5 +1,6 @@
 package com.atguigu.crowd.service.impl;
 
+import com.atguigu.crowd.common.DateUtil;
 import com.atguigu.crowd.common.EncodeByMD5;
 import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.entity.AdminExample;
@@ -14,6 +15,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -99,6 +101,9 @@ public class AdminServiceImpl implements AdminService {
         String encodedPsw = EncodeByMD5.encode(admin.getUserPswd());
         admin.setUserPswd(encodedPsw);
 
+        //日期
+        admin.setCreateTime(DateUtil.formatDate(new Date()));
+
         try {
             count = mapper.insertAdmin(admin);
         } catch (Exception e) {
@@ -119,6 +124,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public int updateAdminByAccount(Admin admin) {
+        if (Objects.isNull(admin)){
+            throw new InputErrorException("修改信息为空");
+        }
+
+        //更新日期
+        admin.setCreateTime(DateUtil.formatDate(new Date()));
         return mapper.updateAdminByAccount(admin);
     }
 

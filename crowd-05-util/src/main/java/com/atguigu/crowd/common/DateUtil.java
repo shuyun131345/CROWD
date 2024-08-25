@@ -1,14 +1,32 @@
 package com.atguigu.crowd.common;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
+
+import static com.atguigu.crowd.constant.CrowdConstant.YYYY_MM_DD_HH_MM_SS;
 
 /**
  * @author shuyun
  * @date 2024-08-21 21:12:14
  */
 public class DateUtil {
+
+
+    /**
+     * 格式化日期 yyyy-MM-dd HH:mm:ss
+     * @param date
+     * @return
+     */
+    public static String formatDate(Date date){
+        if (date == null){
+            date = new Date();
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat(YYYY_MM_DD_HH_MM_SS);
+        return sdf.format(date);
+    }
+
 
 
     /**

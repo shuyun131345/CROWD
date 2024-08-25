@@ -180,12 +180,12 @@ public class AdminController {
      * @param admin
      * @return
      */
-    @RequestMapping("/admin/edit.html")
-    public String editAdmin(Admin admin,Model model) {
+    @RequestMapping("/admin/edit/{pageNum}/{pageSize}/{keyword}.html")
+    public String editAdmin(Admin admin,Model model,@PathVariable("pageNum") Integer pageNum, @PathVariable("pageSize") Integer pageSize, @PathVariable("keyword") String keyword) {
 
         int count = service.updateAdminByAccount(admin);
 
-        return "redirect:/admin/page.html";
+        return "redirect:/admin/page.html?keyword=" + keyword + "&pageNum=" + pageNum + "&pageSize=" + pageSize;
     }
 
 

@@ -6,4 +6,6 @@ package com.atguigu.crowd.constant;
  */
 public class CrowdConstant {
     public static final String MD5 = "md5";
+
+    public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 }

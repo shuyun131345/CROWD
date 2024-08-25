@@ -3,18 +3,21 @@ package com.atguigu.crowd.service.impl;
 import com.atguigu.crowd.common.EncodeByMD5;
 import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.entity.AdminExample;
+import com.atguigu.crowd.exception.InputErrorException;
 import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.mapper.AdminMapper;
 import com.atguigu.crowd.service.inf.AdminService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Objects;
 
-import static com.atguigu.crowd.constant.ExceptionConstant.LOGIN_FAILED;
+import static com.atguigu.crowd.constant.ExceptionConstant.*;
 
 /**
  * @author shuyun
@@ -80,6 +83,55 @@ public class AdminServiceImpl implements AdminService {
     public int removeAdminByid(Integer id) {
        int count = mapper.deleteAdminById(id);
         return count;
+    }
+
+    @Override
+    public int addAdmin(Admin admin) {
+
+        String tips = checkAdmin(admin);
+        int count = 0;
+
+        if (!StringUtils.isEmpty(tips)){
+            throw new InputErrorException(tips);
+        }
+
+        //将明文密码用md5加密
+        String encodedPsw = EncodeByMD5.encode(admin.getUserPswd());
+        admin.setUserPswd(encodedPsw);
+
+        try {
+            count = mapper.insertAdmin(admin);
+        }catch (Exception e){
+            e.printStackTrace();
+            //账号重复
+            if (e instanceof DuplicateKeyException){
+                throw new InputErrorException(DOPLICATION_LOGIN_ACCOUNT);
+            }
+            throw e;
+        }
+        return count;
+    }
+
+    /**
+     * 新增管理员信息检查
+     * @param admin
+     * @return
+     */
+    private String checkAdmin(Admin admin){
+        if (Objects.isNull(admin) || StringUtils.isEmpty(admin.getLoginAcct())){
+            return ACOUNT_ISNULL;
+        }
+
+        if (StringUtils.isEmpty(admin.getEmail())){
+            return EAMAI_ISNULL;
+        }
+        if (StringUtils.isEmpty(admin.getUserPswd())){
+            return PASSWORD_ISNULL;
+        }
+        if (StringUtils.isEmpty(admin.getUserName())){
+            return USERNAME_ISNULL;
+        }
+        return "";
     }
 
 }

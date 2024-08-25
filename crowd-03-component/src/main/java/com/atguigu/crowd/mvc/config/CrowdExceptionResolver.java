@@ -2,6 +2,7 @@ package com.atguigu.crowd.mvc.config;
 
 import com.atguigu.crowd.entity.common.AjaxResultEntity;
 import com.atguigu.crowd.exception.AccessForbiddenException;
+import com.atguigu.crowd.exception.InputErrorException;
 import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.request.AjaxRequestUtil;
 import com.google.gson.Gson;
@@ -26,7 +27,25 @@ public class CrowdExceptionResolver {
 
 
     /**
+     * 新增管理员信息异常：账号重复，必输项为空等
+     *
+     * @param exception
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    @ExceptionHandler(value = InputErrorException.class)
+    public ModelAndView resolverInputErrorException(InputErrorException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // 返回到增加管理员界面
+        String viewName = "admin/admin-add";
+        return genExceptionResolver(exception, request, response, viewName);
+    }
+
+
+    /**
      * 管理员未登录时抛出该异常
+     *
      * @param exception
      * @param request
      * @param response
@@ -39,7 +58,6 @@ public class CrowdExceptionResolver {
         String viewName = "admin/admin-login";
         return genExceptionResolver(exception, request, response, viewName);
     }
-
 
 
     /**

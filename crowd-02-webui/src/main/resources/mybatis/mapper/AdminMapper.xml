@@ -36,6 +36,26 @@
   </delete>
 
 
+  <insert id="insertAdmin" parameterType="com.atguigu.crowd.entity.Admin">
+      insert into t_admin
+      <trim prefix="(" suffixOverrides="," suffix=")">
+          <if test="loginAcct != null and loginAcct != ''">login_acct,</if>
+        <if test="id != null">id,</if>
+        <if test="userPswd != null and userPswd != ''">user_pswd,</if>
+          <if test="userName != null and userName != ''">user_name,</if>
+          <if test="email != null and email != ''">email,</if>
+          <if test="createTime != null and createTime != ''">create_time,</if>
+      </trim>
+      <trim prefix="values(" suffixOverrides="," suffix=")">
+          <if test="id != null">#{id},</if>
+          <if test="loginAcct != null and loginAcct != ''">#{loginAcct},</if>
+          <if test="userPswd != null and userPswd != ''">#{userPswd},</if>
+          <if test="userName != null and userName != ''">#{userName},</if>
+          <if test="email != null and email != ''">#{email},</if>
+          <if test="createTime != null and createTime != ''">#{createTime},</if>
+      </trim>
+  </insert>
+
 
 
 

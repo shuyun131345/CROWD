@@ -30,6 +30,23 @@ public interface AdminMapper {
     int deleteAdminById(@Param("id") Integer id);
 
 
+    /**
+     * 新增管理员信息
+     * @param admin
+     * @return
+     */
+    int insertAdmin(Admin admin);
+
+
+
+
+
+
+
+
+
+
+
     //==========逆向工程============
 
     int countByExample(AdminExample example);
@@ -53,6 +70,7 @@ public interface AdminMapper {
     int updateByPrimaryKeySelective(Admin record);
 
     int updateByPrimaryKey(Admin record);
+
 
 
 }

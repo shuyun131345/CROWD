@@ -90,6 +90,7 @@ public class AdminController {
 
     /**
      * 按关键字查询管理员信息，分页展示
+     *
      * @param keyword
      * @param pageNum
      * @param pageSize
@@ -97,16 +98,17 @@ public class AdminController {
      * @return
      */
     @RequestMapping("/admin/page.html")
-    public String adminPage(@Param("keyword") String keyword, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize,Model model) {
+    public String adminPage(@Param("keyword") String keyword, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize, Model model) {
 
         PageInfo<Admin> pageInfo = service.selectAdminByKeyWord(keyword, pageNum, pageSize);
-        model.addAttribute("pageInfo",pageInfo);
+        model.addAttribute("pageInfo", pageInfo);
         return "admin/admin-page";
     }
 
 
     /**
      * 根据id删除管理员信息，并重定向到信息查询页面
+     *
      * @param id
      * @param pageNum
      * @param pageSize
@@ -114,14 +116,46 @@ public class AdminController {
      * @return
      */
     @RequestMapping("admin/remove/{id}/{pageNum}/{pageSize}/{keyword}.html")
-    public String removeAdmin(@PathVariable("id") Integer id,@PathVariable("pageNum") Integer pageNum,@PathVariable("pageSize") Integer pageSize,@PathVariable("keyword") String keyword){
+    public String removeAdmin(@PathVariable("id") Integer id, @PathVariable("pageNum") Integer pageNum, @PathVariable("pageSize") Integer pageSize, @PathVariable("keyword") String keyword) {
 
-        //根据id删除管理员信息
+        // 根据id删除管理员信息
         int count = service.removeAdminByid(id);
 
-        return "redirect:/admin/page.html?keyword="+keyword+"&pageNum="+pageNum+"&pageSize="+pageSize;
+        // 重定向是避免刷新页面时重新提交表单。返回到管理员信息查询页面，带上页码和关键字
+        return "redirect:/admin/page.html?keyword=" + keyword + "&pageNum=" + pageNum + "&pageSize=" + pageSize;
 
     }
+
+
+    /**
+     * 增加管理员页面
+     *
+     * @return
+     */
+    @RequestMapping("/admin/admin-add.html")
+    public String addAdmin() {
+        return "admin/admin-add";
+    }
+
+
+    /**
+     * 检查通过后新增管理员信息
+     *
+     * @param admin
+     * @return
+     */
+    @RequestMapping("/admin/addAdminCheck.html")
+    public String addAdminCheck(Admin admin) {
+
+        int count = service.addAdmin(admin);
+
+        // 重定向是避免刷新页面时重新提交表单。返回到管理员信息查询最后一页
+        return "redirect:/admin/page.html?pageNum=" + Integer.MAX_VALUE;
+    }
+
+
+
+
 
 
 

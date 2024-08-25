@@ -42,4 +42,12 @@ public interface AdminService {
      * @return
      */
     int removeAdminByid(Integer id);
+
+    /**
+     * 新增管理员信息
+     * @param admin
+     * @return
+     */
+    int addAdmin(Admin admin);
+
 }

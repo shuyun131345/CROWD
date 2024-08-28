@@ -40,7 +40,7 @@ public class AjaxResultEntity<T> {
     public AjaxResultEntity() {
     }
 
-    public AjaxResultEntity(String result, String message, T data) {
+    private AjaxResultEntity(String result, String message, T data) {
         this.result = result;
         this.message = message;
         this.data = data;

@@ -5,6 +5,24 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
+
+
+  <sql id="base_select">
+    select id, name from t_role
+  </sql>
+
+
+  <select id="getRoleListByKeyword" parameterType="java.lang.String" resultMap="BaseResultMap">
+      <include refid="base_select"/>
+      <where>
+          <if test="keyword != null and keyword != ''">
+              name = #{keyword}
+          </if>
+      </where>
+  </select>
+
+
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

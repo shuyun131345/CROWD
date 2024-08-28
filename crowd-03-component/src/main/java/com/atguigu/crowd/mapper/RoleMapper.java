@@ -2,10 +2,24 @@ package com.atguigu.crowd.mapper;
 
 import com.atguigu.crowd.entity.Role;
 import com.atguigu.crowd.entity.RoleExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface RoleMapper {
+
+
+    /**
+     * 根据关键字查询角色信息
+     * @param keyword
+     * @return
+     */
+    List<Role> getRoleListByKeyword(@Param("keyword") String keyword);
+
+
+
+
+
     int countByExample(RoleExample example);
 
     int deleteByExample(RoleExample example);

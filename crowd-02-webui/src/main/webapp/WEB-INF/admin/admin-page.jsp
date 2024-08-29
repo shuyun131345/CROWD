@@ -46,7 +46,7 @@
     function pageSelectCallback(pageIndex,jQuery) {
         //根据pageIndex计算当前页码
         var pageNum = pageIndex + 1;
-        //跳转页面
+        //跳转页面，查询该页的管理员信息
         window.location.href = "admin/page.html?pageNum="+pageNum+"&keyword=${param.keyword}";
 
         //由于每一个页码按钮都是超链接，所以在这个函数最后取消超链接的默认行为

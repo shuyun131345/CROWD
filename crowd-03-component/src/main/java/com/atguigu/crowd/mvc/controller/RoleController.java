@@ -20,10 +20,28 @@ public class RoleController {
     @Resource
     private RoleService service;
 
+
+    /**
+     * 从控制面板跳转到角色维护界面
+     * @return
+     */
+    @RequestMapping("/role/rolePage.html")
+    public String rolePage(){
+        return "role/role-page";
+    }
+
+
+    /**
+     * 角色信息关键字查询并分页
+     * @param keyword
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @RequestMapping("/role/pageInfo.json")
     @ResponseBody
-    public AjaxResultEntity<PageInfo<Role>> getRolePageInfo(String keyWord, Integer pageNum, Integer pageSize){
-        PageInfo<Role> rolePageInfo = service.getRolePageInfo(keyWord, pageNum, pageSize);
+    public AjaxResultEntity<PageInfo<Role>> getRolePageInfo(String keyword, Integer pageNum, Integer pageSize){
+        PageInfo<Role> rolePageInfo = service.getRolePageInfo(keyword, pageNum, pageSize);
         return AjaxResultEntity.success(null,rolePageInfo);
     }
 

@@ -1,10 +1,10 @@
 
 
 
---尚筹网
+#尚筹网
 
 
---角色表建表语句
+#角色表建表语句
 use crowd;
 create table t_role(
 	id int(11) not null auto_increment,
@@ -12,11 +12,14 @@ create table t_role(
 	primary key (id)
 );
 
---角色造数
+#改角色表字段名和约束
+ALTER TABLE t_role CHANGE COLUMN NAME roleName VARCHAR(100) UNIQUE;
+
+#角色造数
 INSERT INTO t_role(id,NAME) VALUES(NULL,'shuyun');
 
---角色批量造数
---开启函数
+#角色批量造数
+#开启函数
 SET GLOBAL log_bin_trust_function_creators=1;
 
 DELIMITER $$
@@ -39,21 +42,21 @@ CREATE
     END$$
 
 DELIMITER ;
---调用
+#调用
 SELECT insertRole();
 
 
 
 
---admin管理员造数
+#admin管理员造数
 INSERT INTO t_admin (id,login_acct,user_pswd,user_name,email,create_time) VALUES(NULL,'16602083320','123456','shuyun','shuyun123@qq.com',NOW());
 
---密码123456
+#密码123456
 UPDATE t_admin SET user_pswd='E10ADC3949BA59ABBE56E057F20F883E' WHERE id=1;
 
---批量插入
+#批量插入
 
---开启函数
+#开启函数
 SET GLOBAL log_bin_trust_function_creators=1;
 
 DELIMITER $$
@@ -77,7 +80,7 @@ CREATE
 
 DELIMITER ;
 
---调用
+#调用
 SELECT insertAdm();
 
 
@@ -108,7 +111,7 @@ SELECT insertAdm();
 
 
 
---
+#
 
 
 

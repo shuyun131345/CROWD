@@ -30,6 +30,7 @@
                 concat('%',#{keyWord},'%')
             </if>
         </where>
+        order by id
     </select>
 
     <delete id="deleteAdminById" parameterType="java.lang.Integer">

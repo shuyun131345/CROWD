@@ -64,12 +64,13 @@
         //遍历角色列表，填充信息
         for (let i = 0; i < roleList.length; i++) {
             var role = roleList[i];
+            var roleId = role.id;
 
             var tSortNumber ="<td>"+(i+1)+"</td>";
             var checkbox = "<td ><input type='checkbox'></td>";
             var roleName = "<td>"+role.name+"</td>";
             var checkButton = "<button type='button' class='btn btn-success btn-xs'><i class='glyphicon glyphicon-check'></i></button>";
-            var pencilButton = "<button type='button' class='btn btn-primary btn-xs'><i class=' glyphicon glyphicon-pencil'></i></button>";
+            var pencilButton = "<button id=" +roleId+ "type='button' class='btn btn-primary btn-xs pencilBtn'><i class=' glyphicon glyphicon-pencil'></i></button>";
             var removeButton = "<button type='button' class='btn btn-danger btn-xs'><i class=' glyphicon glyphicon-remove'></i></button>";
             var tdBtn = "<td>"+checkButton+" "+pencilButton+" "+removeButton+"</td>";
             var tr = "<tr>"+tSortNumber+checkbox+roleName+tdBtn+"</tr>";

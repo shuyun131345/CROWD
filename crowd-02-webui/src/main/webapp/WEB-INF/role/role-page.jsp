@@ -71,6 +71,26 @@
             $("#addModal [name=roleName]").val("");
         });
 
+        //5.修改角色信息单击事件，弹出修改模态框
+        //注意，传统的绑定事件在pagination翻页后会失效，要使用jQuery的on()函数
+        //先找到所有动态生成的元素附着的静态元素，即<tbody>标签
+        //on()函数的第一个参数表示 绑定的事件；第二个参数表示 需要真正绑定事件的元素选择器；第三个参数表示 事件响应函数
+        $("#rolePageBody").on("click",".pencilBtn",function () {
+            //弹出 更新模态框
+            $("#editModal").modal("show");
+
+            //获取当前元素的角色名称:当前元素的父元素的前一个元素，就是角色名称
+            var roleName = $(this).parent().prev().text();
+
+            //将角色名称反显到模态框的输入框中
+            $("#editModal [name=roleName]").val(roleName);
+
+            //为了更新操作能获取到角色id，把角色id放到全局变量中
+            window.roleId = this.id;
+        });
+
+
+
     });
 
 </script>
@@ -78,6 +98,7 @@
 <body>
 <%@include file="/WEB-INF/commom/include-bodynav.jsp" %>
 <%@include file="/WEB-INF/commom/modal-role-add.jsp" %>
+<%@include file="/WEB-INF/commom/modal-role-edit.jsp" %>
 <div class="container-fluid">
     <div class="row">
         <%@include file="/WEB-INF/commom/include-sidebar.jsp" %>

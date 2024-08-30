@@ -1,9 +1,10 @@
 
 
---ÉĞ³ïÍø
+
+--å°šç­¹ç½‘
 
 
---½ÇÉ«±í½¨±íÓï¾ä
+--è§’è‰²è¡¨å»ºè¡¨è¯­å¥
 use crowd;
 create table t_role(
 	id int(11) not null auto_increment,
@@ -11,12 +12,11 @@ create table t_role(
 	primary key (id)
 );
 
---½ÇÉ«ÔìÊı
+--è§’è‰²é€ æ•°
 INSERT INTO t_role(id,NAME) VALUES(NULL,'shuyun');
 
---½ÇÉ«ÅúÁ¿ÔìÊı
-
-#¿ªÆôº¯Êı
+--è§’è‰²æ‰¹é‡é€ æ•°
+--å¼€å¯å‡½æ•°
 SET GLOBAL log_bin_trust_function_creators=1;
 
 DELIMITER $$
@@ -39,21 +39,21 @@ CREATE
     END$$
 
 DELIMITER ;
-#µ÷ÓÃ
+--è°ƒç”¨
 SELECT insertRole();
 
 
 
 
---admin¹ÜÀíÔ±ÔìÊı
+--adminç®¡ç†å‘˜é€ æ•°
 INSERT INTO t_admin (id,login_acct,user_pswd,user_name,email,create_time) VALUES(NULL,'16602083320','123456','shuyun','shuyun123@qq.com',NOW());
 
---ÃÜÂë123456
+--å¯†ç 123456
 UPDATE t_admin SET user_pswd='E10ADC3949BA59ABBE56E057F20F883E' WHERE id=1;
 
---ÅúÁ¿²åÈë
+--æ‰¹é‡æ’å…¥
 
-#¿ªÆôº¯Êı
+--å¼€å¯å‡½æ•°
 SET GLOBAL log_bin_trust_function_creators=1;
 
 DELIMITER $$
@@ -77,7 +77,7 @@ CREATE
 
 DELIMITER ;
 
-#µ÷ÓÃ
+--è°ƒç”¨
 SELECT insertAdm();
 
 

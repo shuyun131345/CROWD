@@ -18,4 +18,10 @@ public interface RoleService {
      */
     PageInfo<Role> getRolePageInfo(String keyWord, Integer pageNum, Integer pageSize);
 
+    /**
+     * 新增角色信息
+     * @param roleName
+     * @return
+     */
+    int saveRole(String roleName);
 }

@@ -36,6 +36,10 @@ public class RoleServiceImpl implements RoleService {
         return pageInfo;
     }
 
+    @Override
+    public int saveRole(String roleName) {
+        return mapper.saveRole(roleName);
+    }
 
 
 }

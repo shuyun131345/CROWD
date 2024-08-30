@@ -17,7 +17,12 @@ public interface RoleMapper {
     List<Role> getRoleListByKeyword(@Param("keyword") String keyword);
 
 
-
+    /**
+     * 新增角色信息
+     * @param roleName
+     * @return
+     */
+    int saveRole(@Param("roleName") String roleName);
 
 
     int countByExample(RoleExample example);
@@ -41,4 +46,6 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
+
 }

@@ -45,5 +45,14 @@ public class RoleController {
         return AjaxResultEntity.success(null,rolePageInfo);
     }
 
+    @RequestMapping("/role/saveRole.json")
+    @ResponseBody
+    public AjaxResultEntity<String> saveRole( String roleName){
+        service.saveRole(roleName);
+        return AjaxResultEntity.success(null,null);
+    }
+
+
+
 
 }

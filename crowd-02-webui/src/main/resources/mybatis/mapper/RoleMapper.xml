@@ -22,6 +22,21 @@
   </select>
 
 
+  <insert id="saveRole" parameterType="java.lang.String">
+    insert into t_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+    <if test="roleName != null and roleName != ''">roleName,</if>
+    </trim>
+    <trim prefix="values(" suffix=")" suffixOverrides=",">
+      <if test="roleName != null and roleName != ''">#{roleName},</if>
+    </trim>
+  </insert>
+
+
+
+
+
+
 
   <sql id="Example_Where_Clause" >
     <where >

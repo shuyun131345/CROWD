@@ -3,12 +3,12 @@
 <mapper namespace="com.atguigu.crowd.mapper.RoleMapper" >
   <resultMap id="BaseResultMap" type="com.atguigu.crowd.entity.Role" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="roleName" property="name" jdbcType="VARCHAR" />
   </resultMap>
 
 
   <sql id="base_select">
-    select id, name from t_role
+    select id, roleName from t_role
   </sql>
 
 
@@ -16,7 +16,7 @@
       <include refid="base_select"/>
       <where>
           <if test="keyword != null and keyword != ''">
-              name = #{keyword}
+            roleName = #{keyword}
           </if>
       </where>
   </select>
@@ -82,7 +82,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name
+    id, roleName
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.atguigu.crowd.entity.RoleExample" >
     select
@@ -115,7 +115,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.atguigu.crowd.entity.Role" >
-    insert into t_role (id, name)
+    insert into t_role (id, roleName)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.atguigu.crowd.entity.Role" >
@@ -125,7 +125,7 @@
         id,
       </if>
       <if test="name != null" >
-        name,
+        roleName,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -150,7 +150,7 @@
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
+        roleName = #{record.name,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -160,7 +160,7 @@
   <update id="updateByExample" parameterType="map" >
     update t_role
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR}
+    roleName = #{record.name,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -169,14 +169,14 @@
     update t_role
     <set >
       <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+        roleName = #{name,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.atguigu.crowd.entity.Role" >
     update t_role
-    set name = #{name,jdbcType=VARCHAR}
+    set roleName = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

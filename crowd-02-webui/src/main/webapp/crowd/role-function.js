@@ -93,7 +93,7 @@
             //主体页数
             num_display_entries: 4,
             //回调函数
-            callback: pageSelectCallback,
+            callback: paginationCallBack,
             //当前页：pagination的页码从0开始，pageInfo的页码从1开始，所以要减1
             current_page: pageInfo.pageNum -1,
             prev_text: "上一页",

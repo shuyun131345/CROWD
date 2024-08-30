@@ -16,7 +16,7 @@
       <include refid="base_select"/>
       <where>
           <if test="keyword != null and keyword != ''">
-            roleName = #{keyword}
+            roleName like concat('%', #{keyword},'%')
           </if>
       </where>
   </select>

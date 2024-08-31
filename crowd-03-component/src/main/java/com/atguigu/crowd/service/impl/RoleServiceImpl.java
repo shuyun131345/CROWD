@@ -41,5 +41,11 @@ public class RoleServiceImpl implements RoleService {
         return mapper.saveRole(roleName);
     }
 
+    @Override
+    public int updateRoleByid(Role role) {
+
+        return mapper.updateRoleById(role);
+    }
+
 
 }

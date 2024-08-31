@@ -89,6 +89,43 @@
             window.roleId = this.id;
         });
 
+        //6.角色更新按钮绑定单击事件，获取输入框的内容，然后发送ajax请求让后端更新角色信息
+        $("#updateRoleBtn").click(function () {
+
+            //获取输入框的内容
+            var roleName = $("#editModal [name=roleName]").val();
+
+            //发送ajax请求
+            $.ajax({
+                "url": "role/update.json",
+                "type": "post",
+                "data": {
+                    "id": window.roleId,
+                    "name": roleName
+                },
+                "dataType": "json",
+                "success": function (response) {
+                    var result = response.result;
+                    if ("SUCCESS" == result){
+                        layer.msg("操作成功");
+                        //重新加载页面，当前页面且保留了关键字。因为页码和关键字做成了全局变量
+                        generatePage();
+                    }else {
+                        layer.msg("更新失败："+response.message);
+                    }
+                },
+                "error": function (response) {
+                    layer.msg("请求失败，请联系管理员");
+                }
+            });
+
+            //关闭模态框
+            $("#editModal").modal("hide");
+            //清空模态框的输入内容
+            $("#editModal [name=roleName]").val("");
+
+        });
+
 
 
     });

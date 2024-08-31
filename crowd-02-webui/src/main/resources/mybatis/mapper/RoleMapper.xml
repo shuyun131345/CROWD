@@ -34,6 +34,15 @@
   </insert>
 
 
+  <update id="updateRoleById" parameterType="com.atguigu.crowd.entity.Role">
+    update t_role
+    <set>
+      <if test="name != null and name != ''">roleName=#{name}</if>
+    </set>
+    <where>
+      <if test="name != null and name != ''">id=#{id}</if>
+    </where>
+  </update>
 
 
 

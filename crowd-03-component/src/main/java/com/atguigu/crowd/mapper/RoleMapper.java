@@ -24,6 +24,12 @@ public interface RoleMapper {
      */
     int saveRole(@Param("roleName") String roleName);
 
+    /**
+     * 根据id更新角色
+     * @param role
+     * @return
+     */
+    int updateRoleById(Role role);
 
     int countByExample(RoleExample example);
 
@@ -46,6 +52,7 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
 
 
 }

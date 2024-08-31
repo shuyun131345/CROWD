@@ -45,6 +45,11 @@ public class RoleController {
         return AjaxResultEntity.success(null,rolePageInfo);
     }
 
+    /**
+     * 新增角色
+     * @param roleName
+     * @return
+     */
     @RequestMapping("/role/saveRole.json")
     @ResponseBody
     public AjaxResultEntity<String> saveRole( String roleName){
@@ -53,6 +58,17 @@ public class RoleController {
     }
 
 
+    /**
+     * 更新角色
+     * @param role
+     * @return
+     */
+    @RequestMapping("/role/update.json")
+    @ResponseBody
+    public AjaxResultEntity<String> updateRole(Role role){
+        int i = service.updateRoleByid(role);
+        return AjaxResultEntity.success(null,null);
+    }
 
 
 }

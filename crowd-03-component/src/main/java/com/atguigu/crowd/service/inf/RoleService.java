@@ -24,4 +24,11 @@ public interface RoleService {
      * @return
      */
     int saveRole(String roleName);
+
+    /**
+     * 根据id更新角色
+     * @param role
+     * @return
+     */
+    int updateRoleByid(Role role);
 }

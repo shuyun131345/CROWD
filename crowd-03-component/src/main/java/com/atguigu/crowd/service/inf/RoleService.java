@@ -3,6 +3,8 @@ package com.atguigu.crowd.service.inf;
 import com.atguigu.crowd.entity.Role;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 /**
  * @author shuyun
  * @date 2024-08-28 22:46:39
@@ -31,4 +33,10 @@ public interface RoleService {
      * @return
      */
     int updateRoleByid(Role role);
+
+    /**
+     * 删除角色
+     * @param roleList
+     */
+    void deleteRoles(List<Role> roleList);
 }

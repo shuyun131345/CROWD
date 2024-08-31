@@ -126,6 +126,66 @@
 
         });
 
+        //7.给单个删除按钮绑定单击事件，因为是动态生成的，不能用传统的单击事件绑定（翻页后失效）
+        //on()函数的第一个参数表示 绑定的事件；第二个参数表示 需要真正绑定事件的元素选择器；第三个参数表示 事件响应函数
+        $("#rolePageBody").on("click",".removeBtn",function () {
+
+            //获取当前元素的父元素的前一个元素的内容，即角色名称
+            var name = $(this).parent().prev().text();
+
+            //构造角色数组
+            var roleArray = [{
+                "id":this.id,
+                "name":name
+            }];
+
+            //调用删除模态框的公用方法
+            showRemoveModal(roleArray);
+
+        });
+
+        //8.单击模态框的确定删除按钮时，发送ajax请求后端，删除角色
+        //角色列表在js方法中存到全局变量，在这里直接拿来即可
+        $("#removeRoleBtn").click(function () {
+            //获取角色列表，判断是否为空
+            var roleList = window.roleList;
+            if (roleList.length == 0){
+                layer.msg("请至少选择一个删除！");
+                return ;
+            }
+
+            //转成json格式
+            var roleRequest = JSON.stringify(roleList);
+            //ajax请求
+            $.ajax({
+                "url": "role/removeRoles.json",
+                "type": "post",
+                "data": roleRequest,
+                "contentType":"application/json;charset=UTF-8",
+                "dataType": "json",
+                "success": function (response) {
+                    var result = response.result;
+                    if ("SUCCESS" == result){
+                        layer.msg("操作成功");
+                        //重新加载页面，当前页面且保留了关键字。因为页码和关键字做成了全局变量
+                        generatePage();
+                    }else {
+                        layer.msg("更新失败："+response.message);
+                    }
+
+                },
+                "error": function (response) {
+                    layer.msg("操作失败，请联系管理员");
+                }
+            });
+
+            //关闭模态框
+            $("#removeModal").modal("hide");
+
+        });
+
+
+
 
 
     });
@@ -136,6 +196,7 @@
 <%@include file="/WEB-INF/commom/include-bodynav.jsp" %>
 <%@include file="/WEB-INF/commom/modal-role-add.jsp" %>
 <%@include file="/WEB-INF/commom/modal-role-edit.jsp" %>
+<%@include file="/WEB-INF/commom/modal-role-remove.jsp" %>
 <div class="container-fluid">
     <div class="row">
         <%@include file="/WEB-INF/commom/include-sidebar.jsp" %>
@@ -157,7 +218,7 @@
                                 class="glyphicon glyphicon-search"></i> 查询
                         </button>
                     </form>
-                    <button type="button" class="btn btn-danger" style="float:right;margin-left:10px;"><i
+                    <button type="button" id="roleRemove" class="btn btn-danger" style="float:right;margin-left:10px;"><i
                             class=" glyphicon glyphicon-remove"></i> 删除
                     </button>
                     <button type="button" class="btn btn-primary" style="float:right;" id="showAddModalBtn"><i
@@ -170,7 +231,7 @@
                             <thead>
                             <tr>
                                 <th width="30">#</th>
-                                <th width="30"><input type="checkbox"></th>
+                                <th width="30"><input type="checkbox" id="chechedAllbox"></th>
                                 <th>名称</th>
                                 <th width="100">操作</th>
                             </tr>

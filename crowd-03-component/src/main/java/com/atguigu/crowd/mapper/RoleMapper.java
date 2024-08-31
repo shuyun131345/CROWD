@@ -31,6 +31,12 @@ public interface RoleMapper {
      */
     int updateRoleById(Role role);
 
+    /**
+     * 删除角色
+     * @param roleList
+     */
+    void deleteRoles(@Param("roles") List<Role> roleList);
+
     int countByExample(RoleExample example);
 
     int deleteByExample(RoleExample example);

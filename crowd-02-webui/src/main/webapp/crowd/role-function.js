@@ -1,4 +1,28 @@
 
+//弹出删除模态框，并展示选中的要删除的角色名
+function showRemoveModal(roleArray) {
+
+    //弹出模态框
+    $("#removeModal").modal("show");
+
+    //先清空模态框
+    $("#roleNameDiv").empty();
+
+    //将角色列表存到全局变量，后面点击模态框的确认按钮时可以使用
+    window.roleList = [];
+
+    //遍历角色列表，并添加到模态框中展示
+    for (let i = 0; i < roleArray.length; i++) {
+        let role = roleArray[i];
+        var roleName = role.name;
+        $("#roleNameDiv").append(roleName + "<br/>");
+        window.roleList.push(role);
+    }
+
+
+}
+
+
     function generatePage() {
 
         //1.获取后端分页数据
@@ -71,7 +95,7 @@
             var roleName = "<td>"+role.name+"</td>";
             var checkButton = "<button type='button' class='btn btn-success btn-xs'><i class='glyphicon glyphicon-check'></i></button>";
             var pencilButton = "<button id='" +roleId+"'type='button' class='btn btn-primary btn-xs pencilBtn'><i class=' glyphicon glyphicon-pencil'></i></button>";
-            var removeButton = "<button type='button' class='btn btn-danger btn-xs'><i class=' glyphicon glyphicon-remove'></i></button>";
+            var removeButton = "<button id='" +roleId+"' type='button' class='btn btn-danger btn-xs removeBtn'><i class=' glyphicon glyphicon-remove'></i></button>";
             var tdBtn = "<td>"+checkButton+" "+pencilButton+" "+removeButton+"</td>";
             var tr = "<tr>"+tSortNumber+checkbox+roleName+tdBtn+"</tr>";
 

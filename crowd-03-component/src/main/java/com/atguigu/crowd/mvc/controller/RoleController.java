@@ -5,10 +5,12 @@ import com.atguigu.crowd.entity.common.AjaxResultEntity;
 import com.atguigu.crowd.service.inf.RoleService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author shuyun
@@ -70,5 +72,13 @@ public class RoleController {
         return AjaxResultEntity.success(null,null);
     }
 
+
+
+    @RequestMapping("/role/removeRoles.json")
+    @ResponseBody
+    public AjaxResultEntity<String> removeRoles(@RequestBody List<Role> roleList){
+        service.deleteRoles(roleList);
+        return AjaxResultEntity.success(null,null);
+    }
 
 }

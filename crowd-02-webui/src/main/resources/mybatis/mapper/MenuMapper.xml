@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.crowd.mapper.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.atguigu.crowd.entity.Menu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="menu_name" property="name" jdbcType="VARCHAR" />
+    <result column="menu_url" property="url" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+  <sql id="base_select">
+    select id, pid,menu_name,menu_url,icon from t_menu
+  </sql>
+
+  <select id="queryMenuList" resultMap="BaseResultMap">
+      <include refid="base_select"/>
+  </select>
+
+
+</mapper>

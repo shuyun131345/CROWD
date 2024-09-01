@@ -147,12 +147,8 @@
         //8.单击模态框的确定删除按钮时，发送ajax请求后端，删除角色
         //角色列表在js方法中存到全局变量，在这里直接拿来即可
         $("#removeRoleBtn").click(function () {
-            //获取角色列表，判断是否为空
+            //获取角色列表
             var roleList = window.roleList;
-            if (roleList.length == 0){
-                layer.msg("请至少选择一个删除！");
-                return ;
-            }
 
             //转成json格式
             var roleRequest = JSON.stringify(roleList);
@@ -182,9 +178,57 @@
             //关闭模态框
             $("#removeModal").modal("hide");
 
+            //重新加载分页
+            generatePage();
+
+            //更新全选的复选框的状态
+            checkedBox();
         });
 
 
+        //9.多选删除。点击多选删除按钮时，获取到被选中的角色id和name，构造成角色数组，再弹出删除模态框，确认删除
+        $("#removeRolesBtn").click(function () {
+            //准备角色数组，把被选中的角色方法列表中
+            let roleArray = [];
+            //遍历获取被选中的元素.:checkbox 匹配所有的复选框
+            $(".itemBox:checked").each(function () {
+
+                //获取角色名称，使用dom对象，这里的this表示的是选择框，所以要取父元素的下一个元素。和更新、删除按钮不同
+                let roleName = $(this).parent().next().text();
+                roleArray.push({
+                    "name": roleName,
+                    "id": this.id
+                });
+             });
+
+            //判断是否为空
+            if (roleArray.length == 0){
+                layer.msg("请至少选择一个删除！");
+                return ;
+            }
+
+            //调用弹框函数，展示被删除角色名
+            showRemoveModal(roleArray);
+        });
+
+        //10.全选与全不选
+        $("#chechedAllbox").click(function () {
+            //获取当前复选框的状态
+            let checkStatus = this.checked;
+
+            //将表单元素的选中状态 设置为 全选复选框的状态
+            //prop用于设置属性，参数1表示属性名，参数2是属性值
+            $(".itemBox").prop("checked",checkStatus);
+        });
+
+        //11.当所有元素都勾选时，全选按钮自动勾选上
+        //给单选按钮绑定单击事件，每次选中都检查下是否给全选勾上
+        //因为单选按钮是动态生成的，翻页时传统绑定会失效，要用jQuery的on()方法
+        $("#rolePageBody").on("click",".itemBox",function () {
+
+            //多选时检查 全选复选框的状态和当前页面被选元素的状态是否一致
+            checkedBox();
+        });
 
 
 
@@ -218,7 +262,7 @@
                                 class="glyphicon glyphicon-search"></i> 查询
                         </button>
                     </form>
-                    <button type="button" id="roleRemove" class="btn btn-danger" style="float:right;margin-left:10px;"><i
+                    <button type="button" id="removeRolesBtn" class="btn btn-danger" style="float:right;margin-left:10px;"><i
                             class=" glyphicon glyphicon-remove"></i> 删除
                     </button>
                     <button type="button" class="btn btn-primary" style="float:right;" id="showAddModalBtn"><i

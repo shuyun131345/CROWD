@@ -1,4 +1,19 @@
 
+//删除角色时，全选复选框状态与当前页面元素选中状态保持一致
+function checkedBox(){
+    //当前被选中的元素个数和总的个数相等时，说明全部被选中，全选勾上
+    let total = $(".itemBox").length;
+    let checkedCount = $(".itemBox:checked").length;
+    if (checkedCount == 0){
+        $("#chechedAllbox").prop("checked",false);
+    }else {
+        //设置全选按钮复选框的选中状态，用prop给属性复制，true表示被选中
+        $("#chechedAllbox").prop("checked",total == checkedCount);
+    }
+}
+
+
+
 //弹出删除模态框，并展示选中的要删除的角色名
 function showRemoveModal(roleArray) {
 
@@ -8,7 +23,7 @@ function showRemoveModal(roleArray) {
     //先清空模态框
     $("#roleNameDiv").empty();
 
-    //将角色列表存到全局变量，后面点击模态框的确认按钮时可以使用
+    //将角色列表存到全局变量，后面点击模态框的确认按钮时可以直接使用全局变量
     window.roleList = [];
 
     //遍历角色列表，并添加到模态框中展示
@@ -18,8 +33,6 @@ function showRemoveModal(roleArray) {
         $("#roleNameDiv").append(roleName + "<br/>");
         window.roleList.push(role);
     }
-
-
 }
 
 
@@ -30,6 +43,9 @@ function showRemoveModal(roleArray) {
 
         //2.填充表格
         fillTableBody(pageInfo);
+
+
+
     }
 
 
@@ -91,7 +107,7 @@ function showRemoveModal(roleArray) {
             var roleId = role.id;
 
             var tSortNumber ="<td>"+(i+1)+"</td>";
-            var checkbox = "<td ><input type='checkbox'></td>";
+            var checkbox = "<td ><input type='checkbox' class='itemBox' id='" +roleId+"'></td>";
             var roleName = "<td>"+role.name+"</td>";
             var checkButton = "<button type='button' class='btn btn-success btn-xs'><i class='glyphicon glyphicon-check'></i></button>";
             var pencilButton = "<button id='" +roleId+"'type='button' class='btn btn-primary btn-xs pencilBtn'><i class=' glyphicon glyphicon-pencil'></i></button>";

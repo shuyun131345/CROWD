@@ -1,14 +1,18 @@
 package com.atguigu.crowd.service.impl;
 
 import com.atguigu.crowd.entity.Role;
+import com.atguigu.crowd.exception.RoleException;
 import com.atguigu.crowd.mapper.RoleMapper;
 import com.atguigu.crowd.service.inf.RoleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+
+import static com.atguigu.crowd.constant.ExceptionConstant.DOPLICATION_ROLE;
 
 /**
  * @author shuyun
@@ -38,13 +42,24 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public int saveRole(String roleName) {
-        return mapper.saveRole(roleName);
+        int count = 0;
+        try {
+            count = mapper.saveRole(roleName);
+        } catch (DuplicateKeyException e) {
+            throw new RoleException(DOPLICATION_ROLE);
+        }
+        return count;
     }
 
     @Override
     public int updateRoleByid(Role role) {
-
-        return mapper.updateRoleById(role);
+        int count = 0;
+        try {
+            count = mapper.updateRoleById(role);
+        } catch (DuplicateKeyException e) {
+            throw new RoleException(DOPLICATION_ROLE);
+        }
+        return count;
     }
 
     @Override

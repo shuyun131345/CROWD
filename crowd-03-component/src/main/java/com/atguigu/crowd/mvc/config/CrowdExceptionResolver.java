@@ -1,10 +1,7 @@
 package com.atguigu.crowd.mvc.config;
 
 import com.atguigu.crowd.entity.common.AjaxResultEntity;
-import com.atguigu.crowd.exception.AccessForbiddenException;
-import com.atguigu.crowd.exception.EditErrorException;
-import com.atguigu.crowd.exception.InputErrorException;
-import com.atguigu.crowd.exception.LoginFailedException;
+import com.atguigu.crowd.exception.*;
 import com.atguigu.crowd.request.AjaxRequestUtil;
 import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -21,10 +18,27 @@ import static com.atguigu.crowd.constant.ExceptionConstant.REQUEST_EXCEPTION;
 /**
  * @author shuyun
  * @date 2024-08-17 22:17:29
+ * 尚筹网异常信息处理类
  */
 // 该注解表示当前类是一个基于注解的异常处理器类
 @ControllerAdvice
 public class CrowdExceptionResolver {
+
+
+    /**
+     * 角色维护异常处理
+     * @param exception
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    @ExceptionHandler(value = RoleException.class)
+    public ModelAndView resolverRoleException(RoleException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //角色维护，都是ajax请求，不返回视图
+        return genExceptionResolver(exception, request, response, null);
+    }
+
 
     @ExceptionHandler(value = EditErrorException.class)
     public ModelAndView resolverEditErrorException(EditErrorException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -32,7 +46,6 @@ public class CrowdExceptionResolver {
         String viewName = "error/system-error";
         return genExceptionResolver(exception, request, response, viewName);
     }
-
 
 
     /**

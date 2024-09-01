@@ -15,6 +15,8 @@ public class ExceptionConstant {
     public static final String PASSWORD_ISNULL = "密码为空，请重新输入";
     public static final String USERNAME_ISNULL = "用户名为空，请重新输入";
     public static final String EAMAI_ISNULL = "邮箱为空，请重新输入";
+    public static final String DOPLICATION_ROLE = "该角色已经存在";
+
 
 
 }

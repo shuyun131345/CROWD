@@ -1,6 +1,7 @@
 package com.atguigu.crowd.mapper;
 
 import com.atguigu.crowd.entity.Menu;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,4 +22,10 @@ public interface MenuMapper {
      * @param menu
      */
     void addChildrenMenu(Menu menu);
+
+    /**
+     * 根据id删除节点
+     * @param id
+     */
+    void removeMenuById(@Param("id") Integer id);
 }

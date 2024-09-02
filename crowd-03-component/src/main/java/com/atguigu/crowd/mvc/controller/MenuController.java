@@ -3,6 +3,7 @@ package com.atguigu.crowd.mvc.controller;
 import com.atguigu.crowd.entity.Menu;
 import com.atguigu.crowd.entity.common.AjaxResultEntity;
 import com.atguigu.crowd.service.inf.MenuService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +49,19 @@ public class MenuController {
     @ResponseBody
     public AjaxResultEntity<String> addChildrenMenu(Menu menu){
         service.addChildrenMenu(menu);
+        return AjaxResultEntity.success(null,null);
+    }
+
+
+    /**
+     * 根据id删除子节点
+     * @param id
+     * @return
+     */
+    @RequestMapping("/menu/removeMenu.json")
+    @ResponseBody
+    public AjaxResultEntity<String> removeChildrenMenu( @Param("id") Integer id){
+        service.removeMenuById(id);
         return AjaxResultEntity.success(null,null);
     }
 

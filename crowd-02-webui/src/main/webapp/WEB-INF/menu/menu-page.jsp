@@ -68,6 +68,57 @@
             $("#menuResetBtn").click();
         });
 
+
+        //删除按钮绑定单击事件，弹出删除模态框。因为是动态生成标签，所以需要用静态标签的on()方法
+        $("#treeDemo").on("click",".removeBtn",function () {
+            //将当前节点的id作为新增节点的父id，存到全局变量中
+            window.id = this.id;
+            //弹出模态框
+            $("#menuConfirmModal").modal("show");
+
+            //获取zTreeObj对象，该对象存储了树形目录的所有节点信息
+            let zTreeObj = $.fn.zTree.getZTreeObj("treeDemo");
+
+            //根据id来查询节点对象
+            var currentNode = zTreeObj.getNodeByParam("id",window.id);
+
+            //将该节点的名称显示到模态框中
+            $("#removeNodeSpan").html(" 【 <i class='"+currentNode.icon+"'></i>"+currentNode.name+"】");
+
+            //阻止超链接的跳转
+            return false;
+        });
+
+        //模态框 确认删除 按钮绑定单击事件，发送请求给后端，删除节点
+        $("#confirmBtn").click(function () {
+            $.ajax({
+                "url": "menu/removeMenu.json",
+                "data": {
+                    "id": window.id
+                },
+                "type": "post",
+                "dataType": "json",
+                "success": function (response) {
+                    let result = response.result;
+                    if ("SUCCESS" == result){
+                        layer.msg("操作成功");
+                        //重新加载目录，注意要保证后端处理完成后再加载，否则会出现加载不到最新数据
+                        generateMenu();
+                    }else {
+                        layer.msg("操作失败:"+response.message);
+                        return ;
+                    }
+                },
+                "error": function (response) {
+                    layer.msg("请求失败，请联系管理员");
+                }
+            });
+
+            //关闭模态框
+            $("#menuConfirmModal").modal("hide");
+        });
+
+
     });
 
 
@@ -75,6 +126,7 @@
 <body>
 <%@include file="/WEB-INF/commom/include-bodynav.jsp" %>
 <%@include file="/WEB-INF/commom/modal-menu-add.jsp"%>
+<%@include file="/WEB-INF/commom/modal-menu-remove.jsp"%>
 <div class="container-fluid">
     <div class="row">
         <%@include file="/WEB-INF/commom/include-sidebar.jsp" %>

@@ -37,6 +37,9 @@
 
   </insert>
 
+  <delete id="removeMenuById" parameterType="java.lang.Integer">
+    delete from t_menu where id = #{id}
+  </delete>
 
 
 </mapper>

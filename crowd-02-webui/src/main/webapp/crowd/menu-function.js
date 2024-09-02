@@ -73,7 +73,7 @@ function myAddHoverDom(treeId, treeNode) {
 
     //要增加的按钮
     let editBtn = "<a class='btn btn-info dropdown-toggle btn-xs' style='margin-left:10px;padding-top:0px;' href='#' title='修改节点'>&nbsp;&nbsp;<i class='fa fa-fw fa-edit rbg '></i></a>";
-    let removeBtn = "<a class='btn btn-info dropdown-toggle btn-xs' style='margin-left:10px;padding-top:0px;' href='#'  title='删除节点'>&nbsp;&nbsp;<i class='fa fa-fw fa-times rbg '></i></a>";
+    let removeBtn = "<a id='"+treeNode.id+"' class='removeBtn btn btn-info dropdown-toggle btn-xs' style='margin-left:10px;padding-top:0px;' href='#'  title='删除节点'>&nbsp;&nbsp;<i class='fa fa-fw fa-times rbg '></i></a>";
     let addBtn = "<a id='"+treeNode.id+"' class='addBtn btn btn-info dropdown-toggle btn-xs' style='margin-left:10px;padding-top:0px;' href='#'  title='增加节点'>&nbsp;&nbsp;<i class='fa fa-fw fa-plus rbg '></i></a>";
 
     //根据当前节点的层级，动态添加按钮。1.叶子节点只有修改和删除按钮；2.中间节点，有子节点的菜单，没有删除按钮；3.根节点只有增加按钮

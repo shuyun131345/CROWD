@@ -19,4 +19,10 @@ public interface MenuService {
      * @param menu
      */
     void addChildrenMenu(Menu menu);
+
+    /**
+     * 根据id删除节点
+     * @param id
+     */
+    void removeMenuById(Integer id);
 }

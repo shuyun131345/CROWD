@@ -49,4 +49,13 @@ public class MenuServiceImpl implements MenuService {
         //todo 插入重复异常处理
         mapper.addChildrenMenu(menu);
     }
+
+    @Override
+    public void removeMenuById(Integer id) {
+        //todo 异常处理
+        if (id == null || id == 0){
+            return ;
+        }
+        mapper.removeMenuById(id);
+    }
 }

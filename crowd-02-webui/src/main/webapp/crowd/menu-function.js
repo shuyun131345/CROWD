@@ -1,3 +1,47 @@
+
+
+//生成树形目录并初始化
+function generateMenu(){
+
+    //加载树形结构菜单目录
+    $.ajax({
+        "url": "menu/rootMenu.json",
+        "type": "post",
+        "dataType": "json",
+        "success": function (response) {
+            let result = response.result;
+            if ("SUCCESS" == result){
+                //获取菜单目录
+                var root = response.data;
+
+                //创建json对象，用于存储树形结构的设置
+                var settings = {
+                    "view": {
+                        "addDiyDom": myAddDiyDom,
+                        "addHoverDom": myAddHoverDom,
+                        "removeHoverDom": myRemoveHoverDom
+                    },
+                    "data":{
+                        "key":{
+                            "url":"maomi"
+                        }
+                    }
+                };
+
+                //初始化树形目录
+                $.fn.zTree.init($("#treeDemo"),settings,root);
+
+            }else {
+                layer.msg("请求失败："+response.message);
+                return;
+            }
+        },
+        "error": function (response) {
+            layer.msg("请求失败，请联系管理员");
+        }
+    });
+}
+
 //鼠标移出时，移除菜单按钮
 function myRemoveHoverDom(treeId, treeNode) {
 

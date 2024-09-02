@@ -18,5 +18,25 @@
       <include refid="base_select"/>
   </select>
 
+  <insert id="addChildrenMenu" parameterType="com.atguigu.crowd.entity.Menu">
+    insert into t_menu
+    <trim prefix="(" suffixOverrides="," suffix=")">
+      <if test="id != null and id != 0">id,</if>
+      <if test="pid != null and pid != 0">pid,</if>
+      <if test="name != null and name != ''">menu_name,</if>
+      <if test="url != null and url != ''">menu_url,</if>
+      <if test="icon != null and icon != ''">icon,</if>
+    </trim>
+    <trim prefix="values(" suffixOverrides="," suffix=")">
+      <if test="id != null and id != 0">#{id},</if>
+      <if test="pid != null and pid != 0">#{pid},</if>
+      <if test="name != null and name != ''">#{name},</if>
+      <if test="url != null and url != ''">#{url},</if>
+      <if test="icon != null and icon != ''">#{icon},</if>
+    </trim>
+
+  </insert>
+
+
 
 </mapper>

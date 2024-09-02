@@ -38,4 +38,17 @@ public class MenuController {
         return AjaxResultEntity.success(null,root);
     }
 
+
+    /**
+     * 增加子节点
+     * @param menu
+     * @return
+     */
+    @RequestMapping("/menu/addMenu.json")
+    @ResponseBody
+    public AjaxResultEntity<String> addChildrenMenu(Menu menu){
+        service.addChildrenMenu(menu);
+        return AjaxResultEntity.success(null,null);
+    }
+
 }

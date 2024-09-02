@@ -30,24 +30,26 @@
             let nodeUrl = $.trim($("#menuAddModal [name=url]").val());
             //被选中的图标
             let nodeIcon = $.trim($("#menuAddModal [name=icon]:checked").val());
+            let pid = window.pid;
 
             //发送ajax请求
             $.ajax({
                 "url": "menu/addMenu.json",
                 "type": "post",
                 "data": {
-                    "id": this.id,
-                    "pid": window.pid,
+                    "pid": pid,
                     "name": nodeName,
                     "url": nodeUrl,
                     "icon": nodeIcon
                 },
                 "dataType": "json",
-                "contentType":"application/json;charset=UTF-8",
                 "success": function (response) {
                     let result = response.result;
                     if ("SUCCESS" == result){
                         layer.msg("操作成功");
+                        //重新加载目录，注意要保证后端处理完成后再加载，否则会出现加载不到最新数据
+                        generateMenu();
+
                     }else {
                         layer.msg("操作失败:"+response.message);
                         return ;
@@ -58,11 +60,14 @@
                 }
             });
 
+            //关闭模态框
+            $("#menuAddModal").modal("hide");
 
-
-
-
+            //清空表单
+            // jQuery 对象调用 click()函数，里面不传任何参数，相当于用户点击了一下
+            $("#menuResetBtn").click();
         });
+
     });
 
 

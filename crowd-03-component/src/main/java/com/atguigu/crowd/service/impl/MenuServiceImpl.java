@@ -43,4 +43,10 @@ public class MenuServiceImpl implements MenuService {
         //最终根节点就包含了所有的子节点，所以只返回根节点就行
         return root;
     }
+
+    @Override
+    public void addChildrenMenu(Menu menu) {
+        //todo 插入重复异常处理
+        mapper.addChildrenMenu(menu);
+    }
 }

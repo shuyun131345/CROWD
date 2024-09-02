@@ -8,5 +8,15 @@ import com.atguigu.crowd.entity.Menu;
  */
 public interface MenuService {
 
+    /**
+     * 获取根节点
+     * @return
+     */
     Menu getRootMenu();
+
+    /**
+     * 增加子节点
+     * @param menu
+     */
+    void addChildrenMenu(Menu menu);
 }

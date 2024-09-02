@@ -15,4 +15,10 @@ public interface MenuMapper {
      * @return
      */
     List<Menu> queryMenuList();
+
+    /**
+     * 增加子节点
+     * @param menu
+     */
+    void addChildrenMenu(Menu menu);
 }

@@ -5,6 +5,7 @@
 <%@include file="/WEB-INF/commom/include-head.jsp" %>
 <link rel="stylesheet" href="ztree/zTreeStyle.css">
 <script type="text/javascript" src="ztree/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="crowd/menu-function.js"></script>
 <script type="text/javascript">
 
     $(function () {
@@ -21,7 +22,18 @@
                     var root = response.data;
 
                     //创建json对象，用于存储树形结构的设置
-                    var settings = {};
+                    var settings = {
+                        "view": {
+                            "addDiyDom": myAddDiyDom,
+                            "addHoverDom": myAddHoverDom,
+                            "removeHoverDom": myRemoveHoverDom
+                        },
+                        "data":{
+                            "key":{
+                                "url":"maomi"
+                            }
+                        }
+                    };
 
                     //初始化树形目录
                     $.fn.zTree.init($("#treeDemo"),settings,root);

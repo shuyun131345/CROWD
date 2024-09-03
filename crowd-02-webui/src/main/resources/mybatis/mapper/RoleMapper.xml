@@ -54,6 +54,23 @@
   </delete>
 
 
+  <select id="selectAssignRolesByAdminId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT a.id, roleName
+    FROM t_role a INNER JOIN inner_admin_role b ON a.id=b.roleId
+    <where>
+      <if test="adminId != null and adminId != ''">
+        adminId=#{adminId}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectUnAssignRolesByAdminId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT a.id, roleName
+    FROM t_role a left JOIN inner_admin_role b ON a.id=b.roleId
+    where adminId IS NULL or adminId != #{adminId}
+  </select>
+
+
 
 
   <sql id="Example_Where_Clause" >

@@ -37,6 +37,22 @@ public interface RoleMapper {
      */
     void deleteRoles(@Param("roles") List<Role> roleList);
 
+
+    /**
+     * 根据adminId查询用户已拥有角色
+     * @param adminId
+     * @return
+     */
+    List<Role> selectAssignRolesByAdminId(@Param("adminId") Integer adminId);
+
+    /**
+     * 根据adminId查询用户未拥有角色
+     * @param adminId
+     * @return
+     */
+    List<Role> selectUnAssignRolesByAdminId(@Param("adminId") Integer adminId);
+
+
     int countByExample(RoleExample example);
 
     int deleteByExample(RoleExample example);

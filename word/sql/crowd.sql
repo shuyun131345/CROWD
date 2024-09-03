@@ -2,6 +2,17 @@
 
 
 #管理员角色信息表
+
+#根据管理员id查询其拥有角色和未拥有角色
+SELECT roleName FROM t_role a INNER JOIN inner_admin_role b ON a.id=b.roleId WHERE adminId=1;
+SELECT * FROM t_role a LEFT JOIN inner_admin_role b ON a.id=b.roleId WHERE adminId !=1 OR adminId IS NULL;
+
+#子查询
+SELECT id,roleName  FROM t_role a WHERE id IN( SELECT roleId FROM inner_admin_role WHERE adminId=1);
+SELECT id,roleName  FROM t_role a WHERE id NOT IN( SELECT roleId FROM inner_admin_role WHERE adminId=1);
+
+
+
 #建表语句
 CREATE TABLE inner_admin_role
 (

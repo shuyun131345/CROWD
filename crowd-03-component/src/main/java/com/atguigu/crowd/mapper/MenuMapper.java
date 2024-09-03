@@ -28,4 +28,10 @@ public interface MenuMapper {
      * @param id
      */
     void removeMenuById(@Param("id") Integer id);
+
+    /**
+     * 根据id更新节点信息
+     * @param menu
+     */
+    void editMenuById(Menu menu);
 }

@@ -65,4 +65,18 @@ public class MenuController {
         return AjaxResultEntity.success(null,null);
     }
 
+
+    /**
+     * 根据id更新节点信息
+     * @param menu
+     * @return
+     */
+    @RequestMapping("/menu/editMenu.json")
+    @ResponseBody
+    public AjaxResultEntity<String> editChildrenMenu( Menu menu){
+        service.editMenuById(menu);
+        return AjaxResultEntity.success(null,null);
+    }
+
+
 }

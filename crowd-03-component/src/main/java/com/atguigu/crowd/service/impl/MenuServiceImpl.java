@@ -58,4 +58,10 @@ public class MenuServiceImpl implements MenuService {
         }
         mapper.removeMenuById(id);
     }
+
+    @Override
+    public void editMenuById(Menu menu) {
+        //todo 异常处理 id不为空的判断
+        mapper.editMenuById(menu);
+    }
 }

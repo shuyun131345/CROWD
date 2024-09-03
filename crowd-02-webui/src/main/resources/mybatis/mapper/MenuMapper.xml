@@ -41,5 +41,19 @@
     delete from t_menu where id = #{id}
   </delete>
 
+  <update id="editMenuById" parameterType="com.atguigu.crowd.entity.Menu">
+    update t_menu
+    <trim prefix="set" suffixOverrides=",">
+      <if test="name != null and name != ''">menu_name = #{name},</if>
+      <if test="url != null and url != ''">menu_url = #{url},</if>
+      <if test="icon != null and icon != ''">icon = #{icon},</if>
+    </trim>
+    <where>
+      <if test="id != null and id != 0">id = #{id}</if>
+    </where>
+  </update>
+
+
+
 
 </mapper>

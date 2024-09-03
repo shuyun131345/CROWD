@@ -119,6 +119,74 @@
         });
 
 
+        //编辑按钮弹出模态框
+        $("#treeDemo").on("click",".editBtn",function () {
+            //弹出模态框
+            $("#menuEditModal").modal("show");
+
+            //将当前节点的id存到全局变量中
+            window.id = this.id;
+
+            //反显要更新的菜单信息，根据id到树形目录中查找
+            let zTreeObj = $.fn.zTree.getZTreeObj("treeDemo");
+            let currentNode = zTreeObj.getNodeByParam("id",window.id);
+
+            //反显 节点名称、url、图标信息
+            $("#menuEditModal [name=name]").val(currentNode.name);
+            $("#menuEditModal [name=url]").val(currentNode.url);
+            // 回显 radio 可以这样理解：被选中的 radio 的 value 属性可以组成一个数组，
+            // 然后再用这个数组设置回 radio，就能够把对应的值选中
+            $("#menuEditModal [name=icon]").val([currentNode.icon]);
+
+            //阻止超链接的跳转
+            return false;
+        });
+
+
+        //模态框的更新按钮绑定单击事件，发送ajax请求，让后端更新节点信息
+        $("#menuEditBtn").click(function () {
+            //获取表单数据：节点名、url、图标类型
+            let nodeName = $.trim($("#menuEditModal [name=name]").val());
+            let nodeUrl = $.trim($("#menuEditModal [name=url]").val());
+            //被选中的图标
+            let nodeIcon = $.trim($("#menuEditModal [name=icon]:checked").val());
+
+            //发送ajax请求
+            $.ajax({
+                "url": "menu/editMenu.json",
+                "type": "post",
+                "data": {
+                    "id": window.id,
+                    "name": nodeName,
+                    "url": nodeUrl,
+                    "icon": nodeIcon
+                },
+                "dataType": "json",
+                "success": function (response) {
+                    let result = response.result;
+                    if ("SUCCESS" == result){
+                        layer.msg("操作成功");
+                        //重新加载目录，注意要保证后端处理完成后再加载，否则会出现加载不到最新数据
+                        generateMenu();
+
+                    }else {
+                        layer.msg("操作失败:"+response.message);
+                        return ;
+                    }
+                },
+                "error": function (response) {
+                    layer.msg("操作失败，请联系管理员");
+                }
+            });
+
+            //关闭模态框
+            $("#menuEditModal").modal("hide");
+        });
+
+
+
+
+
     });
 
 
@@ -127,6 +195,7 @@
 <%@include file="/WEB-INF/commom/include-bodynav.jsp" %>
 <%@include file="/WEB-INF/commom/modal-menu-add.jsp"%>
 <%@include file="/WEB-INF/commom/modal-menu-remove.jsp"%>
+<%@include file="/WEB-INF/commom/modal-menu-edit.jsp"%>
 <div class="container-fluid">
     <div class="row">
         <%@include file="/WEB-INF/commom/include-sidebar.jsp" %>

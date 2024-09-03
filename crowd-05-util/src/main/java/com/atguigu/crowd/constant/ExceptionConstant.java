@@ -17,6 +17,7 @@ public class ExceptionConstant {
     public static final String EAMAI_ISNULL = "邮箱为空，请重新输入";
     public static final String DOPLICATION_ROLE = "该角色已经存在";
 
-
+    public static final String DOPLICATION_MENU = "该菜单已经存在";
+    public static final String NULL_MENU = "该菜单不存在或已经被删除";
 
 }

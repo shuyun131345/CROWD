@@ -1,14 +1,19 @@
 package com.atguigu.crowd.service.impl;
 
 import com.atguigu.crowd.entity.Menu;
+import com.atguigu.crowd.exception.MenuException;
 import com.atguigu.crowd.mapper.MenuMapper;
 import com.atguigu.crowd.service.inf.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static com.atguigu.crowd.constant.ExceptionConstant.DOPLICATION_MENU;
+import static com.atguigu.crowd.constant.ExceptionConstant.NULL_MENU;
 
 /**
  * @author shuyun
@@ -47,21 +52,37 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public void addChildrenMenu(Menu menu) {
         //todo 插入重复异常处理
-        mapper.addChildrenMenu(menu);
+        try {
+            mapper.addChildrenMenu(menu);
+        }catch (DuplicateKeyException e){
+            e.printStackTrace();
+            throw new MenuException(DOPLICATION_MENU);
+        }
+
     }
 
     @Override
     public void removeMenuById(Integer id) {
         //todo 异常处理
         if (id == null || id == 0){
-            return ;
+            throw new MenuException(NULL_MENU);
         }
-        mapper.removeMenuById(id);
+        try {
+            mapper.removeMenuById(id);
+        }catch (RuntimeException e){
+            e.printStackTrace();
+            throw new MenuException(NULL_MENU);
+        }
     }
 
     @Override
     public void editMenuById(Menu menu) {
         //todo 异常处理 id不为空的判断
-        mapper.editMenuById(menu);
+        try {
+            mapper.editMenuById(menu);
+        }catch (DuplicateKeyException e){
+            e.printStackTrace();
+            throw new MenuException(DOPLICATION_MENU);
+        }
     }
 }

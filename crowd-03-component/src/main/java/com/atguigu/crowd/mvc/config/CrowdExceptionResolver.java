@@ -26,6 +26,22 @@ public class CrowdExceptionResolver {
 
 
     /**
+     * 菜单维护异常处理
+     * @param exception
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    @ExceptionHandler(value = MenuException.class)
+    public ModelAndView resolverMenuException(MenuException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //菜单维护，都是ajax请求，不返回视图
+        return genExceptionResolver(exception, request, response, null);
+    }
+
+
+
+    /**
      * 角色维护异常处理
      * @param exception
      * @param request

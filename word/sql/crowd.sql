@@ -34,6 +34,10 @@ INSERT INTO t_menu (id, pid, menu_name, icon, menu_url) VALUES('18','11',' 项�
 INSERT INTO t_menu (id, pid, menu_name, icon, menu_url) VALUES('19','1',' 参数管理','glyphicon glyphicon-list-alt','param/index.htm');
 
 
+#菜单表调整节点名唯一
+ALTER TABLE t_menu ADD UNIQUE(menu_name);
+
+
 
 #角色表建表语句
 use crowd;

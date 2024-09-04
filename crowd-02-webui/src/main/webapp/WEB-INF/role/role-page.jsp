@@ -231,6 +231,12 @@
         });
 
 
+        //12.角色的权限分配按钮绑定单击事件
+        $("#rolePageBody").on("click",".checkButton",function () {
+            $("#assignRoleModal").modal("show");
+        });
+
+
 
     });
 
@@ -241,6 +247,7 @@
 <%@include file="/WEB-INF/commom/modal-role-add.jsp" %>
 <%@include file="/WEB-INF/commom/modal-role-edit.jsp" %>
 <%@include file="/WEB-INF/commom/modal-role-remove.jsp" %>
+<%@include file="/WEB-INF/commom/modal-role-assign-auth.jsp" %>
 <div class="container-fluid">
     <div class="row">
         <%@include file="/WEB-INF/commom/include-sidebar.jsp" %>

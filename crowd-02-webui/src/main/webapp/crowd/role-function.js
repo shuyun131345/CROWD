@@ -109,7 +109,7 @@ function showRemoveModal(roleArray) {
             var tSortNumber ="<td>"+(i+1)+"</td>";
             var checkbox = "<td ><input type='checkbox' class='itemBox' id='" +roleId+"'></td>";
             var roleName = "<td>"+role.name+"</td>";
-            var checkButton = "<button type='button' class='btn btn-success btn-xs'><i class='glyphicon glyphicon-check'></i></button>";
+            var checkButton = "<button id='" +roleId+"' type='button' class='btn btn-success btn-xs checkButton'><i class='glyphicon glyphicon-check'></i></button>";
             var pencilButton = "<button id='" +roleId+"'type='button' class='btn btn-primary btn-xs pencilBtn'><i class=' glyphicon glyphicon-pencil'></i></button>";
             var removeButton = "<button id='" +roleId+"' type='button' class='btn btn-danger btn-xs removeBtn'><i class=' glyphicon glyphicon-remove'></i></button>";
             var tdBtn = "<td>"+checkButton+" "+pencilButton+" "+removeButton+"</td>";

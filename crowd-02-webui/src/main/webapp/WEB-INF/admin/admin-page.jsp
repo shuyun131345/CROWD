@@ -109,7 +109,7 @@
                                         <td>${admin.userName}</td>
                                         <td>${admin.email}</td>
                                         <td>
-                                            <a class="btn btn-success btn-xs" href="assignrole/assign-role/${admin.id}/${requestScope.pageInfo.pageNum}/${requestScope.pageInfo.pageSize}/${param.keyword}.html"><i class=" glyphicon glyphicon-check"></i></a>
+                                            <a class="btn btn-success btn-xs" href="assignrole/assign-role.html?adminId=${admin.id}&pageNum=${requestScope.pageInfo.pageNum}&pageSize=${requestScope.pageInfo.pageSize}&keyword=${param.keyword}"><i class=" glyphicon glyphicon-check"></i></a>
                                             <a class="btn btn-primary btn-xs" href="admin/editPage/${admin.id}/${requestScope.pageInfo.pageNum}/${requestScope.pageInfo.pageSize}/${param.keyword}.html"><i class=" glyphicon glyphicon-pencil"></i></a>
                                             <a class="btn btn-danger btn-xs" href="admin/remove/${admin.id}/${requestScope.pageInfo.pageNum}/${requestScope.pageInfo.pageSize}/${param.keyword}.html"><i class=" glyphicon glyphicon-remove"></i></a>
                                         </td>

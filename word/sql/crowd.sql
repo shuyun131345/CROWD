@@ -1,7 +1,10 @@
 #尚筹网
 
 
+#改管理员数据
+UPDATE inner_admin_role SET adminId=10001;
 #管理员角色信息表
+
 
 #根据管理员id查询其拥有角色和未拥有角色
 SELECT roleName FROM t_role a INNER JOIN inner_admin_role b ON a.id=b.roleId WHERE adminId=1;
@@ -26,7 +29,9 @@ CREATE TABLE inner_admin_role
 INSERT INTO inner_admin_role (adminId,roleId) VALUES(1,1);
 INSERT INTO inner_admin_role (adminId,roleId) VALUES(1,2);
 INSERT INTO inner_admin_role (adminId,roleId) VALUES(1,3);
-
+INSERT INTO inner_admin_role (adminId,roleId) VALUES(1,4);
+INSERT INTO inner_admin_role (adminId,roleId) VALUES(1,5);
+INSERT INTO inner_admin_role (adminId,roleId) VALUES(1,6);
 
 
 

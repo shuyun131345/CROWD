@@ -23,4 +23,17 @@ public interface AssignService {
      * @return
      */
     List<Role> selectUnAssignRolesByAdminId(Integer adminId);
+
+    /**
+     * 删除用户原有角色
+     * @param adminId
+     */
+    void deleteOriAssignRoles(Integer adminId);
+
+    /**
+     * 用户增加角色
+     * @param adminId
+     * @param roleIdList 角色列表
+     */
+    void saveNewAssignRoles(Integer adminId, List<Integer> roleIdList);
 }

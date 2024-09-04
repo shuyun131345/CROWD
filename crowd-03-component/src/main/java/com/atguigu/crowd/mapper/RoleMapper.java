@@ -53,6 +53,20 @@ public interface RoleMapper {
     List<Role> selectUnAssignRolesByAdminId(@Param("adminId") Integer adminId);
 
 
+    /**
+     * 删除用户原有角色
+     * @param adminId
+     */
+    void deleteOriAssignRoles(@Param("adminId")  Integer adminId);
+
+
+    /**
+     * 用户新增角色
+     * @param adminId
+     * @param roleIdList
+     */
+    void saveNewAssignRoles(@Param("adminId") Integer adminId, @Param("roleList") List<Integer> roleIdList);
+
     int countByExample(RoleExample example);
 
     int deleteByExample(RoleExample example);
@@ -74,7 +88,6 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
-
 
 
 }

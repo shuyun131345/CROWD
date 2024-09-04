@@ -4,8 +4,9 @@ import com.atguigu.crowd.entity.Role;
 import com.atguigu.crowd.service.inf.AssignService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -27,8 +28,8 @@ public class AssignController {
      * @param model
      * @return
      */
-    @RequestMapping("/assignrole/assign-role/{id}/{pageNum}/{pageSize}/{keyword}.html")
-    public String assignRolePage(@PathVariable("id") Integer id, Model model){
+    @RequestMapping("/assignrole/assign-role.html")
+    public String assignRolePage(@RequestParam("adminId") Integer id, Model model){
 
         //获取已拥有权限
         List<Role> assignRoles = service.selectAssignRolesByAdminId(id);
@@ -43,6 +44,25 @@ public class AssignController {
         return "assignrole/assign-role";
     }
 
+
+    @RequestMapping("/assignrole/saveAssignRoles.json")
+    public String saveAssignRoles(@RequestParam("keyword") String keyword,
+                                                    @RequestParam("pageNum") Integer pageNum,
+                                                    @RequestParam("pageSize") Integer pageSize,
+                                                    @RequestParam("adminId") Integer adminId,
+                                                    @RequestParam(value = "roleIdList",required = false) List<Integer> roleIdList,
+                                  Model model){
+
+        //先删除原有的角色
+        service.deleteOriAssignRoles(adminId);
+
+        //再添加新的角色，非空才插入
+        if (!CollectionUtils.isEmpty(roleIdList)){
+            service.saveNewAssignRoles(adminId,roleIdList);
+        }
+
+        return "redirect:/admin/page.html?keyword=" + keyword + "&pageNum=" + pageNum + "&pageSize=" + pageSize;
+    }
 
 
 }

@@ -39,7 +39,8 @@
         //确定按钮绑定单击事件，将已分配角色列表交给后端去保存
         $("#assignConfirmBtn").click(function () {
 
-            //获取已分配角色列表
+            //获取已分配角色列表。因为form表单提交的是被选中的option，所以在提交前把已分配列表选中
+            $("select:eq(1)>option").prop("selected",true);
 
 
         });
@@ -64,7 +65,11 @@
             </ol>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form role="form" class="form-inline">
+                    <form action="assignrole/saveAssignRoles.json" method="post" role="form" class="form-inline">
+                        <input type="hidden" name="adminId" value="${param.adminId}" />
+                        <input type="hidden" name="keyword" value="${param.keyword}" />
+                        <input type="hidden" name="pageNum" value="${param.pageNum}" />
+                        <input type="hidden" name="pageSize" value="${param.pageSize}" />
                         <div class="form-group">
                             <label for="unAssignRoles">未分配角色列表</label><br>
                             <select class="form-control" multiple="" size="10" style="width:100px;overflow-y:auto;">
@@ -83,14 +88,14 @@
                         </div>
                         <div class="form-group" style="margin-left:40px;">
                             <label for="assignRoles">已分配角色列表</label><br>
-                            <select class="form-control" multiple="" size="10" style="width:100px;overflow-y:auto;">
+                            <select name="roleIdList" class="form-control" multiple="multiple" size="10" style="width:100px;overflow-y:auto;">
                                 <c:forEach items="${requestScope.assignRoles}" var="role">
                                     <option value="${role.id}">${role.name}</option>
                                 </c:forEach>
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <button id="assignConfirmBtn" type="button" class="btn btn-danger"><i
+                            <button id="assignConfirmBtn" type="submit" class="btn btn-danger"><i
                                     class="glyphicon glyphicon-ok"></i> OK
                             </button>
                         </div>

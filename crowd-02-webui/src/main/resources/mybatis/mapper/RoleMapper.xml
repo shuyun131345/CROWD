@@ -56,19 +56,30 @@
 
   <select id="selectAssignRolesByAdminId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     SELECT a.id, roleName
-    FROM t_role a INNER JOIN inner_admin_role b ON a.id=b.roleId
-    <where>
-      <if test="adminId != null and adminId != ''">
-        adminId=#{adminId}
-      </if>
-    </where>
+    FROM t_role a where id in(select roleId from inner_admin_role where adminId=#{adminId})
   </select>
 
   <select id="selectUnAssignRolesByAdminId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     SELECT a.id, roleName
-    FROM t_role a left JOIN inner_admin_role b ON a.id=b.roleId
-    where adminId IS NULL or adminId != #{adminId}
+    FROM t_role a where id not in(select roleId from inner_admin_role where adminId=#{adminId})
   </select>
+
+
+  <delete id="deleteOriAssignRoles" parameterType="java.lang.Integer">
+    delete from inner_admin_role a
+    <where>
+      <if test="adminId != null and adminId != ''">
+        adminId = #{adminId}
+      </if>
+    </where>
+  </delete>
+
+  <insert id="saveNewAssignRoles" >
+      insert into inner_admin_role (adminId,roleId) values
+      <foreach collection="roleList" item="roleId" separator=",">
+        (#{adminId},#{roleId})
+      </foreach>
+  </insert>
 
 
 

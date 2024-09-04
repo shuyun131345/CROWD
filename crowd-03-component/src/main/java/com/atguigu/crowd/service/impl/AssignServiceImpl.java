@@ -27,4 +27,14 @@ public class AssignServiceImpl implements AssignService {
     public List<Role> selectUnAssignRolesByAdminId(Integer adminId) {
         return mapper.selectUnAssignRolesByAdminId(adminId);
     }
+
+    @Override
+    public void deleteOriAssignRoles(Integer adminId) {
+        mapper.deleteOriAssignRoles(adminId);
+    }
+
+    @Override
+    public void saveNewAssignRoles(Integer adminId, List<Integer> roleIdList) {
+        mapper.saveNewAssignRoles(adminId, roleIdList);
+    }
 }

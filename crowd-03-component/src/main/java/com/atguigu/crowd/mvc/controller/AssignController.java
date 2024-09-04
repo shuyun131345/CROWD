@@ -45,22 +45,29 @@ public class AssignController {
     }
 
 
+    /**
+     * 给用户分配角色
+     * @param keyword
+     * @param pageNum
+     * @param pageSize
+     * @param adminId
+     * @param roleIdList
+     * @return
+     */
     @RequestMapping("/assignrole/saveAssignRoles.json")
     public String saveAssignRoles(@RequestParam("keyword") String keyword,
                                                     @RequestParam("pageNum") Integer pageNum,
                                                     @RequestParam("pageSize") Integer pageSize,
                                                     @RequestParam("adminId") Integer adminId,
-                                                    @RequestParam(value = "roleIdList",required = false) List<Integer> roleIdList,
-                                  Model model){
-
+                                                    //因为用户可以没有角色，所有角色列表可以为空
+                                                    @RequestParam(value = "roleIdList",required = false) List<Integer> roleIdList){
         //先删除原有的角色
         service.deleteOriAssignRoles(adminId);
 
-        //再添加新的角色，非空才插入
+        //再添加新的角色，非空才插入，角色列表为空时只做删除即可
         if (!CollectionUtils.isEmpty(roleIdList)){
             service.saveNewAssignRoles(adminId,roleIdList);
         }
-
         return "redirect:/admin/page.html?keyword=" + keyword + "&pageNum=" + pageNum + "&pageSize=" + pageSize;
     }
 

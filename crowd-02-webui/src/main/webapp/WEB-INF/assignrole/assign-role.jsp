@@ -42,7 +42,6 @@
             //获取已分配角色列表。因为form表单提交的是被选中的option，所以在提交前把已分配列表选中
             $("select:eq(1)>option").prop("selected",true);
 
-
         });
 
 

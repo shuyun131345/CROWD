@@ -5,6 +5,8 @@
 <%@include file="/WEB-INF/commom/include-head.jsp" %>
 <link rel="stylesheet" href="css/pagination.css"/>
 <script type="text/javascript" src="jquery/jquery.pagination.js"></script>
+<link rel="stylesheet" href="ztree/zTreeStyle.css">
+<script type="text/javascript" src="ztree/jquery.ztree.all-3.5.min.js"></script>
 <script type="text/javascript" src="crowd/role-function.js"></script>
 <script type="text/javascript">
     $(function () {
@@ -234,6 +236,9 @@
         //12.角色的权限分配按钮绑定单击事件
         $("#rolePageBody").on("click",".checkButton",function () {
             $("#assignRoleModal").modal("show");
+
+            //为了更新操作能获取到角色id，把角色id放到全局变量中
+            window.roleId = this.id;
 
             //加载权限的树形结构，给角色分配权限，操作抽取到role-function.js中
             fillAuthTree();

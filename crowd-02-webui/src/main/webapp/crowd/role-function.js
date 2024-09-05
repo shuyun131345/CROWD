@@ -9,6 +9,29 @@ function fillAuthTree() {
         "dataType":"json"
     });
 
+    if (authResponse.status != 200){
+        layer.msg("请求错误，请联系管理员");
+        return ;
+    }
+
+    //获取权限列表
+    var authList = authResponse.responseJSON.data;
+
+    //准备ztree配置的对象
+    var seting = {
+        "simpleData":{
+            //开启简单JSON功能
+            "enable": true,
+
+            //使用catagoryId关联父节点，不使用默认的pId
+            "pIdKey": "catagoryId"
+        },
+        "key":{
+            "name":"title"
+        }
+
+
+    };
 
 
 

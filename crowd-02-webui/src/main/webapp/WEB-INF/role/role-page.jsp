@@ -234,6 +234,10 @@
         //12.角色的权限分配按钮绑定单击事件
         $("#rolePageBody").on("click",".checkButton",function () {
             $("#assignRoleModal").modal("show");
+
+            //加载权限的树形结构，给角色分配权限，操作抽取到role-function.js中
+            fillAuthTree();
+
         });
 
 

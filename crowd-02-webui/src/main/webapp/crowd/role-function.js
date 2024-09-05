@@ -1,4 +1,23 @@
 
+//角色的权限操作，用于展开权限的树形结构并反显已有权限
+function fillAuthTree() {
+
+    //ajax请求后端，查询auth数据
+    var authResponse = $.ajax({
+        "url": "auth/getAuthList.json",
+        "type": "post",
+        "dataType":"json"
+    });
+
+
+
+
+}
+
+
+
+
+
 //删除角色时，全选复选框状态与当前页面元素选中状态保持一致
 function checkedBox(){
     //当前被选中的元素个数和总的个数相等时，说明全部被选中，全选勾上

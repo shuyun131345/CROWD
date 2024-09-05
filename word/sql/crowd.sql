@@ -1,6 +1,35 @@
 #尚筹网
 
 
+
+
+#权限表，建表语句
+CREATE TABLE t_auth
+(
+    id          INT(11) NOT NULL AUTO_INCREMENT,
+    auth_name   VARCHAR(200) DEFAULT NULL,
+    title       VARCHAR(200) DEFAULT NULL,
+    category_id INT(11)      DEFAULT NULL,
+    PRIMARY KEY (id)
+);
+
+#权限表造数
+INSERT INTO t_auth(id, auth_name, title, category_id)
+VALUES (1, '', '用户模块', NULL);
+INSERT INTO t_auth(id, auth_name, title, category_id)
+VALUES (2, 'user:delete', '删除', 1);
+INSERT INTO t_auth(id, auth_name, title, category_id)
+VALUES (3, 'user:get', '查询', 1);
+INSERT INTO t_auth(id, auth_name, title, category_id)
+VALUES (4, '', '角色模块', NULL);
+INSERT INTO t_auth(id, auth_name, title, category_id)
+VALUES (5, 'role:delete', '删除', 4);
+INSERT INTO t_auth(id, auth_name, title, category_id)
+VALUES (6, 'role:get', '查询', 4);
+INSERT INTO t_auth(id, auth_name, title, category_id)
+VALUES (7, 'role:add', '新增', 4);
+
+
 #改管理员数据
 UPDATE inner_admin_role SET adminId=10001;
 #管理员角色信息表

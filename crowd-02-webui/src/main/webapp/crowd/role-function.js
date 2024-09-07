@@ -49,15 +49,12 @@ function fillAuthTree() {
     zTreeObj.expandAll(true);
 
     //查询角色已拥有权限
-    var role = {
-        "id": window.roleId
-    };
-    var requestBody = JSON.stringify(role);
     var assignAuthResponse = $.ajax({
         "url": "auth/getAssignAuthList.json",
         "type": "post",
-        // "contentType":"application/json;charset=UTF-8",
-        "data": requestBody,
+        "data": {
+            "id": window.roleId
+        },
         "dataType":"json",
         "async": false
     });

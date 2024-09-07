@@ -1,7 +1,6 @@
 package com.atguigu.crowd.mvc.controller;
 
 import com.atguigu.crowd.entity.Auth;
-import com.atguigu.crowd.entity.Role;
 import com.atguigu.crowd.entity.common.AjaxResultEntity;
 import com.atguigu.crowd.service.inf.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +33,13 @@ public class AuthController {
 
     /**
      * 根据角色id查询已有权限信息
-     * @param role
+     * @param id
      * @return
      */
     @RequestMapping("/auth/getAssignAuthList.json")
     @ResponseBody
-    public AjaxResultEntity<List<Auth>> getAssignAuthList(Role role){
-        List<Auth> authList = service.getAssignAuthList(role.getId());
+    public AjaxResultEntity<List<Auth>> getAssignAuthList(Integer id){
+        List<Auth> authList = service.getAssignAuthList(id);
         return AjaxResultEntity.success(null,authList);
     }
 

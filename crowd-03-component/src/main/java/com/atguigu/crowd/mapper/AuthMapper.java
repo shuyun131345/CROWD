@@ -1,6 +1,7 @@
 package com.atguigu.crowd.mapper;
 
 import com.atguigu.crowd.entity.Auth;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,11 +17,10 @@ public interface AuthMapper {
      */
     List<Auth> selectAuthList();
 
-
     /**
      * 根据角色id查询已有权限信息
      * roleId 角色id
      * @return
      */
-    List<Auth> selectAssignAuthList(Integer roleId);
+    List<Auth> selectAssignAuthList(@Param("roleId") Integer roleId);
 }

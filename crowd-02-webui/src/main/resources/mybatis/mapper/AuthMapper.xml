@@ -41,4 +41,29 @@
         </foreach>
     </insert>
 
+
+
+
+    <select id="getMenuAssignAuthList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <include refid="base_select"/>
+        <where>
+            <if test="menuId != null and menuId !=''">
+                id IN (SELECT auth_id FROM inner_menu_auth WHERE menu_id =#{menuId})
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteAuthByMenuId" parameterType="java.lang.Integer">
+        delete from inner_menu_auth
+        <where>
+            <if test="menuId != null and menuId != 0 ">menu_id=#{menuId}</if>
+        </where>
+    </delete>
+
+    <insert id="saveAssignMenuAuth" >
+        insert into inner_menu_auth (menu_id,auth_id) values
+        <foreach collection="list" item="authId" separator="," >
+            (#{menuId},#{authId})
+        </foreach>
+    </insert>
 </mapper>

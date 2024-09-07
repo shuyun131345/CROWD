@@ -1,5 +1,90 @@
 
 
+//菜单的权限操作，用于展开权限的树形结构并反显已有权限
+function fillAuthTree() {
+
+    //ajax请求后端，查询auth数据
+    var authResponse = $.ajax({
+        "url": "auth/getAuthList.json",
+        "type": "post",
+        "dataType":"json",
+        "async": false
+    });
+
+    if (authResponse.status != 200){
+        layer.msg("请求错误，请联系管理员");
+        return ;
+    }
+
+    //获取权限列表
+    //从服务器端查询到的 list 不需要组装成树形结构，这里我们交给zTree 去组装.simpleData为true时，只需指定父id即可
+    var authList = authResponse.responseJSON.data;
+
+    //准备ztree配置的对象
+    var seting = {
+        "data":{
+            "simpleData":{
+                //开启简单JSON功能
+                "enable": true,
+
+                //使用catagoryId关联父节点，不使用默认的pId
+                "pIdKey": "catagoryId"
+            },
+            "key":{
+                //使用 title 属性显示节点名称，不用默认的 name 作为属性名了
+                "name":"title"
+            }
+        },
+        "check":{
+            "enable": true
+        }
+    };
+
+    //生成树形结构，附着在模态框的静态标签<ul id="authTreeDemo" className="ztree"></ul>
+    $.fn.zTree.init($("#authTreeDemo"),seting,authList);
+
+    //获取树形结构的对象
+    var zTreeObj = $.fn.zTree.getZTreeObj("authTreeDemo");
+
+    //展开树形结构的所有节点
+    zTreeObj.expandAll(true);
+
+    //查询菜单已拥有权限
+    var assignAuthResponse = $.ajax({
+        "url": "auth/getMenuAssignAuthList.json",
+        "type": "post",
+        "data": {
+            "id": window.menuId
+        },
+        "dataType":"json",
+        "async": false
+    });
+
+    if (assignAuthResponse.status != 200){
+        layer.msg("请求错误，请联系管理员");
+        return ;
+    }
+
+    //取出已分配权限的列表
+    var assignAuth = assignAuthResponse.responseJSON.data;
+    //遍历已分配权限列表，把树形结构的节点勾选上
+    for (let i = 0; i < assignAuth.length; i++) {
+
+        let authId = assignAuth[i].id;
+        //根据id查询树形结构的节点
+        let node = zTreeObj.getNodeByParam("id",authId);
+
+        //将该节点设置为选中状态
+        //参数2 true表示选中状态，参数3表示不联动（避免选上子树未分配的权限）
+        zTreeObj.checkNode(node,true,false);
+
+    }
+
+}
+
+
+
+
 //生成树形目录并初始化
 function generateMenu(){
 
@@ -75,6 +160,8 @@ function myAddHoverDom(treeId, treeNode) {
     let editBtn = "<a id='"+treeNode.id+"' class='editBtn btn btn-info dropdown-toggle btn-xs' style='margin-left:10px;padding-top:0px;' href='#' title='修改节点'>&nbsp;&nbsp;<i class='fa fa-fw fa-edit rbg '></i></a>";
     let removeBtn = "<a id='"+treeNode.id+"' class='removeBtn btn btn-info dropdown-toggle btn-xs' style='margin-left:10px;padding-top:0px;' href='#'  title='删除节点'>&nbsp;&nbsp;<i class='fa fa-fw fa-times rbg '></i></a>";
     let addBtn = "<a id='"+treeNode.id+"' class='addBtn btn btn-info dropdown-toggle btn-xs' style='margin-left:10px;padding-top:0px;' href='#'  title='增加节点'>&nbsp;&nbsp;<i class='fa fa-fw fa-plus rbg '></i></a>";
+    //权限分配按钮
+    let checkBtn = "<a id='"+treeNode.id+"' class='checkButton btn btn-success dropdown-toggle btn-xs' style='margin-left:10px;padding-top:0px;' href='#'  title='权限分配'><i class='glyphicon glyphicon-check'></i></a>";
 
     //根据当前节点的层级，动态添加按钮。1.叶子节点只有修改和删除按钮；2.中间节点，有子节点的菜单，没有删除按钮；3.根节点只有增加按钮
     //要展示的按钮组合
@@ -90,11 +177,13 @@ function myAddHoverDom(treeId, treeNode) {
         //没有子节点可以移除
     }
     if (treeNode.children.length == 0) {
-        showBtn = showBtn + removeBtn;
+        showBtn = showBtn + removeBtn
     } else if (2 == level) {
         showBtn = editBtn + removeBtn;
     }
 
+    //最后加上权限分配按钮
+    showBtn = showBtn + checkBtn;
     //最终添加的标签
     let btnHTML = "<span id='" + btnGroupId + "'>" + showBtn + "</span>"
 

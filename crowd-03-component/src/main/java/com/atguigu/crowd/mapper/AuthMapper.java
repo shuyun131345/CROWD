@@ -36,4 +36,24 @@ public interface AuthMapper {
      * @param roleId
      */
     void deleteAuthByRoleId(@Param("roleId") Integer roleId);
+
+    /**
+     * 根据菜单id获取权限信息
+     * @param id
+     * @return
+     */
+    List<Auth> getMenuAssignAuthList(@Param("menuId") Integer id);
+
+    /**
+     * 根据菜单id删除已有权限
+     * @param menuId
+     */
+    void deleteAuthByMenuId(@Param("menuId") Integer menuId);
+
+    /**
+     * 分配菜单权限
+     * @param menuId
+     * @param authList
+     */
+    void saveAssignMenuAuth(@Param("menuId") Integer menuId, @Param("list") List<Integer> authList);
 }

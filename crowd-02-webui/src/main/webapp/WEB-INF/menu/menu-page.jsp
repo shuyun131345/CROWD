@@ -184,6 +184,71 @@
         });
 
 
+        //菜单权限分配按钮，弹出模态框
+        $("#treeDemo").on("click",".checkButton",function () {
+            //1.弹出权限分配模态框
+            $("#assignMenuAuthModal").modal("show");
+
+            //将菜单id存到全局域，方便在js方法中获取到
+            window.menuId = this.id;
+
+            //2.查询所有权限信息，展开树形结构
+            //3.反显已有权限
+            //抽取到menu-function.js方法中
+            fillAuthTree();
+
+            //阻止超链接的跳转
+            return false;
+
+        });
+
+
+        //菜单权限分配确定按钮绑定单击事件
+        $("#assignBtn").click(function () {
+            //1.获取已经选中的权限id
+            //获取树形结构
+            var zTreeObj = $.fn.zTree.getZTreeObj("authTreeDemo");
+            //被选中的节点
+            let checkedNodes = zTreeObj.getCheckedNodes();
+            //遍历节点获取权限id，放到数组中
+            let authIdArrays = [];
+            for (let i = 0; i < checkedNodes.length; i++) {
+                let node = checkedNodes[i];
+                authIdArrays.push(node.id);
+            }
+
+            //2.发送后端执行保存
+            //为了方便后端获取数据，角色id页包装成数组形式传递
+            let requestObj = {
+                "authList": authIdArrays,
+                "menuId": [window.menuId]
+            };
+
+            let requestBody = JSON.stringify(requestObj);
+
+            $.ajax({
+                "url": "auth/saveAssignMenuAuthList.json",
+                "type": "post",
+                "contentType": "application/json;charset=UTF-8",
+                "data": requestBody,
+                "dataType":"json",
+                "success": function (response) {
+                    let result = response.result;
+
+                    if ("SUCCESS" == result){
+                        layer.msg("权限分配操作成功");
+                    }else {
+                        layer.msg("权限操作失败："+response.message);
+                    }
+                },
+                "error": function (response) {
+                    layer.msg("权限分配操作失败，请联系管理员");
+                }
+            });
+
+            //关闭模态框
+            $("#assignMenuAuthModal").modal("hide");
+        });
 
 
 
@@ -196,6 +261,7 @@
 <%@include file="/WEB-INF/commom/modal-menu-add.jsp"%>
 <%@include file="/WEB-INF/commom/modal-menu-remove.jsp"%>
 <%@include file="/WEB-INF/commom/modal-menu-edit.jsp"%>
+<%@include file="/WEB-INF/commom/modal-menu-assign-auth.jsp"%>
 <div class="container-fluid">
     <div class="row">
         <%@include file="/WEB-INF/commom/include-sidebar.jsp" %>

@@ -36,4 +36,24 @@ public interface AuthService {
      * @param roleId
      */
     void saveAssignAuth(Integer roleId,List<Integer> authList);
+
+    /**
+     * 根据菜单id获取已有权限
+     * @param id
+     * @return
+     */
+    List<Auth> getMenuAssignAuthList(Integer id);
+
+    /**
+     * 根据菜单id删除已有权限
+     * @param menuId
+     */
+    void deleteAuthByMenuId(Integer menuId);
+
+    /**
+     * 分配菜单权限
+     * @param menuId
+     * @param authList
+     */
+    void saveAssignMenuAuth(Integer menuId, List<Integer> authList);
 }

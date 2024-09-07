@@ -72,4 +72,36 @@ public class AuthController {
     }
 
 
+    @RequestMapping("/auth/getMenuAssignAuthList.json")
+    @ResponseBody
+    public AjaxResultEntity<List<Auth>> getMenuAssignAuthList(Integer id){
+        List<Auth> authList = service.getMenuAssignAuthList(id);
+        return AjaxResultEntity.success(null,authList);
+    }
+
+    @RequestMapping("/auth/saveAssignMenuAuthList.json")
+    @ResponseBody
+    public AjaxResultEntity<String> saveAssignMenuAuthList(@RequestBody Map<String,List<Integer>> reqMap){
+
+        //角色id
+        Integer menuId = reqMap.get("menuId").get(0);
+        //权限列表
+        List<Integer> authList = reqMap.get("authList");
+        //先删除已有权限
+        //todo 异常处理
+
+        if (menuId == null || menuId == 0){
+
+        }
+
+        service.deleteAuthByMenuId(menuId);
+
+        //再增加新分配的权限
+        if (!CollectionUtils.isEmpty(authList)){
+            service.saveAssignMenuAuth(menuId,authList);
+        }
+        return AjaxResultEntity.success(null,null);
+    }
+
+
 }

@@ -26,4 +26,14 @@ public class AuthServiceImpl implements AuthService {
     public List<Auth> getAssignAuthList(Integer roleId) {
         return mapper.selectAssignAuthList(roleId);
     }
+
+    @Override
+    public void deleteAuthByRoleId(Integer roleId) {
+        mapper.deleteAuthByRoleId(roleId);
+    }
+
+    @Override
+    public void saveAssignAuth(Integer roleId,List<Integer> authList) {
+        mapper.saveAssignAuth(roleId,authList);
+    }
 }

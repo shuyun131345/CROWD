@@ -246,6 +246,52 @@
         });
 
 
+        //13.权限分配确认按钮绑定单击事件
+        $("#assignBtn").click(function () {
+            //1.获取已经选中的权限id
+            //获取树形结构
+            var zTreeObj = $.fn.zTree.getZTreeObj("authTreeDemo");
+            //被选中的节点
+            let checkedNodes = zTreeObj.getCheckedNodes();
+            //遍历节点获取权限id，放到数组中
+            let authIdArrays = [];
+            for (let i = 0; i < checkedNodes.length; i++) {
+                let node = checkedNodes[i];
+                authIdArrays.push(node.id);
+            }
+
+            //2.发送后端执行保存
+            //为了方便后端获取数据，角色id页包装成数组形式传递
+            let requestObj = {
+                "authList": authIdArrays,
+                "roleId": [window.roleId]
+            };
+
+            let requestBody = JSON.stringify(requestObj);
+
+            $.ajax({
+                "url": "auth/saveAssignAuthList.json",
+                "type": "post",
+                "contentType": "application/json;charset=UTF-8",
+                "data": requestBody,
+                "dataType":"json",
+                "success": function (response) {
+                    let result = response.result;
+
+                    if ("SUCCESS" == result){
+                        layer.msg("权限分配操作成功");
+                    }else {
+                        layer.msg("权限操作失败："+response.message);
+                    }
+                },
+                "error": function (response) {
+                    layer.msg("权限分配操作失败，请联系管理员");
+                }
+            });
+
+            //关闭模态框
+            $("#assignRoleModal").modal("hide");
+        });
 
     });
 

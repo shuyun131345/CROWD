@@ -23,4 +23,17 @@ public interface AuthService {
      */
     List<Auth> getAssignAuthList(Integer roleId);
 
+
+    /**
+     * 根据角色id删除已有权限
+     * @param roleId
+     */
+    void deleteAuthByRoleId(Integer roleId);
+
+    /**
+     * 角色权限分配
+     * @param authList
+     * @param roleId
+     */
+    void saveAssignAuth(Integer roleId,List<Integer> authList);
 }

@@ -27,6 +27,18 @@
         </where>
     </select>
 
+    <delete id="deleteAuthByRoleId" parameterType="java.lang.Integer">
+        delete from inner_role_auth
+        <where>
+            <if test="roleId != null and roleId != 0 ">role_id=#{roleId}</if>
+        </where>
+    </delete>
 
+    <insert id="saveAssignAuth" >
+        insert into inner_role_auth (role_id,auth_id) values
+        <foreach collection="list" item="authId" separator="," >
+            (#{roleId},#{authId})
+        </foreach>
+    </insert>
 
 </mapper>

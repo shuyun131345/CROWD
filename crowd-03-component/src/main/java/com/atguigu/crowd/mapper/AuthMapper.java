@@ -23,4 +23,17 @@ public interface AuthMapper {
      * @return
      */
     List<Auth> selectAssignAuthList(@Param("roleId") Integer roleId);
+
+    /**
+     * 分配权限
+     * @param authList
+     * @param roleId
+     */
+    void saveAssignAuth(@Param("roleId") Integer roleId,@Param("list") List<Integer> authList);
+
+    /**
+     * 根据角色id删除已有权限
+     * @param roleId
+     */
+    void deleteAuthByRoleId(@Param("roleId") Integer roleId);
 }

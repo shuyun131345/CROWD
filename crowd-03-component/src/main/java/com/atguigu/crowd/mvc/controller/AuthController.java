@@ -5,10 +5,13 @@ import com.atguigu.crowd.entity.common.AjaxResultEntity;
 import com.atguigu.crowd.service.inf.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author shuyun
@@ -42,5 +45,31 @@ public class AuthController {
         List<Auth> authList = service.getAssignAuthList(id);
         return AjaxResultEntity.success(null,authList);
     }
+
+
+    @RequestMapping("/auth/saveAssignAuthList.json")
+    @ResponseBody
+    public AjaxResultEntity<String> saveAssignAuth(@RequestBody Map<String,List<Integer>> reqMap){
+
+        //角色id
+        Integer roleId = reqMap.get("roleId").get(0);
+        //权限列表
+        List<Integer> authList = reqMap.get("authList");
+        //先删除已有权限
+        //todo 异常处理
+
+        if (roleId == null || roleId == 0){
+
+        }
+
+        service.deleteAuthByRoleId(roleId);
+
+        //再增加新分配的权限
+        if (!CollectionUtils.isEmpty(authList)){
+            service.saveAssignAuth(roleId,authList);
+        }
+        return AjaxResultEntity.success(null,null);
+    }
+
 
 }

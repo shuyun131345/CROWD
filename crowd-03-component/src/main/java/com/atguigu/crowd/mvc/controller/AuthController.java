@@ -47,6 +47,11 @@ public class AuthController {
     }
 
 
+    /**
+     * 角色权限分配
+     * @param reqMap
+     * @return
+     */
     @RequestMapping("/auth/saveAssignAuthList.json")
     @ResponseBody
     public AjaxResultEntity<String> saveAssignAuth(@RequestBody Map<String,List<Integer>> reqMap){
@@ -72,6 +77,11 @@ public class AuthController {
     }
 
 
+    /**
+     * 根据菜单id查询已分配权限
+     * @param id
+     * @return
+     */
     @RequestMapping("/auth/getMenuAssignAuthList.json")
     @ResponseBody
     public AjaxResultEntity<List<Auth>> getMenuAssignAuthList(Integer id){
@@ -79,6 +89,11 @@ public class AuthController {
         return AjaxResultEntity.success(null,authList);
     }
 
+    /**
+     * 菜单权限分配
+     * @param reqMap
+     * @return
+     */
     @RequestMapping("/auth/saveAssignMenuAuthList.json")
     @ResponseBody
     public AjaxResultEntity<String> saveAssignMenuAuthList(@RequestBody Map<String,List<Integer>> reqMap){

@@ -1,8 +1,10 @@
 
 
+git@github.com:shuyun131345/Shuyun.git
 
+git@github.com:shuyun131345/SpringCloudDemo.git
 
-
+git@github.com:shuyun131345/SpringSecurityDemo.git
 
 
 管理员登录界面
@@ -11,6 +13,9 @@ http://localhost:8080/crowd_02_webui_war_exploded/admin/to/login/page.html
 //角色维护界面
 http://localhost:8080/crowd_02_webui_war_exploded/role/rolePage.html
 http://localhost:8080/crowd_02_webui_war_exploded/role/pageInfo.json
+
+
+菜单管理页面
 
 
 

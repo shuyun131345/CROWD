@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.crowd.mapper.AuthMapper">
+    <resultMap id="BaseResultMap" type="com.atguigu.crowd.entity.Auth">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="auth_name" property="name" jdbcType="VARCHAR"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="category_id" property="catagoryId" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <sql id="base_select">
+        select id, auth_name, title, category_id
+        from t_auth
+    </sql>
+
+    <select id="selectAuthList" resultMap="BaseResultMap">
+        <include refid="base_select"/>
+    </select>
+
+    <select id="selectAssignAuthList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <include refid="base_select"/>
+        <where>
+            <if test="roleId != null and roleId !=''">
+                id IN (SELECT auth_id FROM inner_role_auth WHERE role_id =#{roleId})
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteAuthByRoleId" parameterType="java.lang.Integer">
+        delete from inner_role_auth
+        <where>
+            <if test="roleId != null and roleId != 0 ">role_id=#{roleId}</if>
+        </where>
+    </delete>
+
+    <insert id="saveAssignAuth" >
+        insert into inner_role_auth (role_id,auth_id) values
+        <foreach collection="list" item="authId" separator="," >
+            (#{roleId},#{authId})
+        </foreach>
+    </insert>
+
+
+
+
+    <select id="getMenuAssignAuthList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <include refid="base_select"/>
+        <where>
+            <if test="menuId != null and menuId !=''">
+                id IN (SELECT auth_id FROM inner_menu_auth WHERE menu_id =#{menuId})
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteAuthByMenuId" parameterType="java.lang.Integer">
+        delete from inner_menu_auth
+        <where>
+            <if test="menuId != null and menuId != 0 ">menu_id=#{menuId}</if>
+        </where>
+    </delete>
+
+    <insert id="saveAssignMenuAuth" >
+        insert into inner_menu_auth (menu_id,auth_id) values
+        <foreach collection="list" item="authId" separator="," >
+            (#{menuId},#{authId})
+        </foreach>
+    </insert>
+</mapper>

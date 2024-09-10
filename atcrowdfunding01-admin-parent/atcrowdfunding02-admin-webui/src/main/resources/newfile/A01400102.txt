@@ -1,0 +1,10 @@
+
+<COMMON>
+<ENTITY>
+<ID>2</ID>
+<NAME>5</NAME>
+<AGE>8</AGE>
+</ENTITY>
+</COMMON>
+
+

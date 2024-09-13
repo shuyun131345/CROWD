@@ -46,7 +46,14 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
                 //定制表单用户名请求参数
                 .usernameParameter("loginAcct")
                 //定制表单密码请求参数
-                .passwordParameter("userPswd");
+                .passwordParameter("userPswd")
+                .and()
+                //开启退出登录
+                .logout()
+                //指定退出登录的地址
+                .logoutUrl("/security/logout.html")
+                //指定退出成功后前往的地址
+                .logoutSuccessUrl("/admin/to/login/page.html");
 
     }
 

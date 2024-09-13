@@ -35,17 +35,19 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         </property>
     </bean>
 
+    <!--
     <mvc:interceptors>
         <mvc:interceptor>
-            <!--mvc:mapping 表示拦截的资源。/*对应一层路径，/**表示多层路径-->
+            mvc:mapping 表示拦截的资源。/*对应一层路径，/**表示多层路径
             <mvc:mapping path="/**"/>
-            <!--mvc:exclude-mapping 配置不拦截的资源：登录、登录检查、登出-->
+            mvc:exclude-mapping 配置不拦截的资源：登录、登录检查、登出
             <mvc:exclude-mapping path="/admin/to/login/page.html"/>
             <mvc:exclude-mapping path="/admin/do/login.html"/>
             <mvc:exclude-mapping path="/admin/logout.html"/>
-            <!--配置拦截类-->
+            配置拦截类
             <bean class="com.atguigu.crowd.mvc.interceptor.AdminLoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
+    -->
 
 </beans>

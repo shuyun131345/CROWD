@@ -23,7 +23,7 @@ public class AssignController {
 
 
     /**
-     * 查询用户拥有角色和未拥有角色
+     * 查询Admin用户拥有角色和未拥有角色
      * @param id
      * @param model
      * @return

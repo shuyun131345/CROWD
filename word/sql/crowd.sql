@@ -1,6 +1,22 @@
 #尚筹网
 
 
+#菜单与权限关系表
+#建表语句
+CREATE TABLE crowd.inner_menu_auth
+(
+    id      INT(11) NOT NULL AUTO_INCREMENT,
+    menu_id INT(11) NOT NULL,
+    auth_id INT(11) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+#造数
+INSERT INTO inner_menu_auth (id,menu_id,auth_id) VALUES(NULL,2,1);
+INSERT INTO inner_menu_auth (id,menu_id,auth_id) VALUES(NULL,2,2);
+INSERT INTO inner_menu_auth (id,menu_id,auth_id) VALUES(NULL,2,3);
+
+
 #角色与权限关系表，建表语句
 CREATE TABLE crowd.inner_role_auth
 (
@@ -13,9 +29,12 @@ CREATE TABLE crowd.inner_role_auth
 #角色与权限造数
 INSERT INTO inner_role_auth (role_id,auth_id)
 VALUES(1,2);
-
 INSERT INTO inner_role_auth (role_id,auth_id)
 VALUES(1,3);
+INSERT INTO inner_role_auth (role_id, auth_id)
+VALUES (3, 2);
+INSERT INTO inner_role_auth (role_id, auth_id)
+VALUES (3, 3);
 
 #查询角色已拥有权限
 SELECT * FROM t_auth WHERE id IN (SELECT auth_id FROM inner_role_auth WHERE role_id =1);
@@ -45,6 +64,13 @@ INSERT INTO t_auth(id, auth_name, title, category_id)
 VALUES (6, 'role:get', '查询', 4);
 INSERT INTO t_auth(id, auth_name, title, category_id)
 VALUES (7, 'role:add', '新增', 4);
+INSERT INTO t_auth(id, auth_name, title, category_id)
+VALUES (8, '', '团队', 1);
+INSERT INTO t_auth(id, auth_name, title, category_id)
+VALUES (9, 'group:add', '班组1', 8);
+INSERT INTO t_auth(id, auth_name, title, category_id)
+VALUES (10, 'group:edit', '班组2', 8);
+
 
 
 #改管理员数据

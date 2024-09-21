@@ -56,4 +56,11 @@ public interface AuthMapper {
      * @param authList
      */
     void saveAssignMenuAuth(@Param("menuId") Integer menuId, @Param("list") List<Integer> authList);
+
+    /**
+     * 根据adminId查询已分配的权限名称列表
+     * @param adminId
+     * @return
+     */
+    List<String> selectAuthNameByAdminId(@Param("adminId") Integer adminId);
 }

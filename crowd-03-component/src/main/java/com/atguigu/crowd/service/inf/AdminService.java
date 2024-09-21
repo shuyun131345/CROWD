@@ -63,4 +63,11 @@ public interface AdminService {
      * @return
      */
     int updateAdminById(Admin admin);
+
+    /**
+     * 根据用户名查询admin信息
+     * @param acount
+     * @return
+     */
+    Admin selectAdminByAcount(String acount);
 }

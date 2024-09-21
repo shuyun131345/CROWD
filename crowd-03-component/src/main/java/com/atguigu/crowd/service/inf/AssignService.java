@@ -11,14 +11,14 @@ import java.util.List;
 public interface AssignService {
 
     /**
-     * 根据adminId查询该用户已有权限
+     * 根据adminId查询该用户已有角色
      * @param adminId
      * @return
      */
     List<Role> selectAssignRolesByAdminId(Integer adminId);
 
     /**
-     * 根据adminId查询该用户未有权限
+     * 根据adminId查询该用户未有角色
      * @param adminId
      * @return
      */

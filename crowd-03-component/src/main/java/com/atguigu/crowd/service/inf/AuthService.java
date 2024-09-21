@@ -11,7 +11,7 @@ import java.util.List;
 public interface AuthService {
 
     /**
-     * 查询所以权限信息
+     * 查询所有权限信息
      * @return
      */
     List<Auth> getAuthList();
@@ -56,4 +56,11 @@ public interface AuthService {
      * @param authList
      */
     void saveAssignMenuAuth(Integer menuId, List<Integer> authList);
+
+    /**
+     * 根据adminId查询已分配权限名称列表
+     * @param adminId
+     * @return
+     */
+    List<String> selectAuthNameByAdminId(Integer adminId);
 }

@@ -139,6 +139,16 @@ public class AdminServiceImpl implements AdminService {
     }
 
     /**
+     * 根据用户名查询admin信息
+     * @param acount
+     * @return
+     */
+    @Override
+    public Admin selectAdminByAcount(String acount) {
+        return mapper.selectByAcount(acount);
+    }
+
+    /**
      * 新增管理员信息检查
      *
      * @param admin
@@ -160,5 +170,6 @@ public class AdminServiceImpl implements AdminService {
         }
         return "";
     }
+
 
 }

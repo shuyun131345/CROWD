@@ -1,10 +1,12 @@
 package com.atguigu.crowd.mvc.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * @author shuyun
@@ -13,6 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UserDetailsService serDetailsSevice;
 
     @Override
     protected void configure(HttpSecurity security) throws Exception {
@@ -55,7 +60,10 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //SpringSecurity 认证 相关的操作
         //临时测试，使用内存登录
-        auth.inMemoryAuthentication().withUser("tom").password("123456").roles("ADMIN");
+        //auth.inMemoryAuthentication().withUser("tom").password("123456").roles("ADMIN");
+
+        //基于数据库登录验证
+        auth.userDetailsService(serDetailsSevice);
 
     }
 }

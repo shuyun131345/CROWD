@@ -16,8 +16,10 @@
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!-- 装配数据源 -->
         <property name="dataSource" ref="dataSource"/>
-
     </bean>
+
+    <!--配置用于加密的BCryptPasswordEncoder 的 bean-->
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 
     <!-- 配置事务切面 -->
     <aop:config>

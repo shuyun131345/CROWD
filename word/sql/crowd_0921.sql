@@ -7,3 +7,6 @@ FROM t_auth a
 WHERE c.adminId = 10001
   AND a.auth_name IS NOT NULL
   AND a.auth_name != '';
+
+#修改t_admin表结构
+ALTER TABLE t_admin MODIFY COLUMN user_pswd VARCHAR(100) NOT NULL;

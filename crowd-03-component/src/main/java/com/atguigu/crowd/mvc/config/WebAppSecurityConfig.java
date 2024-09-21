@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * @author shuyun
@@ -19,6 +20,9 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService serDetailsSevice;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @Override
     protected void configure(HttpSecurity security) throws Exception {
         //SpringSecurity 授权 相关的操作，主要是登录的账号、密码、权限、角色的认证。认证通过才授权
@@ -28,7 +32,7 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
                 //放行管理员登录页面
                 .antMatchers("/admin/to/login/page.html").permitAll()
                 //放行静态资源
-                .antMatchers("/bootstrap/**","/crowd/**","/css/**","/fonts/**","/img/**","/jquery/**","/layer/**","/script/**","/ztree/**")
+                .antMatchers("/bootstrap/**", "/crowd/**", "/css/**", "/fonts/**", "/img/**", "/jquery/**", "/layer/**", "/script/**", "/ztree/**")
                 .permitAll()
                 //其他请求，需要认证
                 .anyRequest().authenticated()
@@ -62,8 +66,11 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
         //临时测试，使用内存登录
         //auth.inMemoryAuthentication().withUser("tom").password("123456").roles("ADMIN");
 
-        //基于数据库登录验证
-        auth.userDetailsService(serDetailsSevice);
+        auth
+                //基于数据库登录验证
+                .userDetailsService(serDetailsSevice)
+                //密码加密认证
+                .passwordEncoder(passwordEncoder);
 
     }
 }

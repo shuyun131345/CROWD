@@ -13,6 +13,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -31,6 +32,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private AdminMapper mapper;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     /**
      * 管理员登录验证
@@ -99,7 +103,10 @@ public class AdminServiceImpl implements AdminService {
         }
 
         // 将明文密码用md5加密
-        String encodedPsw = EncodeByMD5.encode(admin.getUserPswd());
+        //String encodedPsw = EncodeByMD5.encode(admin.getUserPswd());
+
+        //使用 BCryptPasswordEncoder 进行加密
+        String encodedPsw = passwordEncoder.encode(admin.getUserPswd());
         admin.setUserPswd(encodedPsw);
 
         //日期

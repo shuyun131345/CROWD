@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * @author shuyun
  * @date 2024-09-03 20:50:59
+ * @desc 给管理员分配角色
  */
 @Controller
 public class AssignController {
@@ -23,19 +24,19 @@ public class AssignController {
 
 
     /**
-     * 查询用户拥有角色和未拥有角色
-     * @param id
+     * 根据adminId查询用户拥有角色和未拥有角色
+     * @param adminId
      * @param model
      * @return
      */
     @RequestMapping("/assignrole/assign-role.html")
-    public String assignRolePage(@RequestParam("adminId") Integer id, Model model){
+    public String assignRolePage(@RequestParam("adminId") Integer adminId, Model model){
 
         //获取已拥有权限
-        List<Role> assignRoles = service.selectAssignRolesByAdminId(id);
+        List<Role> assignRoles = service.selectAssignRolesByAdminId(adminId);
 
         //获取未拥有权限
-        List<Role> unAssignRoles = service.selectUnAssignRolesByAdminId(id);
+        List<Role> unAssignRoles = service.selectUnAssignRolesByAdminId(adminId);
 
         //存入模型返回前端页面.存入模型（本质上其实是：request.setAttribute("attrName",attrValue);
         model.addAttribute("assignRoles",assignRoles);
@@ -46,7 +47,7 @@ public class AssignController {
 
 
     /**
-     * 给用户分配角色
+     * 根据adminId给用户分配角色
      * @param keyword
      * @param pageNum
      * @param pageSize

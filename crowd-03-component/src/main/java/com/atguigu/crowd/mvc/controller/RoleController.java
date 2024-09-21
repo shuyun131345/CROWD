@@ -73,7 +73,11 @@ public class RoleController {
     }
 
 
-
+    /**
+     * 删除角色
+     * @param roleList
+     * @return
+     */
     @RequestMapping("/role/removeRoles.json")
     @ResponseBody
     public AjaxResultEntity<String> removeRoles(@RequestBody List<Role> roleList){

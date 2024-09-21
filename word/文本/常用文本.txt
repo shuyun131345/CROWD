@@ -6,9 +6,12 @@ git@github.com:shuyun131345/SpringCloudDemo.git
 
 git@github.com:shuyun131345/SpringSecurityDemo.git
 
+git@github.com:shuyun131345/MyTestProject.git
+
+
 
 管理员登录界面
-http://localhost:8080/crowd_02_webui_war_exploded/admin/to/login/page.html
+http://localhost:8080/crowd/admin/to/login/page.html
 
 //角色维护界面
 http://localhost:8080/crowd_02_webui_war_exploded/role/rolePage.html

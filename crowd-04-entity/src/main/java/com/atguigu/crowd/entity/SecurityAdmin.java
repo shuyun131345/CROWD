@@ -24,6 +24,9 @@ public class SecurityAdmin extends User {
         //给本类的原始管理员用户赋值
         this.admin = admin;
 
+        //将本类中的原始的admin对象的密码擦除
+        this.admin.setUserPswd(null);
+
     }
 
     //对外提供获取原始角色信息的get方法

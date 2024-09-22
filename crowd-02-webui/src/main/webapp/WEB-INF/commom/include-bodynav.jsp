@@ -3,6 +3,7 @@
   Date: 2024/8/19 22:35
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="securyti" uri="http://www.springframework.org/security/tags" %>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
@@ -15,8 +16,10 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-default btn-success dropdown-toggle"
                                 data-toggle="dropdown">
-                            <i class="glyphicon glyphicon-user"></i> ${sessionScope.admin.userName} <span
-                                class="caret"></span>
+                            <i class="glyphicon glyphicon-user"></i>
+                            <%--${sessionScope.admin.userName} --%>
+                            <securyti:authentication property="principal.admin.userName"></securyti:authentication>
+                            <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#"><i class="glyphicon glyphicon-cog"></i> 个人设置</a></li>

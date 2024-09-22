@@ -24,6 +24,12 @@ import static com.atguigu.crowd.constant.ExceptionConstant.REQUEST_EXCEPTION;
 @ControllerAdvice
 public class CrowdExceptionResolver {
 
+    @ExceptionHandler(value = Exception.class)
+    public ModelAndView resolverException(Exception exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //其他异常处理
+        String viewName = "error/system-error";
+        return genExceptionResolver(exception, request, response, viewName);
+    }
 
     /**
      * 菜单维护异常处理

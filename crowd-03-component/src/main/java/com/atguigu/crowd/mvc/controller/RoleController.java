@@ -4,6 +4,7 @@ import com.atguigu.crowd.entity.Role;
 import com.atguigu.crowd.entity.common.AjaxResultEntity;
 import com.atguigu.crowd.service.inf.RoleService;
 import com.github.pagehelper.PageInfo;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ public class RoleController {
      * 从控制面板跳转到角色维护界面
      * @return
      */
+//    @PreAuthorize("hasRole('roleSelect')")
     @RequestMapping("/role/rolePage.html")
     public String rolePage(){
         return "role/role-page";
@@ -41,6 +43,7 @@ public class RoleController {
      * @return
      */
     @RequestMapping("/role/pageInfo.json")
+    @PreAuthorize("hasRole('roleSelect')")
     @ResponseBody
     public AjaxResultEntity<PageInfo<Role>> getRolePageInfo(String keyword, Integer pageNum, Integer pageSize){
         PageInfo<Role> rolePageInfo = service.getRolePageInfo(keyword, pageNum, pageSize);

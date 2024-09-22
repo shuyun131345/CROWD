@@ -142,6 +142,10 @@ public class AdminServiceImpl implements AdminService {
 
         //更新日期
         admin.setCreateTime(DateUtil.formatDate(new Date()));
+        //密码加密
+        if (!StringUtils.isEmpty(admin.getUserPswd())){
+            admin.setUserPswd(passwordEncoder.encode(admin.getUserPswd()));
+        }
         return mapper.updateAdminById(admin);
     }
 

@@ -48,6 +48,8 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 //针对admin管理员分页展示界面进行权限控制的设置
                 .antMatchers("/admin/page.html").hasRole("adminSelect")
+                //访问admin修改页面，需要具备admin修改角色或者权限，二者有一个即可
+                .antMatchers("/admin/editPage/**").access("hasRole('adminEdit') OR hasAuthority('user:edit')")
                 //其他请求，需要认证
                 .anyRequest().authenticated()
                 //禁用_csrf 防跨站请求伪造功能

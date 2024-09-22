@@ -28,7 +28,7 @@ public class RoleController {
      * 从控制面板跳转到角色维护界面
      * @return
      */
-//    @PreAuthorize("hasRole('roleSelect')")
+    @PreAuthorize("hasRole('roleSelect')")
     @RequestMapping("/role/rolePage.html")
     public String rolePage(){
         return "role/role-page";
@@ -43,7 +43,6 @@ public class RoleController {
      * @return
      */
     @RequestMapping("/role/pageInfo.json")
-    @PreAuthorize("hasRole('roleSelect')")
     @ResponseBody
     public AjaxResultEntity<PageInfo<Role>> getRolePageInfo(String keyword, Integer pageNum, Integer pageSize){
         PageInfo<Role> rolePageInfo = service.getRolePageInfo(keyword, pageNum, pageSize);

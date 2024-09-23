@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -75,9 +76,11 @@
                         <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询
                         </button>
                     </form>
+                    <security:authorize access="hasRole('adminDelete')">
                     <button type="submit" class="btn btn-danger" style="float:right;margin-left:10px;"><i
                             class=" glyphicon glyphicon-remove"></i> 删除
                     </button>
+                    </security:authorize>
                     <button type="button" class="btn btn-primary" style="float:right;"
                             onclick="window.location.href='admin/admin-add.html'"><i class="glyphicon glyphicon-plus"></i> 新增
                     </button>
@@ -95,6 +98,7 @@
                                 <th width="100">操作</th>
                             </tr>
                             </thead>
+
                             <tbody>
                             <c:if test="${empty requestScope.pageInfo.list}">
                                 <tr colspan="6" align="center">抱歉！没有查询到您要的数据！</tr>
@@ -118,6 +122,7 @@
                             </c:if>
 
                             </tbody>
+
                             <tfoot>
                             <tr>
                                 <td colspan="6" align="center">

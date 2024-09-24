@@ -33,6 +33,28 @@
         order by id
     </select>
 
+<!--    <select id="selectAdminListByKeyWord" resultMap="BaseResultMap" parameterType="java.lang.String">-->
+<!--        select-->
+<!--        <include refid="Base_Column_List"/>-->
+<!--        from t_admin-->
+<!--        <where>-->
+<!--            <choose>-->
+<!--                <when test="keyWord != null and keyWord !='' and keyWord.length()==2">-->
+<!--                    and (user_name = concat(#{keyWord},'yun33') or user_name = concat(#{keyWord},'yun3'))-->
+<!--                </when>-->
+<!--                <when test="keyWord != null and keyWord !='' and keyWord.length()==3">-->
+<!--                    and user_name = concat(#{keyWord},'yun333')-->
+<!--                </when>-->
+
+<!--                <when test="keyWord != null and keyWord !='' and keyWord.length()==6">-->
+<!--                    and user_name = #{keyWord}-->
+<!--                </when>-->
+
+<!--            </choose>-->
+<!--        </where>-->
+<!--        order by id-->
+<!--    </select>-->
+
     <delete id="deleteAdminById" parameterType="java.lang.Integer">
         delete
         from t_admin

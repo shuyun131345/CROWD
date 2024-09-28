@@ -1,5 +1,14 @@
 
 
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+wget -O /etc/yum.repos.d/epel.repo.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+
+IPADDR=192.168.64.133
+GATEWAY=192.168.64.2
+DNS1=192.168.64.2
+/etc/sysconfig/network-scripts/ifcfg-ens33
+
+
 git@github.com:shuyun131345/Shuyun.git
 
 git@github.com:shuyun131345/SpringCloudDemo.git
@@ -21,6 +30,7 @@ http://localhost:8080/crowd_02_webui_war_exploded/role/pageInfo.json
 菜单管理页面
 
 
+《韩顺平一周学会linux》?链接: https://pan.baidu.com/s/171XbPV8X_u20bLVpTJQ7Lg?提取码: zruq
 
 git@github.com:shuyun131345/CROWD.git
 
@@ -77,6 +87,13 @@ git@github.com:shuyun131345/SSMTempalte.git
 
 
 git@github.com:shuyun131345/CROWD.git
+
+
+
+
+
+
+
 
 
 

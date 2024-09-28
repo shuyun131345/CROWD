@@ -8,7 +8,7 @@ public class ThreadTest {
     public static void main(String[] args) {
 
         //模拟10个请求
-        for (int i =1; i <= 10; i++){
+        for (int i =1; i <= 1; i++){
             ThreadPoolUtil.execute(new FileRunnable());
         }
 

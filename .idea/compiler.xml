@@ -14,5 +14,13 @@
         <module name="atcrowdfunding03-admin-component" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="crowd-01-parent" target="1.8" />
+      <module name="crowd-02-webui" target="1.8" />
+      <module name="crowd-03-component" target="1.8" />
+      <module name="crowd-04-entity" target="1.8" />
+      <module name="crowd-05-util" target="1.8" />
+      <module name="crowd-06-reverse" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

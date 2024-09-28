@@ -6,20 +6,21 @@ import java.util.Base64;
 public class FileRunnable implements Runnable {
 
     private static  int fileNUmber = 10000;
-    String odlFilePath = "src/main/resources/oldwave/14026.wav";
-    String  newFilePath = "src/main/resources/newwave/";
+    String odlFilePath = "D:\\workspace\\CROWD\\atcrowdfunding01-admin-parent\\atcrowdfunding02-admin-webui\\src\\main\\resources\\oldwave\\14026.wav";
+    String  newFilePath = "D:\\workspace\\CROWD\\atcrowdfunding01-admin-parent\\atcrowdfunding02-admin-webui\\src\\main\\resources\\newwave\\";
 
     @Override
     public void run() {
 
 
         //假设每个线程要执行300次任务
-        for (int i=0; i<100; i++){
+        for (int i=0; i<1; i++){
             //获取文件路径
             String filePath = getFilePath();
             //获取音频的base64加密的字符串
             String oldWave = getBase64Wave(odlFilePath);
-            System.out.println(filePath);
+            System.out.println(filePath+"===长度="+oldWave.length());
+//            System.out.println("==========================="+oldWave.getBytes().length+"============"+oldWave);
             //写出到新文件
             saveWaveFile(filePath,oldWave);
 
@@ -62,7 +63,7 @@ public class FileRunnable implements Runnable {
 
             //解密
             waveBytes = Base64.getDecoder().decode(base64);
-
+            System.out.println("============解密："+waveBytes.length);
             //写出
             bos.write(waveBytes);
 

@@ -3,9 +3,17 @@
 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 wget -O /etc/yum.repos.d/epel.repo.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 
+ÁªÏëÕü¾ÈÕß
+IPADDR=192.168.197.133
+GATEWAY=192.168.197.2
+DNS1=114.114.114.114
+NETMASK=255.255.255.0
+
+
+T470
 IPADDR=192.168.64.133
 GATEWAY=192.168.64.2
-DNS1=192.168.64.2
+DNS1=114.114.114.114
 /etc/sysconfig/network-scripts/ifcfg-ens33
 
 

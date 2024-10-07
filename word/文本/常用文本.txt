@@ -1,5 +1,27 @@
 
 
+
+====springcloud
+http://localhost:5000/
+http://localhost:4000/consumer/getEmploee
+http://localhost:8000/feign/getRemoteEmployeeList?keyword=haha
+
+
+
+
+
+
+========redis
+redis-server redis.conf
+redis-cli -h 192.168.197.133 -p 6379 -a 123456
+redis-cli -h 192.168.64.133 -p 6379 -a 123456
+systemctl stop firewalld.service
+
+
+
+
+
+
 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 wget -O /etc/yum.repos.d/epel.repo.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 
@@ -14,6 +36,8 @@ T470
 IPADDR=192.168.64.133
 GATEWAY=192.168.64.2
 DNS1=114.114.114.114
+NETMASK=255.255.255.0
+
 /etc/sysconfig/network-scripts/ifcfg-ens33
 
 

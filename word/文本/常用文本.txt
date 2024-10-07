@@ -5,8 +5,8 @@
 http://localhost:5000/
 http://localhost:4000/consumer/getEmploee
 http://localhost:8000/feign/getRemoteEmployeeList?keyword=haha
-
-
+http://localhost:1000//provider/hystrix?key=haha
+http://localhost:1000/provider/getReomteEmploeeList?keyword=haha
 
 
 

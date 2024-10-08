@@ -13,6 +13,10 @@ http://localhost:9000/hystrix
 
 http://localhost:1000/actuator/hystrix.stream
 
+http://localhost:3103/feign-consumer/feign/getRemoteEmployeeList?keyword=haha
+http://localhost:3103/consumer/feign/getRemoteEmployeeList?keyword=haha
+
+http://localhost:3103/maomi/consumer/feign/getRemoteEmployeeList?keyword=haha
 
 ========redis
 redis-server redis.conf

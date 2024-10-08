@@ -8,7 +8,10 @@ http://localhost:8000/feign/getRemoteEmployeeList?keyword=haha
 http://localhost:1000//provider/hystrix?key=haha
 http://localhost:1000/provider/getReomteEmploeeList?keyword=haha
 
+http://localhost:8000/feign/hystrix?key=haha
+http://localhost:9000/hystrix
 
+http://localhost:1000/actuator/hystrix.stream
 
 
 ========redis

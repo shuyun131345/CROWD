@@ -25,6 +25,14 @@
     <file url="file://$PROJECT_DIR$/crowd-05-admin-util/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crowd-06-admin-reverse/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crowd-06-admin-reverse/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-07-member-parent/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-07-member-parent/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-08-member-eureka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-08-member-eureka/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-09-member-entity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-09-member-entity/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-10-member-mysql-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-10-member-mysql-provider/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

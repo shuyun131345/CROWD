@@ -11,6 +11,9 @@
         <option value="$PROJECT_DIR$/crowd-06-reverse/pom.xml" />
         <option value="$PROJECT_DIR$/crowd-01-admin-parent/pom.xml" />
         <option value="$PROJECT_DIR$/crowd-06-admin-reverse/pom.xml" />
+        <option value="$PROJECT_DIR$/crowd-07-member-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/crowd-10-member-mysql-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/crowd-16-member-zuul/pom.xml" />
       </list>
     </option>
   </component>

@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>crowd-09-member-entity</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

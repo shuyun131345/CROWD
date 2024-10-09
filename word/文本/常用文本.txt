@@ -10,7 +10,7 @@ crowd-12-member-authentication-consumer
 crowd-13-member-project-consumer
 crowd-14-member-order-consumer
 crowd-15-member-pay-consumer
-crowd-16-member-zuul 
+crowd-16-member-zuul
 crowd-17-member-api
 
 

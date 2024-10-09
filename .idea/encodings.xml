@@ -13,18 +13,18 @@
     <file url="file://$PROJECT_DIR$/atcrowdfunding05-common-util/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/atcrowdfunding06-common-reverse/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/atcrowdfunding06-common-reverse/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crowd-01-parent/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crowd-01-parent/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crowd-02-webui/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crowd-02-webui/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crowd-03-component/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crowd-03-component/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crowd-04-entity/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crowd-04-entity/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crowd-05-util/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crowd-05-util/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crowd-06-reverse/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crowd-06-reverse/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-01-admin-parent/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-01-admin-parent/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-02-admin-webui/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-02-admin-webui/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-03-admin-component/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-03-admin-component/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-04-admin-entity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-04-admin-entity/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-05-admin-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-05-admin-util/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-06-admin-reverse/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-06-admin-reverse/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

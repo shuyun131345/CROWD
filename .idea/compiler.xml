@@ -7,11 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="crowd-05-util" />
-        <module name="crowd-06-reverse" />
-        <module name="crowd-02-webui" />
-        <module name="crowd-04-entity" />
-        <module name="crowd-03-component" />
+        <module name="crowd-05-admin-util" />
+        <module name="crowd-06-admin-reverse" />
+        <module name="crowd-02-admin-webui" />
+        <module name="crowd-03-admin-component" />
+        <module name="crowd-04-admin-entity" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

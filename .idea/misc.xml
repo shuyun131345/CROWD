@@ -9,6 +9,8 @@
         <option value="$PROJECT_DIR$/atcrowdfunding06-common-reverse/pom.xml" />
         <option value="$PROJECT_DIR$/crowd-01-parent/pom.xml" />
         <option value="$PROJECT_DIR$/crowd-06-reverse/pom.xml" />
+        <option value="$PROJECT_DIR$/crowd-01-admin-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/crowd-06-admin-reverse/pom.xml" />
       </list>
     </option>
   </component>

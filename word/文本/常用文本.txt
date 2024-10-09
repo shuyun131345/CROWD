@@ -1,5 +1,20 @@
 
 
+====前台模块名称
+crowd-07-member-parent
+crowd-08-member-eureka
+crowd-09-member-entity
+crowd-10-member-mysql-provider
+crowd-11-member-redis-provider
+crowd-12-member-authentication-consumer
+crowd-13-member-project-consumer
+crowd-14-member-order-consumer
+crowd-15-member-pay-consumer
+crowd-16-member-zuul 
+crowd-17-member-api
+
+
+
 
 ====springcloud
 http://localhost:5000/

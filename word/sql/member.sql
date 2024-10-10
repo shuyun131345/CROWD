@@ -1,6 +1,6 @@
 #尚筹网-前台sql
 
-#1.成员信息表
+#1.成员信息表 20241010-2
 create table t_member(
 	id int(11) not null auto_increment,
 	loginacct varchar(255) not null,
@@ -15,6 +15,8 @@ create table t_member(
 	primary key(id)
 );
 
+#2.成员信息表临时数据 20241010-470
+INSERT INTO t_member(id,loginacct,userpswd) VALUES(1001,'16602083320','123456');
 
 
 

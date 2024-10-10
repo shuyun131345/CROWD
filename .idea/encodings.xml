@@ -33,6 +33,20 @@
     <file url="file://$PROJECT_DIR$/crowd-09-member-entity/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crowd-10-member-mysql-provider/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crowd-10-member-mysql-provider/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-11-member-redis-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-11-member-redis-provider/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-12-member-authentication-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-12-member-authentication-consumer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-13-member-project-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-13-member-project-consumer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-14-member-order-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-14-member-order-consumer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-15-member-pay-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-15-member-pay-consumer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-16-member-zuul/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-16-member-zuul/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-17-member-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crowd-17-member-api/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

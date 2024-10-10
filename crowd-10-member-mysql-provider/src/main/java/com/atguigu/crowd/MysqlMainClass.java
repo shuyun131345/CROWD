@@ -1,15 +1,16 @@
 package com.atguigu.crowd;
 
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
-@EnableEurekaServer
+//扫描mapper接口所在包
+@MapperScan("com.atguigu.crowd.mapper")
 @SpringBootApplication
-public class CrowdMainClass {
+public class MysqlMainClass {
     public static void main(String[] args) {
-        SpringApplication.run(CrowdMainClass.class);
+        SpringApplication.run(MysqlMainClass.class);
         System.out.println("Hello world!");
     }
 }

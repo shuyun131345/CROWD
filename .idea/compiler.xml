@@ -7,14 +7,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="crowd-14-member-order-consumer" />
         <module name="crowd-06-admin-reverse" />
         <module name="crowd-09-member-entity" />
+        <module name="crowd-12-member-authentication-consumer" />
+        <module name="crowd-03-admin-component" />
+        <module name="crowd-15-member-pay-consumer" />
         <module name="crowd-10-member-mysql-provider" />
         <module name="crowd-02-admin-webui" />
-        <module name="crowd-03-admin-component" />
+        <module name="crowd-16-member-zuul" />
         <module name="crowd-05-admin-util" />
+        <module name="crowd-11-member-redis-provider" />
         <module name="crowd-08-member-eureka" />
+        <module name="crowd-13-member-project-consumer" />
         <module name="crowd-04-admin-entity" />
+        <module name="crowd-17-member-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -24,6 +31,12 @@
       <module name="atcrowdfunding04-admin-entity" target="1.8" />
       <module name="atcrowdfunding05-common-util" target="1.8" />
       <module name="atcrowdfunding06-common-reverse" target="1.8" />
+      <module name="crowd-01-parent" target="1.8" />
+      <module name="crowd-02-webui" target="1.8" />
+      <module name="crowd-03-component" target="1.8" />
+      <module name="crowd-04-entity" target="1.8" />
+      <module name="crowd-05-util" target="1.8" />
+      <module name="crowd-06-reverse" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

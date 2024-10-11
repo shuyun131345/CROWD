@@ -41,11 +41,7 @@ redis-server redis.conf
 redis-cli -h 192.168.197.133 -p 6379 -a 123456
 redis-cli -h 192.168.64.133 -p 6379 -a 123456
 systemctl stop firewalld.service
-
-
-
-
-
+redis-cli -p 6379 -h 192.168.197.133 -a 123456  shutdown save
 
 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 wget -O /etc/yum.repos.d/epel.repo.repo http://mirrors.aliyun.com/repo/Centos-7.repo

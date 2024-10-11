@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 //@FeignClient注解表示和一个provider对应，value属性指定要调用的Provider的微服务名称;
 // fallbackFactory属性指定 consumer 调用 provider 时如果失败所采取的备用方案
-@FeignClient(value = "mysql")
+@FeignClient(value = "mysql-provider")
 public interface MySQLRemoteService {
     //远程调用的接口方法
     //注意：这里的方法要和 Provider中的具体实现的方法的声明要一致

@@ -4,7 +4,7 @@ server:
 spring:
   application:
     #配置当前微服务名称，在Eureka注册中心，是通过微服务名称来查找调用微服务
-    name: mysql
+    name: mysql-provider
 
   #数据源配置
   datasource:

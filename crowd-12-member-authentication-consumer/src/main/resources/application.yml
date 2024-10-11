@@ -1,0 +1,19 @@
+server:
+  port: 4000
+
+spring:
+  application:
+    #注册到eureka的微服务名称
+    name: authentication-consumer
+
+  thymeleaf:
+    #视图前缀
+    prefix: classpath:/templates/
+    #视图后缀
+    suffix: .html
+
+eureka:
+  client:
+    service-url:
+      #eureka服务器地址，客户端需要往这个地址去注册
+      defaultZone: http://localhost:1000/eureka

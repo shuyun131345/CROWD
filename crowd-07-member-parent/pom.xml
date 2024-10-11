@@ -19,6 +19,7 @@
         <module>../crowd-15-member-pay-consumer</module>
         <module>../crowd-16-member-zuul</module>
         <module>../crowd-17-member-api</module>
+        <module>../crowd-18-member-util</module>
     </modules>
 
     <properties>

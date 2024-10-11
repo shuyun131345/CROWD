@@ -11,7 +11,7 @@ spring:
     #默认使用 0 号数据库
     database: 0
     #redis服务器地址，如果redis的配置文件的 bind属性绑定了地址，需要用该地址
-    host: 192.168.197.133
+    host: 192.168.64.133
     #rdis默认端口6379
     port: 6379
     password: 123456

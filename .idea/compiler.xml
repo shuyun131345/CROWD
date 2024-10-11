@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="crowd-14-member-order-consumer" />
+        <module name="crowd-18-member-util" />
         <module name="crowd-06-admin-reverse" />
         <module name="crowd-09-member-entity" />
         <module name="crowd-12-member-authentication-consumer" />

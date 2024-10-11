@@ -9,7 +9,7 @@ http://localhost:3000/set/redis/key/value/remote?key=name&value=shuyun
 http://localhost:2000/get/member/by/loginacct/remote?loginacct=16602083320
 http://localhost:4000/
 
-
+http://localhost:80/
 
 
 

@@ -1,28 +1,17 @@
+package com.atguigu.crowd.test;
 
+import com.atguigu.crowd.http.HttpUtils;
+import org.apache.http.HttpResponse;
+import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
 
-
-http://localhost:8080/crowd_02_webui_war_exploded/
-
-http://localhost:8080/crowd_02_webui_war_exploded/admin/to/login/page.html
-
-http://localhost:8080/crowd_02_webui_war_exploded/admin/page.html
-
-
-
-
-use project_crowd;
-drop table if exists t_admin;
-create table t_admin
-(
-id int not null auto_increment, # Ö÷¼ü
-login_acct varchar(255) not null, # µÇÂ¼ÕËºÅ
-user_pswd char(32) not null, # µÇÂ¼ÃÜÂë
-user_name varchar(255) not null, # êÇ³Æ
-email varchar(255) not null, # ÓÊ¼şµØÖ·
-create_time char(19), # ´´½¨Ê±¼ä
-primary key (id)
-);
+/**
+ * @author shuyun
+ * @date 2024-10-12 12:18:44
+ */
+public class TestMessage {
 
 
     @Test
@@ -33,13 +22,13 @@ primary key (id)
         String method = "POST";
         String appcode = "2fc1a2c00e5f4b22adb8571bd2b6b6ea";
         Map<String, String> headers = new HashMap<String, String>();
-        //×îºóÔÚheaderÖĞµÄ¸ñÊ½(ÖĞ¼äÊÇÓ¢ÎÄ¿Õ¸ñ)ÎªAuthorization:APPCODE 83359fd73fe94948385f570e3c139105
+        //æœ€ååœ¨headerä¸­çš„æ ¼å¼(ä¸­é—´æ˜¯è‹±æ–‡ç©ºæ ¼)ä¸ºAuthorization:APPCODE 83359fd73fe94948385f570e3c139105
         headers.put("Authorization", "APPCODE " + appcode);
         Map<String, String> querys = new HashMap<String, String>();
         querys.put("mobile", "16602083320");
         querys.put("param", "**code**:12345,**minute**:5");
 
-//smsSignId£¨¶ÌĞÅÇ°×º£©ºÍtemplateId£¨¶ÌĞÅÄ£°å£©£¬¿ÉµÇÂ¼¹úÑôÔÆ¿ØÖÆÌ¨×ÔÖúÉêÇë¡£²Î¿¼ÎÄµµ£ºhttp://help.guoyangyun.com/Problem/Qm.html
+//smsSignIdï¼ˆçŸ­ä¿¡å‰ç¼€ï¼‰å’ŒtemplateIdï¼ˆçŸ­ä¿¡æ¨¡æ¿ï¼‰ï¼Œå¯ç™»å½•å›½é˜³äº‘æ§åˆ¶å°è‡ªåŠ©ç”³è¯·ã€‚å‚è€ƒæ–‡æ¡£ï¼šhttp://help.guoyangyun.com/Problem/Qm.html
 
         querys.put("smsSignId", "2e65b1bb3d054466b82f0c9d125465e2");
         querys.put("templateId", "908e94ccf08b4476ba6c876d13f084ad");
@@ -48,18 +37,19 @@ primary key (id)
 
         try {
             /**
-             * ÖØÒªÌáÊ¾ÈçÏÂ:
-             * HttpUtilsÇë´Ó\r\n\t    \t* https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/src/main/java/com/aliyun/api/gateway/demo/util/HttpUtils.java\r\n\t    \t* ÏÂÔØ
+             * é‡è¦æç¤ºå¦‚ä¸‹:
+             * HttpUtilsè¯·ä»\r\n\t    \t* https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/src/main/java/com/aliyun/api/gateway/demo/util/HttpUtils.java\r\n\t    \t* ä¸‹è½½
              *
-             * ÏàÓ¦µÄÒÀÀµÇë²ÎÕÕ
+             * ç›¸åº”çš„ä¾èµ–è¯·å‚ç…§
              * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/pom.xml
              */
             HttpResponse response = HttpUtils.doPost(host, path, method, headers, querys, bodys);
             System.out.println(response.toString());
-            //»ñÈ¡responseµÄbody
+            //è·å–responseçš„body
             //System.out.println(EntityUtils.toString(response.getEntity()));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
+}

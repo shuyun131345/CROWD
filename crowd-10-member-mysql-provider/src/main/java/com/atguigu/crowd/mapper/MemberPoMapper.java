@@ -20,4 +20,9 @@ public interface MemberPoMapper {
      */
     MemberPo selectByLoginAcct(@Param("loginAcct") String loginAcct);
 
+    /**
+     * 新增会员
+     * @param po
+     */
+    void saveMemberPo(MemberPo po);
 }

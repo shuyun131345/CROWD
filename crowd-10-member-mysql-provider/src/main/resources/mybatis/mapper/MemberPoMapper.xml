@@ -33,5 +33,32 @@
     where loginacct = #{loginAcct}
   </select>
 
+  <insert id="saveMemberPo" parameterType="com.atguigu.crowd.entity.po.MemberPo">
+      insert into t_member
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="id != null and id !=''">id,</if>
+          <if test="loginacct != null and loginacct !=''">loginacct,</if>
+          <if test="userpswd != null and userpswd !=''">userpswd,</if>
+          <if test="username != null and username !=''">username,</if>
+          <if test="email != null and email !=''">email,</if>
+          <if test="authstatus != null and authstatus !=''">authstatus,</if>
+          <if test="usertype != null and usertype !=''">usertype,</if>
+          <if test="realname != null and realname !=''">realname,</if>
+          <if test="cardnum != null and cardnum !=''">cardnum,</if>
+          <if test="accttype != null and accttype !=''">accttype,</if>
+      </trim>
+      <trim prefix="values(" suffix=")" suffixOverrides=",">
+          <if test="id != null and id !=''">#{id},</if>
+          <if test="loginacct != null and loginacct !=''">#{loginacct},</if>
+          <if test="userpswd != null and userpswd !=''">#{userpswd},</if>
+          <if test="username != null and username !=''">#{username},</if>
+          <if test="email != null and email !=''">#{email},</if>
+          <if test="authstatus != null and authstatus !=''">#{authstatus},</if>
+          <if test="usertype != null and usertype !=''">#{usertype},</if>
+          <if test="realname != null and realname !=''">#{realname},</if>
+          <if test="cardnum != null and cardnum !=''">#{cardnum},</if>
+          <if test="accttype != null and accttype !=''">#{accttype},</if>
+      </trim>
+  </insert>
 
 </mapper>

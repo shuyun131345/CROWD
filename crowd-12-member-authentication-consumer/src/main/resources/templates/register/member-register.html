@@ -31,31 +31,28 @@
     <form class="form-signin" role="form">
         <h2 class="form-signin-heading"><i class="glyphicon glyphicon-log-in"></i> 用户注册</h2>
         <div class="form-group has-success has-feedback">
-            <input type="text" class="form-control" id="loginacct" placeholder="请输入登录账号" autofocus>
+            <input type="text" class="form-control" name="loginacct" placeholder="请输入登录账号" autofocus>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-success has-feedback">
-            <input type="text" class="form-control" id="userpswd" placeholder="请输入登录密码"
-                   style="margin-top:10px;">
+            <input type="text" class="form-control" name="userpswd" placeholder="请输入登录密码" style="margin-top:10px;">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="form-group has-success has-feedback">
-            <input type="text" class="form-control" id="email" placeholder="请输入邮箱地址"
-                   style="margin-top:10px;">
+            <input type="text" class="form-control" name="email" placeholder="请输入邮箱地址" style="margin-top:10px;">
             <span class="glyphicon glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-success has-feedback">
-            <input type="text" name="phoneNum" class="form-control" id="phoneNum" placeholder="请输入手机号"
-                   style="margin-top:10px;">
+            <input type="text" name="phoneNum" class="form-control" id="phoneNum" placeholder="请输入手机号" style="margin-top:10px;">
             <span class="glyphicon glyphicon glyphicon-earphone form-control-feedback"></span>
         </div>
         <div class="form-group has-success has-feedback">
-            <input type="text" class="form-control" id="messageCode" placeholder="请输入验证码"
-                   style="margin-top:10px;">
+            <input type="text" class="form-control" name="messageCode" placeholder="请输入验证码" style="margin-top:10px;">
             <span class="glyphicon glyphicon glyphicon-comment form-control-feedback"></span>
         </div>
         <button id="sendShortMessage" type="button" class="btn btn-lg btn-success btn-block"> 获取验证码</button>
-        <a class="btn btn-lg btn-success btn-block" href="login.html"> 注册</a>
+        <!--th:href 指定-->
+        <a class="btn btn-lg btn-success btn-block" href="login.html" th:href="@{/auth/member/login-index.html}"> 注册</a>
     </form>
 </div>
 <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>

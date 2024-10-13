@@ -16,7 +16,7 @@ public class CrowdUtil {
 
 
     /**
-     * 短信发送，调用第三方接口
+     * 调用第三方接口，给用户手机发送短信验证码，发送成功后将验证码返回
      *
      * @param host       接口地址
      * @param path       路径
@@ -41,8 +41,8 @@ public class CrowdUtil {
         headers.put("Authorization", "APPCODE " + appcode);
         Map<String, String> querys = new HashMap<String, String>();
         querys.put("mobile", mobile);
-        //获取6为验证码
-        String messageCode = getMessageCode(6);
+        //获取6位验证码
+        String messageCode = getMessageAhtenticationCode(6);
 
         querys.put("param", "**code**:"+messageCode+",**minute**:5");
 
@@ -63,17 +63,19 @@ public class CrowdUtil {
              */
             HttpResponse response = HttpUtils.doPost(host, path, method, headers, querys, bodys);
             StatusLine statusLine = response.getStatusLine();
+            //调用状态码
             int statusCode = statusLine.getStatusCode();
+            String reasonPhrase = statusLine.getReasonPhrase();
+
             if (200 == statusCode) {
                 //发送成功后，返回验证码，存到redis中
                 return ResultEntity.successWithData(messageCode);
             } else {
-                return ResultEntity.failed("短信发送失败，请稍后再试");
+                return ResultEntity.failed(reasonPhrase);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultEntity.failed("短信发送失败，请稍后再试");
+            return ResultEntity.failed(e.getMessage());
         }
 
     }
@@ -84,7 +86,7 @@ public class CrowdUtil {
      * @param length 验证码长度
      * @return
      */
-    public static String getMessageCode(int length) {
+    public static String getMessageAhtenticationCode(int length) {
         StringBuilder code = new StringBuilder();
 
         for (int i = 0; i < length; i++) {

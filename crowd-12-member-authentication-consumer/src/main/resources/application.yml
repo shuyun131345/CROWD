@@ -17,3 +17,12 @@ eureka:
     service-url:
       #eureka服务器地址，客户端需要往这个地址去注册
       defaultZone: http://localhost:1000/eureka
+
+message:
+  host: https://gyytz.market.alicloudapi.com
+  path: /sms/smsSend
+  method: POST
+  appcode: 2fc1a2c00e5f4b22adb8571bd2b6b6ea
+  smsSignId: 2e65b1bb3d054466b82f0c9d125465e2
+  templateId: 908e94ccf08b4476ba6c876d13f084ad
+

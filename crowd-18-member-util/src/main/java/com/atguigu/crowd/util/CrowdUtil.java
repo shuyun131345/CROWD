@@ -14,7 +14,6 @@ import java.util.Map;
  */
 public class CrowdUtil {
 
-
     /**
      * 调用第三方接口，给用户手机发送短信验证码，发送成功后将验证码返回
      *
@@ -90,7 +89,7 @@ public class CrowdUtil {
         StringBuilder code = new StringBuilder();
 
         for (int i = 0; i < length; i++) {
-            int num = (int) Math.random() * 10;
+            int num = (int) (Math.random() * 10);
             code.append(num);
         }
         return code.toString();

@@ -1,8 +1,11 @@
 package com.atguigu.crowd.test;
 
 import com.atguigu.crowd.http.HttpUtils;
+import com.atguigu.crowd.util.CrowdUtil;
 import org.apache.http.HttpResponse;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +16,14 @@ import java.util.Map;
  */
 public class TestMessage {
 
+    private Logger logger = LoggerFactory.getLogger(TestMessage.class);
+    @Test
+    public void testCode(){
+        String messageAhtenticationCode = CrowdUtil.getMessageAhtenticationCode(6);
+        logger.info("++++++++++"+messageAhtenticationCode
+
+        );
+    }
 
     @Test
     public void testmsg() {

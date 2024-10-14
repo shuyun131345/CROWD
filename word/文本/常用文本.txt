@@ -5,6 +5,10 @@ shuyun1345
 http://www.aliyun.com
 
 
+set "REDIS_MESSAGE_CODE_PREFIX_16602083320" 123456
+
+
+
 http://localhost:1000/
 http://localhost:3000/set/redis/key/value/remote?key=name&value=shuyun
 
@@ -13,7 +17,7 @@ http://localhost:4000/
 
 http://localhost:80/
 
-http://localhost:2000/mysql/save/member?loginacct=16602083320
+http://localhost:2000/mysql/save/member
 
 ====前台模块名称
 crowd-07-member-parent

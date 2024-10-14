@@ -1,5 +1,12 @@
 package com.atguigu.crowd.entity.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MemberVo {
 
     private Integer id;
@@ -12,18 +19,7 @@ public class MemberVo {
 
     private String email;
 
-    private Integer authstatus;
-
-    private Integer usertype;
-
-    private String realname;
-
-    private String cardnum;
-
-    private Integer accttype;
-
     private String phoneNum;
 
     private String messageCode;
-
 }

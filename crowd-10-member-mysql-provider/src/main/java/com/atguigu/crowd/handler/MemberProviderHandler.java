@@ -32,8 +32,8 @@ public class MemberProviderHandler {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/mysql/save/member")
-    public ResultEntity<String> saveMemberPoRemote( MemberPo po){
+    @RequestMapping("/mysql/save/member/remote")
+    public ResultEntity<String> saveMemberPoRemote(@RequestBody MemberPo po){
         try {
             memberService.saveMemberPo(po);
         }catch (Exception e){

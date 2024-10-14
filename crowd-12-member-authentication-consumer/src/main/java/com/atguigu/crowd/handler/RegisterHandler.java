@@ -16,7 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -103,7 +102,7 @@ public class RegisterHandler {
      * @return
      */
     @RequestMapping("/auth/member/do/register")
-    public String memberRegister(@RequestBody MemberVo memberVo, ModelMap modelMap){
+    public String memberRegister( MemberVo memberVo, ModelMap modelMap){
         String registerView = "/register/member-register";
         //1.VO参数检查，必要参数是否为空
         String tips = checkReq(memberVo,modelMap);

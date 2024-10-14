@@ -1,6 +1,8 @@
 CrowdMainClass
-
-
+16602083320Yun
+shuyun1345
+1012160677@qq.com
+http://www.aliyun.com
 
 
 http://localhost:1000/
@@ -11,7 +13,7 @@ http://localhost:4000/
 
 http://localhost:80/
 
-
+http://localhost:2000/mysql/save/member?loginacct=16602083320
 
 ====前台模块名称
 crowd-07-member-parent

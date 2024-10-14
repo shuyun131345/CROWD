@@ -1,6 +1,5 @@
 package com.atguigu.crowd.service.api;
 
-import com.atguigu.crowd.entity.ResultEntity;
 import com.atguigu.crowd.entity.po.MemberPo;
 
 public interface MemberService {
@@ -16,5 +15,5 @@ public interface MemberService {
      * 新增会员
      * @param po
      */
-    ResultEntity<String> saveMemberPo(MemberPo po);
+    void saveMemberPo(MemberPo po);
 }

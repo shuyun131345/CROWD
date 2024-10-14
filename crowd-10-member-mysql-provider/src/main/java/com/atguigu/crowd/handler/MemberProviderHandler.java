@@ -4,10 +4,8 @@ import com.atguigu.crowd.entity.ResultEntity;
 import com.atguigu.crowd.entity.po.MemberPo;
 import com.atguigu.crowd.service.api.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MemberProviderHandler {
@@ -35,9 +33,16 @@ public class MemberProviderHandler {
      */
     @ResponseBody
     @RequestMapping("/mysql/save/member")
-    public ResultEntity<String> saveMemberPoRemote(MemberPo po){
-        return memberService.saveMemberPo(po);
+    public ResultEntity<String> saveMemberPoRemote( MemberPo po){
+        try {
+            memberService.saveMemberPo(po);
+        }catch (Exception e){
+            if (e instanceof DuplicateKeyException){
+                return ResultEntity.failed("该账号已存在");
+            }
+            return ResultEntity.failed(e.getMessage());
+        }
+        return ResultEntity.successWithoutData();
     }
-
 
 }

@@ -232,4 +232,16 @@ public class MemberrHandler {
         return "redirect:/auth/to/member-center";
     }
 
+
+    /**
+     * 退出登录
+     * @param session
+     * @return
+     */
+    @RequestMapping("/auth/member/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
+
 }

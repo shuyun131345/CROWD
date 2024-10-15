@@ -5,6 +5,7 @@ import com.atguigu.crowd.api.RedisRemoteService;
 import com.atguigu.crowd.constant.CrowdConstant;
 import com.atguigu.crowd.entity.ResultEntity;
 import com.atguigu.crowd.entity.po.MemberPo;
+import com.atguigu.crowd.entity.vo.MemberLoginVo;
 import com.atguigu.crowd.entity.vo.MemberVo;
 import com.atguigu.crowd.util.CrowdUtil;
 import org.slf4j.Logger;
@@ -20,12 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 @Controller
-public class RegisterHandler {
-    private Logger logger = LoggerFactory.getLogger(RegisterHandler.class);
+public class MemberrHandler {
+    private Logger logger = LoggerFactory.getLogger(MemberrHandler.class);
 
     /**
      * 从首页的"注册"按钮，跳转到注册页面，不使用，使用配置类的注解方式跳转
@@ -155,7 +157,7 @@ public class RegisterHandler {
         redisRemoteService.removeRedisKeyRemote(messageCodeKey);
 
         //8.重定向到登录页面，重定向的地址在配置类里面转发
-        return "login/member-login";
+        return "redirect:/auth/member/login";
     }
 
     /**
@@ -180,6 +182,54 @@ public class RegisterHandler {
             return CrowdConstant.MESSAGE_CODE_IS_EMPTY;
         }
         return null;
+    }
+
+
+    /**
+     * 用户登录
+     * @param memberVo
+     * @param modelMap
+     * @param session
+     * @return
+     */
+    @RequestMapping("/auth/member/do/login")
+    public String login(MemberVo memberVo, ModelMap modelMap, HttpSession session){
+        String loginView = "login/member-login";
+
+        //1.根据账号查询用户信息
+        String loginacct = memberVo.getLoginacct();
+        ResultEntity<MemberPo> memberEntity= mySQLRemoteService.getMemberByLoginacctRemote(loginacct);
+        if (ResultEntity.FAILED.equalsIgnoreCase(memberEntity.getResult())){
+            //查询失败，返回登录页面，提示错误消息
+            modelMap.addAttribute(CrowdConstant.LOGIN_CHECK,CrowdConstant.LOGIN_FAIL);
+            return loginView;
+        }
+        MemberPo memberPo = memberEntity.getData();
+        if (Objects.isNull(memberPo)){
+            //查询不到用户，账号不存在
+            modelMap.addAttribute(CrowdConstant.LOGIN_CHECK,CrowdConstant.LOGINACCT_IS_NOT_EXIST);
+            return loginView;
+        }
+
+        //2.远程调用mysql工程接口，根据账号查询会员信息，进行密码校验
+        String userpswd = memberVo.getUserpswd();
+        String userpswdDataBase = memberPo.getUserpswd();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        //注意要使用这个方法来进行密码校验，因为就算同一个密码，每次加密的盐值都不同
+        boolean matches = encoder.matches(userpswd, userpswdDataBase);
+        if (!matches){
+            //密码不正确
+            modelMap.addAttribute(CrowdConstant.LOGIN_CHECK,CrowdConstant.PSWD_ERROR);
+            return loginView;
+        }
+
+        //3.密码校验通过，将登录信息存入到Session域
+        MemberLoginVo memberLoginVo = new MemberLoginVo(memberPo.getId(),memberPo.getUsername(),memberPo.getEmail());
+
+        session.setAttribute(CrowdConstant.LOGIN_MEMBER,memberLoginVo);
+
+        //4.重定向到会员中心页面，避免表单重复提交
+        return "redirect:/auth/to/member-center";
     }
 
 }

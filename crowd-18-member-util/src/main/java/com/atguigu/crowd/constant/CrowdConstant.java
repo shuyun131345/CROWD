@@ -17,4 +17,9 @@ public class CrowdConstant {
     public static final String REGISTER_FAIL = "注册失败，请稍后再试";
     public static final String MESSAGE_CODE_ERROR = "验证码错误，请重新输入";
     public static final String LOGINACCT_IS_EXIST = "该账号已存在，请重新输入";
+    public static final String LOGINACCT_IS_NOT_EXIST = "该账号不存在，请重新输入";
+    public static final String LOGIN_CHECK = "login_check";
+    public static final String LOGIN_FAIL = "登录失败，请稍后再试";
+    public static final String PSWD_ERROR = "输入的密码不正确";
+    public static final String LOGIN_MEMBER = "loginMember";
 }

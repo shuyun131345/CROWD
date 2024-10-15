@@ -5,6 +5,12 @@ spring:
   application:
     #注册到eureka的微服务名称
     name: zuul
+  redis:
+    #redis服务器地址
+    host: 192.168.64.133
+  session:
+    #session存储类型
+    store-type: redis
 
 eureka:
   client:

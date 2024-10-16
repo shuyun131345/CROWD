@@ -19,5 +19,6 @@ public class MemberRegisterConfig implements WebMvcConfigurer {
         registry.addViewController("/auth/member/login").setViewName("login/member-login");
         //从登录页面跳转到个人中心
         registry.addViewController("/auth/to/member-center").setViewName("member/member-center");
+        registry.addViewController("/auth/project/to/my-crowd").setViewName("project/my-crowd");
     }
 }

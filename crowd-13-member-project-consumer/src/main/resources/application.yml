@@ -6,6 +6,7 @@ spring:
   redis:
     #redis服务器地址
     host: 192.168.64.133
+
   session:
     #session存储类型
     store-type: redis
@@ -25,6 +26,6 @@ aliyun:
   oss:
     access-key-id: LTAI5tQ1J43vbuyuQUsFsXoM
     access-key-secret: pPTj0VnFfyVDb2towQgQmTNZJW9LnS
-    bucket-domain: shuyun-atguigu.oss-cn-guangzhou.aliyuncs.com
-    end-point: oss-cn-guangzhou.aliyuncs.com
+    bucket-domain: http://shuyun-atguigu.oss-cn-guangzhou.aliyuncs.com
+    end-point: http://oss-cn-guangzhou.aliyuncs.com
     bucket-name: shuyun-atguigu

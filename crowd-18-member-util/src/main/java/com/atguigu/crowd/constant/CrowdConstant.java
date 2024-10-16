@@ -22,4 +22,6 @@ public class CrowdConstant {
     public static final String LOGIN_FAIL = "登录失败，请稍后再试";
     public static final String PSWD_ERROR = "输入的密码不正确";
     public static final String LOGIN_MEMBER = "loginMember";
+    public static final String SERVELT_PATH_IS_EMPTY = "请求路径为空";
+    public static final String ACCESS_FORBIDEN = "请登录后再访问";
 }

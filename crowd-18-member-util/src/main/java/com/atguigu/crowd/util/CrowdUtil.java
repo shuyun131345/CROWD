@@ -1,7 +1,10 @@
 package com.atguigu.crowd.util;
 
+import com.atguigu.crowd.constant.AccessPassResource;
+import com.atguigu.crowd.constant.CrowdConstant;
 import com.atguigu.crowd.entity.ResultEntity;
 import com.atguigu.crowd.http.HttpUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 
@@ -93,6 +96,35 @@ public class CrowdUtil {
             code.append(num);
         }
         return code.toString();
+    }
+
+
+    /**
+     * 判断请求路径是否为静态资源路径
+     * @param serveltPath
+     * @return true：属于静态资源，可放行； false：需要登录后才能访问
+     */
+    public static boolean judgeCurrentServeltPathIsStaticResource(String serveltPath){
+
+        if (StringUtils.isEmpty(serveltPath)){
+            throw new RuntimeException(CrowdConstant.SERVELT_PATH_IS_EMPTY);
+        }
+
+        //是否属于放行的请求路径
+        if (AccessPassResource.PASS_RESOURCE_SET.contains(serveltPath)){
+            return true;
+        }
+
+        //是否属于static目录下的静态资源，只匹配第一层目录即可
+        String[] paths = serveltPath.split("/");
+        //考虑到第一个斜杠左边经过拆分后得到一个空字符串是数组的第一个元素，所以需要使用下标 1 取第二个元素
+        String path = paths[1];
+        if (AccessPassResource.STATIC_RESOURCE_SET.contains(path)){
+            return true;
+        }
+
+        //其他就是需要登录检查的资源
+        return false;
     }
 
 }

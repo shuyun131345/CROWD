@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.crowd.mapper.ProjectPoMapper" >
+  <resultMap id="BaseResultMap" type="com.atguigu.crowd.entity.ProjectPo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="project_description" property="projectDescription" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="BIGINT" />
+    <result column="day" property="day" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="deploydate" property="deploydate" jdbcType="VARCHAR" />
+    <result column="supportmoney" property="supportmoney" jdbcType="BIGINT" />
+    <result column="supporter" property="supporter" jdbcType="INTEGER" />
+    <result column="completion" property="completion" jdbcType="INTEGER" />
+    <result column="memberid" property="memberid" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="VARCHAR" />
+    <result column="follower" property="follower" jdbcType="INTEGER" />
+    <result column="header_picture_path" property="headerPicturePath" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, project_name, project_description, money, day, status, deploydate, supportmoney, 
+    supporter, completion, memberid, createdate, follower, header_picture_path
+  </sql>
+
+</mapper>

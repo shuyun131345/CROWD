@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.crowd.mapper.ReturnPoMapper" >
+  <resultMap id="BaseResultMap" type="com.atguigu.crowd.entity.ReturnPo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="projectid" property="projectid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="supportmoney" property="supportmoney" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="signalpurchase" property="signalpurchase" jdbcType="INTEGER" />
+    <result column="purchase" property="purchase" jdbcType="INTEGER" />
+    <result column="freight" property="freight" jdbcType="INTEGER" />
+    <result column="invoice" property="invoice" jdbcType="INTEGER" />
+    <result column="returndate" property="returndate" jdbcType="INTEGER" />
+    <result column="describ_pic_path" property="describPicPath" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, projectid, type, supportmoney, content, count, signalpurchase, purchase, freight, 
+    invoice, returndate, describ_pic_path
+  </sql>
+
+</mapper>

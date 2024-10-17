@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.atguigu.crowd.mapper.ReturnPoMapper" >
-  <resultMap id="BaseResultMap" type="com.atguigu.crowd.entity.ReturnPo" >
+  <resultMap id="BaseResultMap" type="com.atguigu.crowd.entity.po.ReturnPo" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="projectid" property="projectid" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="INTEGER" />
@@ -20,5 +20,12 @@
     id, projectid, type, supportmoney, content, count, signalpurchase, purchase, freight, 
     invoice, returndate, describ_pic_path
   </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_return
+    where id = #{id,jdbcType=INTEGER}
+  </select>
 
 </mapper>

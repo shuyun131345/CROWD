@@ -1,5 +1,11 @@
 package com.atguigu.crowd.mapper;
 
+
+import com.atguigu.crowd.entity.po.TagPo;
+
 public interface TagPoMapper {
+
+    TagPo selectByPrimaryKey(Integer id);
+
 
 }

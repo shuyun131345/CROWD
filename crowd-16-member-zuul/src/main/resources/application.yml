@@ -29,3 +29,8 @@ zuul:
       service-id: authentication-consumer
       #这里一定要使用两个“*”号，不然“/”路径后面的多层路径将无法访问
       path: /**
+    crowd-project:
+      #将该微服务路径替换成path路径
+      service-id: project-consumer
+      #这里一定要使用两个“*”号，不然“/”路径后面的多层路径将无法访问
+      path: /project/**

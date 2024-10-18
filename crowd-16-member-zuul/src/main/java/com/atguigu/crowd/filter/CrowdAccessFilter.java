@@ -64,7 +64,7 @@ public class CrowdAccessFilter extends ZuulFilter {
             session.setAttribute(CrowdConstant.LOGIN_CHECK,CrowdConstant.ACCESS_FORBIDEN);
             HttpServletResponse response = currentContext.getResponse();
             try {
-                response.sendRedirect("/auth/member/login");
+                response.sendRedirect("http://localhost:80/auth/member/login");
             } catch (IOException e) {
                 e.printStackTrace();
             }
